@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">MyNBA</string>
+    <string name="title_activity_main2">MainActivity2</string>
+    <string name="news">News</string>
+    <string name="games">Games</string>
+    <string name="standings">Standings</string>
 </resources>
