@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mynba.nba.models.Standing
+import com.example.mynba.nba.models.Team
 import com.example.mynba.nba.repo.NbaRepo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -26,4 +27,5 @@ class StandingsViewModel : ViewModel() {
         }
         return standingsLiveData
     }
+
 }

@@ -3,6 +3,9 @@ package com.example.mynba.nba.repo
 import android.util.Log
 import com.example.mynba.nba.api.NbaApi
 import com.example.mynba.nba.models.Standing
+import com.example.mynba.nba.models.Team
+import okhttp3.OkHttpClient
+import okhttp3.Request
 import retrofit2.Retrofit
 import retrofit2.awaitResponse
 import retrofit2.converter.gson.GsonConverterFactory
@@ -15,6 +18,7 @@ class NbaRepo {
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
+
     private val nbaApi: NbaApi = retrofit.create(NbaApi::class.java)
 
     suspend fun getStandings(): List<Standing> {
@@ -26,7 +30,8 @@ class NbaRepo {
         } else {
             Log.d(TAG, "the error is {${response.errorBody()}")
         }
-
         return standingList
     }
+
+
 }

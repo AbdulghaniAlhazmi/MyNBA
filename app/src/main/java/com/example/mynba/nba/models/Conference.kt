@@ -4,5 +4,5 @@ data class Conference(
     val loss: String,
     val name: String,
     val rank: String,
-    val win: String
+    val win: String,
 )
