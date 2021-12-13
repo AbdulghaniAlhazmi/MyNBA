@@ -19,17 +19,14 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val navView: BottomNavigationView = binding.navView
+        val bottomNavigationView = binding.bottomNavigationView
 
-        val navController = findNavController(R.id.nav_host_fragment_activity_main2)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        val appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.navigation_news, R.id.navigation_games, R.id.navigation_standings
-            )
-        )
-        setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
+        val navController = findNavController(R.id.container)
+
+        bottomNavigationView.setupWithNavController(navController)
+        setupActionBarWithNavController(navController, AppBarConfiguration(setOf(
+            R.layout.fragment_news,
+            R.layout.fragment_games,
+            R.layout.fragment_standings)))
     }
 }

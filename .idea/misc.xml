@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/ab909/Documents/MyNBA/app/src/main/res/layout/activity_home.xml" value="0.25" />
+        <entry key="..\:/Users/ab909/Documents/MyNBA/app/src/main/res/layout/fragment_games.xml" value="0.25" />
+        <entry key="..\:/Users/ab909/Documents/MyNBA/app/src/main/res/layout/fragment_standings.xml" value="0.25" />
+        <entry key="..\:/Users/ab909/Documents/MyNBA/app/src/main/res/layout/standings_list_item.xml" value="0.25" />
         <entry key="..\:/Users/ab909/MyNBA/app/src/main/res/layout/fragment_standings.xml" value="0.25" />
         <entry key="..\:/Users/ab909/MyNBA/app/src/main/res/layout/standings_list_item.xml" value="0.25" />
         <entry key="app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.1" />

@@ -46,11 +46,10 @@ class StandingsFragment : Fragment() {
             RecyclerView.ViewHolder(binding.root) {
 
         fun bind(table: Standing) {
-            if (table.conference.name == "east") {
-                binding.textView.text = table.conference.name
-                binding.textView2.text = table.conference.rank
+                binding.textView.text = table.conference.rank
+                binding.textView2.text = table.win
+                binding.textView3.text = table.loss
                 setImage(table.teamId)
-            }
         }
 
         private fun setImage(teamId: String) {

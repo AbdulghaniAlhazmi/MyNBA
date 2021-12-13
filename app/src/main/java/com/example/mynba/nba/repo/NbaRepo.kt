@@ -30,7 +30,7 @@ class NbaRepo {
         } else {
             Log.d(TAG, "the error is {${response.errorBody()}")
         }
-        return standingList
+        return standingList.sortedBy { it.conference.rank }
     }
 
 
