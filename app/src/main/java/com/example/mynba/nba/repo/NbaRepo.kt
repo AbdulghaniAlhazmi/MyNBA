@@ -3,9 +3,6 @@ package com.example.mynba.nba.repo
 import android.util.Log
 import com.example.mynba.nba.api.NbaApi
 import com.example.mynba.nba.models.Standing
-import com.example.mynba.nba.models.Team
-import okhttp3.OkHttpClient
-import okhttp3.Request
 import retrofit2.Retrofit
 import retrofit2.awaitResponse
 import retrofit2.converter.gson.GsonConverterFactory
@@ -21,16 +18,28 @@ class NbaRepo {
 
     private val nbaApi: NbaApi = retrofit.create(NbaApi::class.java)
 
-    suspend fun getStandings(): List<Standing> {
+    suspend fun getStandingsEast(): List<Standing> {
         var standingList: List<Standing> = emptyList()
-        val response = nbaApi.getStandings().awaitResponse()
+        val response = nbaApi.getStandingsEast().awaitResponse()
 
         if (response.isSuccessful) {
             standingList = response.body()?.api?.standings ?: emptyList()
         } else {
             Log.d(TAG, "the error is {${response.errorBody()}")
         }
-        return standingList.sortedBy { it.conference.rank }
+        return standingList
+    }
+
+    suspend fun getStandingsWest(): List<Standing> {
+        var standingList: List<Standing> = emptyList()
+        val response = nbaApi.getStandingsWest().awaitResponse()
+
+        if (response.isSuccessful) {
+            standingList = response.body()?.api?.standings ?: emptyList()
+        } else {
+            Log.d(TAG, "the error is {${response.errorBody()}")
+        }
+        return standingList
     }
 
 

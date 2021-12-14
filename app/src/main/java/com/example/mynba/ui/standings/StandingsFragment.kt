@@ -24,12 +24,11 @@ class StandingsFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        standingsViewModel.getStandings().observe(
+        standingsViewModel.getStandingsEast().observe(
             this, Observer {
                 binding.tableRC.adapter = TableAdapter(it)
             }
         )
-
     }
 
     override fun onCreateView(
@@ -39,6 +38,25 @@ class StandingsFragment : Fragment() {
     ): View {
         binding = FragmentStandingsBinding.inflate(layoutInflater)
         binding.tableRC.layoutManager = LinearLayoutManager(context)
+
+        binding.switch1.setOnCheckedChangeListener{_, isChecked ->
+            if(isChecked) {
+                binding.switch1.text = "East"
+                standingsViewModel.getStandingsEast().observe(
+                    viewLifecycleOwner, Observer {
+                        binding.tableRC.adapter = TableAdapter(it)
+                    }
+                )
+            }
+            else {
+                binding.switch1.text = "West"
+                standingsViewModel.getStandingsWest().observe(
+                    viewLifecycleOwner, Observer {
+                        binding.tableRC.adapter = TableAdapter(it)
+                    }
+                )
+            }
+        }
         return binding.root
     }
 
@@ -46,9 +64,11 @@ class StandingsFragment : Fragment() {
             RecyclerView.ViewHolder(binding.root) {
 
         fun bind(table: Standing) {
-                binding.textView.text = table.conference.rank
-                binding.textView2.text = table.win
-                binding.textView3.text = table.loss
+                binding.rank.text = table.conference.rank.toString()
+                binding.win.text = table.win
+                binding.loss.text = table.loss
+                binding.winPer.text = table.winPercentage
+                binding.gb.text = table.gamesBehind
                 setImage(table.teamId)
         }
 
@@ -69,6 +89,22 @@ class StandingsFragment : Fragment() {
                 "5" -> { binding.imageView.setImageResource(R.drawable.id_5) }
                 "6" -> { binding.imageView.setImageResource(R.drawable.id_6) }
                 "7" -> { binding.imageView.setImageResource(R.drawable.id_7) }
+                "11" -> { binding.imageView.setImageResource(R.drawable.id_11) }
+                "14" -> { binding.imageView.setImageResource(R.drawable.id_14) }
+                "16" -> { binding.imageView.setImageResource(R.drawable.id_16) }
+                "17" -> { binding.imageView.setImageResource(R.drawable.id_17) }
+                "19" -> { binding.imageView.setImageResource(R.drawable.id_19) }
+                "22" -> { binding.imageView.setImageResource(R.drawable.id_22) }
+                "23" -> { binding.imageView.setImageResource(R.drawable.id_23) }
+                "25" -> { binding.imageView.setImageResource(R.drawable.id_25) }
+                "28" -> { binding.imageView.setImageResource(R.drawable.id_28) }
+                "29" -> { binding.imageView.setImageResource(R.drawable.id_29) }
+                "30" -> { binding.imageView.setImageResource(R.drawable.id_30) }
+                "31" -> { binding.imageView.setImageResource(R.drawable.id_31) }
+                "40" -> { binding.imageView.setImageResource(R.drawable.id_40) }
+                "8" -> { binding.imageView.setImageResource(R.drawable.id_8) }
+                "9" -> { binding.imageView.setImageResource(R.drawable.id_9) }
+
             }
         }
     }

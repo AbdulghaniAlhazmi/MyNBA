@@ -9,7 +9,10 @@ import retrofit2.http.Query
 interface NbaApi {
 
     @GET("standings/standard/2021/conference/East?rapidapi-key=9d71b15abfmsh023706e8cf3e55cp17600ajsn862e0a5d003f")
-    fun getStandings(): Call<NbaResponse>
+    fun getStandingsEast(): Call<NbaResponse>
+
+    @GET("standings/standard/2021/conference/West?rapidapi-key=9d71b15abfmsh023706e8cf3e55cp17600ajsn862e0a5d003f")
+    fun getStandingsWest(): Call<NbaResponse>
 
 
 }
