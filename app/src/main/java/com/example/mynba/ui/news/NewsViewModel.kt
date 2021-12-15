@@ -3,11 +3,29 @@ package com.example.mynba.ui.news
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.mynba.nba.models.Standing
+import com.example.mynba.nba.models.news.Article
+import com.example.mynba.nba.repo.NbaRepo
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class NewsViewModel: ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is News Fragment"
+    private val repo: NbaRepo = NbaRepo()
+
+    fun getNews(): LiveData<List<Article>> {
+        var tempList: List<Article> = emptyList()
+        val newsLiveData: MutableLiveData<List<Article>> = MutableLiveData()
+
+        viewModelScope.launch(Dispatchers.IO) {
+            tempList = repo.getNews()
+        }.invokeOnCompletion {
+            viewModelScope.launch {
+                newsLiveData.value = tempList
+            }
+        }
+        return newsLiveData
     }
-    val text: LiveData<String> = _text
 }
+

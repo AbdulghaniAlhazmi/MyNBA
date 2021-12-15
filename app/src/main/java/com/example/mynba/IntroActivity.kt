@@ -8,20 +8,19 @@ import com.airbnb.lottie.LottieAnimationView
 
 class IntroActivity : AppCompatActivity() {
 
-    private lateinit var intro : LottieAnimationView
+    private lateinit var animation : LottieAnimationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_intro)
 
 
-        intro = findViewById(R.id.animationView)
+        animation = findViewById(R.id.animationView)
 
         Handler().postDelayed({
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
             finish()
         }, 3000)
-
     }
 }

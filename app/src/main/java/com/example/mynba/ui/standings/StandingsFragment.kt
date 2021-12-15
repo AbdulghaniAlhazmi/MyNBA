@@ -41,16 +41,16 @@ class StandingsFragment : Fragment() {
 
         binding.switch1.setOnCheckedChangeListener{_, isChecked ->
             if(isChecked) {
-                binding.switch1.text = "East"
-                standingsViewModel.getStandingsEast().observe(
+                binding.switch1.text = "West"
+                standingsViewModel.getStandingsWest().observe(
                     viewLifecycleOwner, Observer {
                         binding.tableRC.adapter = TableAdapter(it)
                     }
                 )
             }
             else {
-                binding.switch1.text = "West"
-                standingsViewModel.getStandingsWest().observe(
+                binding.switch1.text = "East"
+                standingsViewModel.getStandingsEast().observe(
                     viewLifecycleOwner, Observer {
                         binding.tableRC.adapter = TableAdapter(it)
                     }
