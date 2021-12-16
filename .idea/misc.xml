@@ -22,6 +22,7 @@
         <entry key="app/src/main/res/layout/fragment_games.xml" value="0.1685185185185185" />
         <entry key="app/src/main/res/layout/fragment_news.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_standings.xml" value="0.15185185185185185" />
+        <entry key="app/src/main/res/layout/games_list_item.xml" value="0.2557291666666667" />
         <entry key="app/src/main/res/layout/news_list_item.xml" value="0.2557291666666667" />
         <entry key="app/src/main/res/layout/standings_list_item.xml" value="0.335" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.2833333333333333" />

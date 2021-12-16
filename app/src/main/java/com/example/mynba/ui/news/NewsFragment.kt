@@ -4,8 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -14,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.mynba.databinding.FragmentNewsBinding
 import com.example.mynba.databinding.NewsListItemBinding
-import com.example.mynba.nba.models.news.Article
+import com.example.mynba.api.models.news.Article
 
 class NewsFragment : Fragment() {
 
@@ -35,10 +33,8 @@ class NewsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         binding = FragmentNewsBinding.inflate(layoutInflater)
         binding.newsRC.layoutManager = LinearLayoutManager(context)
-
 
         return binding.root
     }

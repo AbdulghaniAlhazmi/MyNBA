@@ -1,4 +1,4 @@
-package com.example.mynba.nba.models
+package com.example.mynba.api.models.nba
 
 data class Standing(
     val conference: Conference,

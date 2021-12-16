@@ -1,4 +1,4 @@
-package com.example.mynba.nba.models.news
+package com.example.mynba.api.models.news
 
 class ArticleResponse {
 

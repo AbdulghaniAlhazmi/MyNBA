@@ -4,8 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -14,9 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mynba.R
 import com.example.mynba.databinding.FragmentStandingsBinding
 import com.example.mynba.databinding.StandingsListItemBinding
-import com.example.mynba.nba.models.Standing
-import com.example.mynba.nba.models.Team
-import java.util.*
+import com.example.mynba.api.models.nba.Standing
 
 class StandingsFragment : Fragment() {
     private val standingsViewModel : StandingsViewModel by lazy { ViewModelProvider(this)[StandingsViewModel::class.java] }

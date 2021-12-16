@@ -1,4 +1,4 @@
-package com.example.mynba.nba.models
+package com.example.mynba.api.models.nba
 
 
 class StandingResponse {

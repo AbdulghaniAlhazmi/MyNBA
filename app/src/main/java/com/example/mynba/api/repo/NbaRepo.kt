@@ -1,9 +1,10 @@
-package com.example.mynba.nba.repo
+package com.example.mynba.api.repo
 
 import android.util.Log
-import com.example.mynba.nba.api.NbaApi
-import com.example.mynba.nba.models.Standing
-import com.example.mynba.nba.models.news.Article
+import com.example.mynba.api.NbaApi
+import com.example.mynba.api.models.nba.Game
+import com.example.mynba.api.models.nba.Standing
+import com.example.mynba.api.models.news.Article
 import retrofit2.Retrofit
 import retrofit2.awaitResponse
 import retrofit2.converter.gson.GsonConverterFactory
@@ -60,6 +61,16 @@ class NbaRepo {
             Log.d(TAG, "the error is {${response.errorBody()}")
         }
         return newsList
+    }
+
+    suspend fun getGames() : List<Game>{
+        var gamesList : List<Game> = emptyList()
+        val response = nbaApi.getGames().awaitResponse()
+
+        if (response.isSuccessful){
+            gamesList = response.body()?.api?.games!!
+       }
+        return gamesList
     }
 
 
