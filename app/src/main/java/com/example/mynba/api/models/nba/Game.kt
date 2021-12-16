@@ -1,6 +1,7 @@
 package com.example.mynba.api.models.nba
 
 data class Game(
+
     val EndOfPeriod: String,
     val arena: String,
     val city: String,
@@ -18,5 +19,5 @@ data class Game(
     val startTimeUTC: String,
     val statusGame: String,
     val statusShortGame: String,
-    val vTeam: VTeam
+    val vTeam: VTeam,
 )

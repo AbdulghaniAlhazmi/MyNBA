@@ -8,5 +8,6 @@ data class Standing(
     val winPercentage: String,
     val loss: String,
     val teamId: String,
+    val logo : Team,
     val win: String,
 )

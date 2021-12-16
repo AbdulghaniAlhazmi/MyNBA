@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.example.mynba.R
 import com.example.mynba.databinding.FragmentStandingsBinding
 import com.example.mynba.databinding.StandingsListItemBinding
@@ -35,24 +36,23 @@ class StandingsFragment : Fragment() {
         binding = FragmentStandingsBinding.inflate(layoutInflater)
         binding.tableRC.layoutManager = LinearLayoutManager(context)
 
-        binding.switch1.setOnCheckedChangeListener{_, isChecked ->
-            if(isChecked) {
-                binding.switch1.text = "West"
-                standingsViewModel.getStandingsWest().observe(
-                    viewLifecycleOwner, Observer {
-                        binding.tableRC.adapter = TableAdapter(it)
-                    }
-                )
-            }
-            else {
-                binding.switch1.text = "East"
-                standingsViewModel.getStandingsEast().observe(
-                    viewLifecycleOwner, Observer {
-                        binding.tableRC.adapter = TableAdapter(it)
-                    }
-                )
-            }
+
+        binding.east.setOnClickListener {
+            standingsViewModel.getStandingsEast().observe(
+                viewLifecycleOwner, Observer {
+                    binding.tableRC.adapter = TableAdapter(it)
+                }
+            )
         }
+
+        binding.west.setOnClickListener {
+            standingsViewModel.getStandingsWest().observe(
+                viewLifecycleOwner, Observer {
+                    binding.tableRC.adapter = TableAdapter(it)
+                }
+            )
+        }
+
         return binding.root
     }
 

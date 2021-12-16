@@ -14,7 +14,6 @@ class GamesViewModel : ViewModel() {
     private val repo : NbaRepo = NbaRepo()
 
     fun getGames() : LiveData<List<Game>>{
-
         var tempList : List<Game> = emptyList()
         val gamesList : MutableLiveData<List<Game>> = MutableLiveData()
 

@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.example.mynba.R
 import com.example.mynba.api.models.nba.Game
 import com.example.mynba.databinding.FragmentGamesBinding
 import com.example.mynba.databinding.GamesListItemBinding
@@ -50,16 +51,15 @@ class GamesFragment : Fragment() {
     private inner class GamesHolder(val binding: GamesListItemBinding):RecyclerView.ViewHolder(binding.root) {
 
         fun bind(game: Game) {
-
             binding.awayLogo.load(game.vTeam.logo)
             binding.homeLogo.load(game.hTeam.logo)
             binding.gameStatus.text = game.statusGame
             binding.hScore.text = game.hTeam.score.points
             binding.vScore.text = game.vTeam.score.points
 
+
         }
     }
-
 
     private inner class GamesAdapter(val game : List<Game>):RecyclerView.Adapter<GamesHolder>(){
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GamesHolder {

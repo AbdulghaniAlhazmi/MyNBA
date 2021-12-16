@@ -14,6 +14,8 @@
         <entry key="app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.11018518518518519" />
         <entry key="app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.11018518518518519" />
+        <entry key="app/src/main/res/drawable/pink_out_line.xml" value="0.11574074074074074" />
+        <entry key="app/src/main/res/drawable/toggle_widget_background.xml" value="0.11574074074074074" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_intro.xml" value="0.18425925925925926" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.18425925925925926" />
@@ -21,7 +23,7 @@
         <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.18425925925925926" />
         <entry key="app/src/main/res/layout/fragment_games.xml" value="0.1685185185185185" />
         <entry key="app/src/main/res/layout/fragment_news.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_standings.xml" value="0.15185185185185185" />
+        <entry key="app/src/main/res/layout/fragment_standings.xml" value="0.375" />
         <entry key="app/src/main/res/layout/games_list_item.xml" value="0.2557291666666667" />
         <entry key="app/src/main/res/layout/news_list_item.xml" value="0.2557291666666667" />
         <entry key="app/src/main/res/layout/standings_list_item.xml" value="0.335" />
