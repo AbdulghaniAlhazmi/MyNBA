@@ -1,5 +1,6 @@
 package com.example.mynba.ui.games
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -19,6 +20,7 @@ import com.example.mynba.databinding.GamesListItemBinding
 import com.vivekkaushik.datepicker.OnDateSelectedListener
 
 import com.vivekkaushik.datepicker.DatePickerTimeline
+import java.text.SimpleDateFormat
 import java.util.*
 
 private const val TAG = "GamesFragment"
@@ -29,9 +31,13 @@ class GamesFragment : Fragment() {
     private lateinit var binding: FragmentGamesBinding
 
 
+    @SuppressLint("SimpleDateFormat")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        gamesViewModel.getGames().observe(
+        val sdf = SimpleDateFormat("yyyy-M-dd")
+        val currentDate = sdf.format(Date())
+        Log.d(TAG,currentDate.toString())
+        gamesViewModel.getGames(currentDate).observe(
             this, Observer {
                 binding.gamesRC.adapter = GamesAdapter(it)
             }
@@ -52,10 +58,24 @@ class GamesFragment : Fragment() {
         binding.datePickerTimeline
 
         val datePickerTimeline: DatePickerTimeline = binding.datePickerTimeline
-        datePickerTimeline.setInitialDate(2021, 11, 16)
+        datePickerTimeline.setInitialDate(2021, 10, 27)
         datePickerTimeline.setOnDateSelectedListener(object : OnDateSelectedListener {
             override fun onDateSelected(year: Int, month: Int, day: Int, dayOfWeek: Int) {
-                val date = "$year-${month + 1}-$day"
+                var emonth = "${month+1}"
+                var eday = "${day}"
+                if (month < 10){
+                    emonth = "0${month + 1}"
+                }
+                if (day < 10){
+                    eday = "0${day-1}"
+                }
+                val date = "$year-$emonth-${eday.toInt() + 1}"
+//                gamesViewModel.getGames(date)
+                gamesViewModel.getGames(date).observe(
+                    viewLifecycleOwner, Observer {
+                        binding.gamesRC.adapter = GamesAdapter(it)
+                    }
+                )
                 Log.d(TAG,date)
             }
 
@@ -67,10 +87,8 @@ class GamesFragment : Fragment() {
                 isDisabled: Boolean
             ) {
             }
-        })
 
-        val dates: Array<Date> = arrayOf<Date>(Calendar.getInstance().getTime())
-        datePickerTimeline.deactivateDates(dates)
+        })
 
         return binding.root
     }
@@ -81,7 +99,12 @@ class GamesFragment : Fragment() {
         fun bind(game: Game) {
             binding.awayLogo.load(game.vTeam.logo)
             binding.homeLogo.load(game.hTeam.logo)
-            binding.gameStatus.text = game.statusGame
+            if (game.statusGame == "Scheduled"){
+                binding.gameStatus.text = game.startTimeUTC
+            }
+            else{
+                binding.gameStatus.text = game.statusGame
+            }
             binding.hScore.text = game.hTeam.score.points
             binding.vScore.text = game.vTeam.score.points
 

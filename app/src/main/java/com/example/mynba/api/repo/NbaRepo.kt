@@ -63,9 +63,9 @@ class NbaRepo {
         return newsList
     }
 
-    suspend fun getGames() : List<Game>{
+    suspend fun getGames(query : String) : List<Game>{
         var gamesList : List<Game> = emptyList()
-        val response = nbaApi.getGames().awaitResponse()
+        val response = nbaApi.getGames(query).awaitResponse()
 
         if (response.isSuccessful){
             gamesList = response.body()?.api?.games!!
