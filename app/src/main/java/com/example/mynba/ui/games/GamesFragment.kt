@@ -1,6 +1,7 @@
 package com.example.mynba.ui.games
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,10 +13,15 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.example.mynba.R
 import com.example.mynba.api.models.nba.Game
 import com.example.mynba.databinding.FragmentGamesBinding
 import com.example.mynba.databinding.GamesListItemBinding
+import com.vivekkaushik.datepicker.OnDateSelectedListener
+
+import com.vivekkaushik.datepicker.DatePickerTimeline
+import java.util.*
+
+private const val TAG = "GamesFragment"
 
 class GamesFragment : Fragment() {
 
@@ -43,6 +49,28 @@ class GamesFragment : Fragment() {
         binding = FragmentGamesBinding.inflate(layoutInflater)
         binding.gamesRC.layoutManager = LinearLayoutManager(context)
 
+        binding.datePickerTimeline
+
+        val datePickerTimeline: DatePickerTimeline = binding.datePickerTimeline
+        datePickerTimeline.setInitialDate(2021, 11, 16)
+        datePickerTimeline.setOnDateSelectedListener(object : OnDateSelectedListener {
+            override fun onDateSelected(year: Int, month: Int, day: Int, dayOfWeek: Int) {
+                val date = "$year-${month + 1}-$day"
+                Log.d(TAG,date)
+            }
+
+            override fun onDisabledDateSelected(
+                year: Int,
+                month: Int,
+                day: Int,
+                dayOfWeek: Int,
+                isDisabled: Boolean
+            ) {
+            }
+        })
+
+        val dates: Array<Date> = arrayOf<Date>(Calendar.getInstance().getTime())
+        datePickerTimeline.deactivateDates(dates)
 
         return binding.root
     }

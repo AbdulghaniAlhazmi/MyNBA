@@ -70,5 +70,9 @@ dependencies {
     implementation "com.airbnb.android:lottie:4.2.1"
     implementation 'com.squareup.okhttp3:okhttp:3.14.9'
 
+    
+    implementation 'com.vivekkaushik.datepicker:datePickerTimeline:0.0.4'
+
+
 
 }
