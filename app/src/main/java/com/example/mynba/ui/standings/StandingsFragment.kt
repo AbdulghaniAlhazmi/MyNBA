@@ -5,11 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
 import com.example.mynba.R
 import com.example.mynba.databinding.FragmentStandingsBinding
 import com.example.mynba.databinding.StandingsListItemBinding
@@ -22,7 +20,7 @@ class StandingsFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         standingsViewModel.getStandingsEast().observe(
-            this, Observer {
+            this, {
                 binding.tableRC.adapter = TableAdapter(it)
             }
         )
@@ -39,7 +37,7 @@ class StandingsFragment : Fragment() {
 
         binding.east.setOnClickListener {
             standingsViewModel.getStandingsEast().observe(
-                viewLifecycleOwner, Observer {
+                viewLifecycleOwner, {
                     binding.tableRC.adapter = TableAdapter(it)
                 }
             )
@@ -47,7 +45,7 @@ class StandingsFragment : Fragment() {
 
         binding.west.setOnClickListener {
             standingsViewModel.getStandingsWest().observe(
-                viewLifecycleOwner, Observer {
+                viewLifecycleOwner, {
                     binding.tableRC.adapter = TableAdapter(it)
                 }
             )

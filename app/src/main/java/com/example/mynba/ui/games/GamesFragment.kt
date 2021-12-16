@@ -6,10 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -38,7 +35,7 @@ class GamesFragment : Fragment() {
         val currentDate = sdf.format(Date())
         Log.d(TAG,currentDate.toString())
         gamesViewModel.getGames(currentDate).observe(
-            this, Observer {
+            this, {
                 binding.gamesRC.adapter = GamesAdapter(it)
             }
         )
@@ -55,24 +52,22 @@ class GamesFragment : Fragment() {
         binding = FragmentGamesBinding.inflate(layoutInflater)
         binding.gamesRC.layoutManager = LinearLayoutManager(context)
 
-        binding.datePickerTimeline
 
         val datePickerTimeline: DatePickerTimeline = binding.datePickerTimeline
         datePickerTimeline.setInitialDate(2021, 10, 27)
         datePickerTimeline.setOnDateSelectedListener(object : OnDateSelectedListener {
             override fun onDateSelected(year: Int, month: Int, day: Int, dayOfWeek: Int) {
                 var emonth = "${month+1}"
-                var eday = "${day}"
+                var eday = "$day"
                 if (month < 10){
                     emonth = "0${month + 1}"
                 }
                 if (day < 10){
-                    eday = "0${day-1}"
+                    eday = "0${day}"
                 }
-                val date = "$year-$emonth-${eday.toInt() + 1}"
-//                gamesViewModel.getGames(date)
+                val date = "$year-$emonth-${eday}"
                 gamesViewModel.getGames(date).observe(
-                    viewLifecycleOwner, Observer {
+                    viewLifecycleOwner, {
                         binding.gamesRC.adapter = GamesAdapter(it)
                     }
                 )

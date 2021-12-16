@@ -12,20 +12,20 @@ import retrofit2.converter.gson.GsonConverterFactory
 private const val TAG = "NbaRepo"
 class NbaRepo {
 
-    private val retrofit: Retrofit = Retrofit.Builder()
+    private val retrofitNba: Retrofit = Retrofit.Builder()
         .baseUrl("https://api-nba-v1.p.rapidapi.com/")
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
 
-    private val retrofit2: Retrofit = Retrofit.Builder()
+    private val retrofitNews: Retrofit = Retrofit.Builder()
         .baseUrl("https://newsapi.org")
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
 
-    private val nbaApi: NbaApi = retrofit.create(NbaApi::class.java)
-    private val newsApi : NbaApi = retrofit2.create(NbaApi::class.java)
+    private val nbaApi: NbaApi = retrofitNba.create(NbaApi::class.java)
+    private val newsApi : NbaApi = retrofitNews.create(NbaApi::class.java)
 
     suspend fun getStandingsEast(): List<Standing> {
         var standingList: List<Standing> = emptyList()

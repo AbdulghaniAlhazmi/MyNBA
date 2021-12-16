@@ -29,14 +29,14 @@
             android:id="@+id/west"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginLeft="1dp"
+            android:layout_marginStart="1dp"
             android:layout_marginTop="1dp"
             android:layout_marginBottom="1dp"
             android:layout_weight="1"
             android:background="@drawable/toggle_widget_background"
             android:button="@null"
             android:gravity="center"
-            android:text="Western Conference"
+            android:text="@string/western_conference"
             android:textColor="@color/white"
             tools:ignore="TouchTargetSizeCheck" />
 
@@ -45,13 +45,13 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginTop="1dp"
-            android:layout_marginRight="1dp"
+            android:layout_marginEnd="1dp"
             android:layout_marginBottom="1dp"
             android:layout_weight="1"
             android:background="@drawable/toggle_widget_background"
             android:button="@null"
             android:gravity="center"
-            android:text="Eastern Conference"
+            android:text="@string/eastern_conference"
             android:textColor="@color/white"
             tools:ignore="TouchTargetSizeCheck" />
     </RadioGroup>

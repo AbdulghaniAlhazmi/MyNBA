@@ -22,7 +22,7 @@ class NewsFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         newsViewModel.getNews().observe(
-            this, Observer {
+            this, {
                 binding.newsRC.adapter = NewsAdapter(it)
             }
         )

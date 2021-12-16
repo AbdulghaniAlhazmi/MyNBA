@@ -4,4 +4,10 @@
     <string name="news">News</string>
     <string name="games">Games</string>
     <string name="standings">Standings</string>
+    <string name="photo_for_the_news">Photo for the news</string>
+    <string name="home_team_logo">Home Team Logo</string>
+    <string name="away_team_logo">Away Team Logo</string>
+    <string name="team_logo">Team Logo</string>
+    <string name="western_conference">Western Conference</string>
+    <string name="eastern_conference">Eastern Conference</string>
 </resources>

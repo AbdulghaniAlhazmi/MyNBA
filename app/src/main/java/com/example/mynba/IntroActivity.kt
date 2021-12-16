@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import com.airbnb.lottie.LottieAnimationView
 
 class IntroActivity : AppCompatActivity() {
@@ -17,7 +18,7 @@ class IntroActivity : AppCompatActivity() {
 
         animation = findViewById(R.id.animationView)
 
-        Handler().postDelayed({
+        Handler(Looper.getMainLooper()).postDelayed({
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
             finish()
