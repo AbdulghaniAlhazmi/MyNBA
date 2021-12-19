@@ -25,7 +25,7 @@ class HomeActivity : AppCompatActivity() {
         bottomNavigationView.setupWithNavController(navController)
         setupActionBarWithNavController(navController, AppBarConfiguration(setOf(
             R.layout.fragment_news,
-            R.layout.fragment_games,
+            R.layout.activity_main2,
             R.layout.fragment_standings)))
     }
 }

@@ -1,6 +1,7 @@
 package com.example.mynba.ui.games
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,9 +12,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.example.mynba.HomeActivity
+import com.example.mynba.R
 import com.example.mynba.api.models.nba.Game
 import com.example.mynba.databinding.FragmentGamesBinding
 import com.example.mynba.databinding.GamesListItemBinding
+import com.example.mynba.ui.gameStatus.GameStatusFragment
 import com.vivekkaushik.datepicker.OnDateSelectedListener
 
 import com.vivekkaushik.datepicker.DatePickerTimeline
@@ -21,6 +25,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 private const val TAG = "GamesFragment"
+const val KEY_GAME_ID = "GAME_ID"
 
 class GamesFragment : Fragment() {
 
@@ -60,7 +65,7 @@ class GamesFragment : Fragment() {
                 var emonth = "${month+1}"
                 var eday = "$day"
                 if (month < 10){
-                    emonth = "0${month + 1}"
+                    emonth = "0${emonth}"
                 }
                 if (day < 10){
                     eday = "0${day}"
@@ -102,7 +107,9 @@ class GamesFragment : Fragment() {
             }
             binding.hScore.text = game.hTeam.score.points
             binding.vScore.text = game.vTeam.score.points
-
+            
+            val args = Bundle()
+            args.putString(KEY_GAME_ID,game.gameId)
 
         }
     }
@@ -120,11 +127,23 @@ class GamesFragment : Fragment() {
         override fun onBindViewHolder(holder: GamesHolder, position: Int) {
             val game = game[position]
             holder.bind(game)
+            holder.itemView.setOnClickListener {
+                Log.d(TAG, game.gameId)
+
+                val args = Bundle()
+                args.putString(KEY_GAME_ID, game.gameId)
+
+                val fragment = GameStatusFragment()
+                fragment.arguments = args
+                activity?.supportFragmentManager?.beginTransaction()
+                    ?.replace(R.id.container,fragment)
+                    ?.addToBackStack(null)?.commit()
+
+            }
         }
 
         override fun getItemCount(): Int = game.size
 
     }
-
 
 }

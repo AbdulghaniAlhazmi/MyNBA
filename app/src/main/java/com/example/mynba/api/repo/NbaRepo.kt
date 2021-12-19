@@ -60,7 +60,7 @@ class NbaRepo {
         } else {
             Log.d(TAG, "the error is {${response.errorBody()}")
         }
-        return newsList
+        return newsList.sortedBy { it.publishedAt }
     }
 
     suspend fun getGames(query : String) : List<Game>{
@@ -71,6 +71,17 @@ class NbaRepo {
             gamesList = response.body()?.api?.games!!
        }
         return gamesList
+    }
+
+    suspend fun getGamesStatus(gameId: String) : List<com.example.mynba.api.models.gameStatus.Game>{
+       var gameStatusList : List<com.example.mynba.api.models.gameStatus.Game> = emptyList()
+        val response = nbaApi.getGamesStatus(gameId).awaitResponse()
+
+        if (response.isSuccessful){
+            gameStatusList = response.body()?.api?.game!!
+        }
+
+        return gameStatusList
     }
 
 
