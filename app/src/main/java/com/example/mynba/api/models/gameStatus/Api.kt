@@ -1,5 +1,6 @@
 package com.example.mynba.api.models.gameStatus
 
 data class Api(
-    val api: ApiX
+    val `data`: List<Data>,
+    val meta: Any
 )

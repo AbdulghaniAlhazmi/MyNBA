@@ -12,8 +12,7 @@ import coil.load
 import com.example.mynba.R
 import com.example.mynba.databinding.FragmentStandingsBinding
 import com.example.mynba.databinding.StandingsListItemBinding
-import com.example.mynba.api.models.newStandings.Data
-import com.example.mynba.api.models.newStandings.StandingsRow
+import com.example.mynba.api.models.standings.StandingsRow
 
 
 private const val TAG = "StandingsFragment"
@@ -23,7 +22,7 @@ class StandingsFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        standingsViewModel.getStandingsEast().observe(
+        standingsViewModel.getStandings("Eastern Conference").observe(
             this, {
                 binding.tableRC.adapter = TableAdapter(it)
             }
@@ -39,21 +38,21 @@ class StandingsFragment : Fragment() {
         binding.tableRC.layoutManager = LinearLayoutManager(context)
 
 
-//        binding.east.setOnClickListener {
-//            standingsViewModel.getStandingsEast().observe(
-//                viewLifecycleOwner, {
-//                    binding.tableRC.adapter = TableAdapter(it)
-//                }
-//            )
-//        }
+        binding.east.setOnClickListener {
+            standingsViewModel.getStandings("Eastern Conference").observe(
+                viewLifecycleOwner, {
+                    binding.tableRC.adapter = TableAdapter(it)
+                }
+            )
+        }
 
-//        binding.west.setOnClickListener {
-//            standingsViewModel.getStandingsWest().observe(
-//                viewLifecycleOwner, {
-//                    binding.tableRC.adapter = TableAdapter(it)
-//                }
-//            )
-//        }
+        binding.west.setOnClickListener {
+            standingsViewModel.getStandings("Western Conference").observe(
+                viewLifecycleOwner, {
+                    binding.tableRC.adapter = TableAdapter(it)
+                }
+            )
+        }
 
         return binding.root
     }
@@ -61,7 +60,16 @@ class StandingsFragment : Fragment() {
     private inner class TableHolder(val binding: StandingsListItemBinding):
             RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(table: Data) {
+        fun bind(table: StandingsRow) {
+
+            binding.imageView.load(table.team.logo)
+            binding.rank.text = table.position.toString()
+            binding.win.text = table.fields.wins_total
+            binding.loss.text = table.fields.losses_total
+            binding.winPer.text = table.fields.percentage_total
+            binding.gb.text = table.fields.games_behind_total
+
+
 //                binding.win.text = table.standings_rows.forEach { it.fields.wins_total }.toString()
 //                binding.loss.text = table.standings_rows.forEach { it.fields.losses_total }.toString()
 //                binding.winPer.text = table.standings_rows.forEach { it.fields.percentage_total }.toString()
@@ -107,7 +115,7 @@ class StandingsFragment : Fragment() {
     }
 
 
-    private inner class TableAdapter(val table: List<Data>):RecyclerView.Adapter<TableHolder>(){
+    private inner class TableAdapter(val table: List<StandingsRow>):RecyclerView.Adapter<TableHolder>(){
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TableHolder {
             val binding = StandingsListItemBinding.inflate(
                 layoutInflater,

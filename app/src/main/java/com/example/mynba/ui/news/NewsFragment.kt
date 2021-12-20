@@ -1,5 +1,6 @@
 package com.example.mynba.ui.news
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,14 +14,18 @@ import coil.load
 import com.example.mynba.databinding.FragmentNewsBinding
 import com.example.mynba.databinding.NewsListItemBinding
 import com.example.mynba.api.models.news.Article
+import java.text.SimpleDateFormat
+import java.util.*
 
 class NewsFragment : Fragment() {
 
     private val newsViewModel : NewsViewModel by lazy { ViewModelProvider(this)[NewsViewModel::class.java] }
     private lateinit var binding: FragmentNewsBinding
 
+    @SuppressLint("SimpleDateFormat")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         newsViewModel.getNews().observe(
             this, {
                 binding.newsRC.adapter = NewsAdapter(it)

@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.example.mynba.api.models.newgamestatus.Data
+import com.example.mynba.api.models.gameStatus.Data
 import com.example.mynba.databinding.GameStatusFragmentBinding
 import com.example.mynba.databinding.GameStatusItemBinding
 import com.example.mynba.ui.games.KEY_GAME_ID

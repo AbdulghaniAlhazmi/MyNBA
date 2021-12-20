@@ -2,10 +2,7 @@ package com.example.mynba.api.repo
 
 import android.util.Log
 import com.example.mynba.api.NbaApi
-import com.example.mynba.api.models.nba.Game
-import com.example.mynba.api.models.nba.Standing
-import com.example.mynba.api.models.newStandings.StandingsRow
-import com.example.mynba.api.models.newgames.Data
+import com.example.mynba.api.models.games.Data
 import com.example.mynba.api.models.news.Article
 import retrofit2.Retrofit
 import retrofit2.awaitResponse
@@ -31,8 +28,8 @@ class NbaRepo {
 //
 
 
-    suspend fun getStandings() : List<com.example.mynba.api.models.newStandings.Data>{
-        var standingList : List<com.example.mynba.api.models.newStandings.Data> = emptyList()
+    suspend fun getStandings() : List<com.example.mynba.api.models.standings.Data>{
+        var standingList : List<com.example.mynba.api.models.standings.Data> = emptyList()
         val response = nbaApi.getStandings().awaitResponse()
 
         if (response.isSuccessful){
@@ -43,30 +40,6 @@ class NbaRepo {
         return standingList
     }
 
-
-//    suspend fun getStandingsEast(): List<Standing> {
-//        var standingList: List<Standing> = emptyList()
-//        val response = nbaApi.getStandingsEast().awaitResponse()
-//
-//        if (response.isSuccessful) {
-//            standingList = response.body()?.api?.standings ?: emptyList()
-//        } else {
-//            Log.d(TAG, "the error is {${response.errorBody()}")
-//        }
-//        return standingList
-//    }
-
-//    suspend fun getStandingsWest(): List<Standing> {
-//        var standingList: List<Standing> = emptyList()
-//        val response = nbaApi.getStandingsWest().awaitResponse()
-//
-//        if (response.isSuccessful) {
-//            standingList = response.body()?.api?.standings ?: emptyList()
-//        } else {
-//            Log.d(TAG, "the error is {${response.errorBody()}")
-//        }
-//        return standingList
-//    }
 
     suspend fun getNews(): List<Article> {
         var newsList: List<Article> = emptyList()
@@ -80,9 +53,9 @@ class NbaRepo {
         return newsList.sortedBy { it.publishedAt }
     }
 
-    suspend fun getGames(query : String) : List<Data>{
+    suspend fun getGames(date : String) : List<Data>{
         var gamesList : List<Data> = emptyList()
-        val response = nbaApi.getGames(query).awaitResponse()
+        val response = nbaApi.getGames(date).awaitResponse()
 
         if (response.isSuccessful){
             gamesList = response.body()?.data ?: emptyList()
@@ -90,8 +63,8 @@ class NbaRepo {
         return gamesList
     }
 
-    suspend fun getGamesStatus(gameId : String) : List<com.example.mynba.api.models.newgamestatus.Data>{
-       var gameStatusList : List<com.example.mynba.api.models.newgamestatus.Data> = emptyList()
+    suspend fun getGamesStatus(gameId : String) : List<com.example.mynba.api.models.gameStatus.Data>{
+       var gameStatusList : List<com.example.mynba.api.models.gameStatus.Data> = emptyList()
         val response = nbaApi.getGameStatus(gameId).awaitResponse()
 
         if (response.isSuccessful){
