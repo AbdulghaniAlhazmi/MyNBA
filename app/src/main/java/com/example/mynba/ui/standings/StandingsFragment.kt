@@ -8,11 +8,15 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.example.mynba.R
 import com.example.mynba.databinding.FragmentStandingsBinding
 import com.example.mynba.databinding.StandingsListItemBinding
-import com.example.mynba.api.models.nba.Standing
+import com.example.mynba.api.models.newStandings.Data
+import com.example.mynba.api.models.newStandings.StandingsRow
 
+
+private const val TAG = "StandingsFragment"
 class StandingsFragment : Fragment() {
     private val standingsViewModel : StandingsViewModel by lazy { ViewModelProvider(this)[StandingsViewModel::class.java] }
     private lateinit var binding: FragmentStandingsBinding
@@ -35,21 +39,21 @@ class StandingsFragment : Fragment() {
         binding.tableRC.layoutManager = LinearLayoutManager(context)
 
 
-        binding.east.setOnClickListener {
-            standingsViewModel.getStandingsEast().observe(
-                viewLifecycleOwner, {
-                    binding.tableRC.adapter = TableAdapter(it)
-                }
-            )
-        }
+//        binding.east.setOnClickListener {
+//            standingsViewModel.getStandingsEast().observe(
+//                viewLifecycleOwner, {
+//                    binding.tableRC.adapter = TableAdapter(it)
+//                }
+//            )
+//        }
 
-        binding.west.setOnClickListener {
-            standingsViewModel.getStandingsWest().observe(
-                viewLifecycleOwner, {
-                    binding.tableRC.adapter = TableAdapter(it)
-                }
-            )
-        }
+//        binding.west.setOnClickListener {
+//            standingsViewModel.getStandingsWest().observe(
+//                viewLifecycleOwner, {
+//                    binding.tableRC.adapter = TableAdapter(it)
+//                }
+//            )
+//        }
 
         return binding.root
     }
@@ -57,13 +61,12 @@ class StandingsFragment : Fragment() {
     private inner class TableHolder(val binding: StandingsListItemBinding):
             RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(table: Standing) {
-                binding.rank.text = table.conference.rank.toString()
-                binding.win.text = table.win
-                binding.loss.text = table.loss
-                binding.winPer.text = table.winPercentage
-                binding.gb.text = table.gamesBehind
-                setImage(table.teamId)
+        fun bind(table: Data) {
+//                binding.win.text = table.standings_rows.forEach { it.fields.wins_total }.toString()
+//                binding.loss.text = table.standings_rows.forEach { it.fields.losses_total }.toString()
+//                binding.winPer.text = table.standings_rows.forEach { it.fields.percentage_total }.toString()
+//                binding.gb.text = table.standings_rows.forEach { it.fields.games_behind_total }.toString()
+//                binding.imageView.load(table.standings_rows.forEach{it.team.logo}.toString())
         }
 
         private fun setImage(teamId: String) {
@@ -104,7 +107,7 @@ class StandingsFragment : Fragment() {
     }
 
 
-    private inner class TableAdapter(val table : List<Standing>):RecyclerView.Adapter<TableHolder>(){
+    private inner class TableAdapter(val table: List<Data>):RecyclerView.Adapter<TableHolder>(){
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TableHolder {
             val binding = StandingsListItemBinding.inflate(
                 layoutInflater,

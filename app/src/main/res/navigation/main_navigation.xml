@@ -15,11 +15,20 @@
         android:id="@+id/navigation_games"
         android:name="com.example.mynba.ui.games.GamesFragment"
         android:label="Games"
-        tools:layout="@layout/fragment_games" />
+        tools:layout="@layout/fragment_games" >
+        <action
+            android:id="@+id/action_navigation_games_to_gameStatusFragment"
+            app:destination="@id/gameStatusFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_standings"
         android:name="com.example.mynba.ui.standings.StandingsFragment"
         android:label="Standings"
         tools:layout="@layout/fragment_standings" />
+    <fragment
+        android:id="@+id/gameStatusFragment"
+        android:name="com.example.mynba.ui.gameStatus.GameStatusFragment"
+        android:label="game_status_fragment"
+        tools:layout="@layout/game_status_fragment" />
 </navigation>

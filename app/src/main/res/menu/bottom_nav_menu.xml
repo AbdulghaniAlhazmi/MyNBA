@@ -13,4 +13,5 @@
         android:id="@+id/navigation_standings"
         android:title="@string/standings" />
 
+
 </menu>

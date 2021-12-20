@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.mynba.api.models.gameStatus.Game
+import com.example.mynba.api.models.newgamestatus.Data
 import com.example.mynba.api.repo.NbaRepo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -14,9 +14,9 @@ class GameStatusViewModel : ViewModel() {
 
     private val repo : NbaRepo = NbaRepo()
 
-    fun getGamesStatus(gameId : String) : LiveData<List<Game>>{
-        var tempList : List<Game> = emptyList()
-        val gameStatusList : MutableLiveData<List<Game>> = MutableLiveData()
+    fun getGamesStatus(gameId : String) : LiveData<List<Data>>{
+        var tempList : List<Data> = emptyList()
+        val gameStatusList : MutableLiveData<List<Data>> = MutableLiveData()
 
         viewModelScope.launch(Dispatchers.IO){
             tempList = repo.getGamesStatus(gameId)

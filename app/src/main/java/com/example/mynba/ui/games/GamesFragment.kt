@@ -1,7 +1,6 @@
 package com.example.mynba.ui.games
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,12 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.mynba.HomeActivity
 import com.example.mynba.R
-import com.example.mynba.api.models.nba.Game
+import com.example.mynba.api.models.newgames.Data
 import com.example.mynba.databinding.FragmentGamesBinding
 import com.example.mynba.databinding.GamesListItemBinding
 import com.example.mynba.ui.gameStatus.GameStatusFragment
@@ -26,6 +27,9 @@ import java.util.*
 
 private const val TAG = "GamesFragment"
 const val KEY_GAME_ID = "GAME_ID"
+const val KEY_GAME_ID1 = "GAME_ID1"
+const val KEY_GAME_ID2 = "GAME_ID2"
+
 
 class GamesFragment : Fragment() {
 
@@ -96,25 +100,32 @@ class GamesFragment : Fragment() {
 
     private inner class GamesHolder(val binding: GamesListItemBinding):RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(game: Game) {
-            binding.awayLogo.load(game.vTeam.logo)
-            binding.homeLogo.load(game.hTeam.logo)
-            if (game.statusGame == "Scheduled"){
-                binding.gameStatus.text = game.startTimeUTC
+        fun bind(game: Data) {
+            binding.awayLogo.load(game.home_team.logo)
+            binding.homeLogo.load(game.away_team.logo)
+            if (game.status_more == "-"){
+                binding.gameStatus.text = game.start_at.takeLast(7)
             }
             else{
-                binding.gameStatus.text = game.statusGame
+                binding.gameStatus.text = game.status_more
             }
-            binding.hScore.text = game.hTeam.score.points
-            binding.vScore.text = game.vTeam.score.points
-            
-            val args = Bundle()
-            args.putString(KEY_GAME_ID,game.gameId)
+            if (game.home_score == null){
+                binding.hScore.text = ""
+            }else{
+                binding.hScore.text = game.home_score.display.toString()
+            }
+            if (game.away_score == null){
+                binding.vScore.text = ""
+            }else{
+                binding.vScore.text = game.away_score.display.toString()
+            }
+
+
 
         }
     }
 
-    private inner class GamesAdapter(val game : List<Game>):RecyclerView.Adapter<GamesHolder>(){
+    private inner class GamesAdapter(val game : List<Data>):RecyclerView.Adapter<GamesHolder>(){
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GamesHolder {
             val binding = GamesListItemBinding.inflate(
                 layoutInflater,
@@ -128,16 +139,25 @@ class GamesFragment : Fragment() {
             val game = game[position]
             holder.bind(game)
             holder.itemView.setOnClickListener {
-                Log.d(TAG, game.gameId)
+            Log.d(TAG,game.id.toString())
 
                 val args = Bundle()
-                args.putString(KEY_GAME_ID, game.gameId)
+                args.putInt(KEY_GAME_ID, game.id)
+//                args.putString(KEY_GAME_ID,game.home_team.logo)
+//                args.putString(KEY_GAME_ID, game.home_score?.display.toString())
+//                args.putString(KEY_GAME_ID,game.away_team.logo)
+//                args.putString(KEY_GAME_ID, game.away_score?.display.toString())
 
                 val fragment = GameStatusFragment()
                 fragment.arguments = args
-                activity?.supportFragmentManager?.beginTransaction()
-                    ?.replace(R.id.container,fragment)
-                    ?.addToBackStack(null)?.commit()
+
+                findNavController().navigate(R.id.action_navigation_games_to_gameStatusFragment,Bundle().apply {
+                    putInt(KEY_GAME_ID,game.id)
+                    putString(KEY_GAME_ID1,game.home_team.logo)
+                    putString(KEY_GAME_ID2,game.away_team.logo)
+                })
+
+
 
             }
         }
