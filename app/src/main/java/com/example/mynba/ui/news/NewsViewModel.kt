@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.mynba.api.models.webSearch.Value
+import com.example.mynba.api.models.news.Value
 import com.example.mynba.api.repo.NbaRepo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

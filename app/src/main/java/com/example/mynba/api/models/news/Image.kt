@@ -1,4 +1,4 @@
-package com.example.mynba.api.models.webSearch
+package com.example.mynba.api.models.news
 
 data class Image(
     val base64Encoding: Any,

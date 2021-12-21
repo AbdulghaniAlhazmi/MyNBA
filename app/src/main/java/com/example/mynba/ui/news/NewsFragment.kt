@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.mynba.R
-import com.example.mynba.api.models.webSearch.Value
+import com.example.mynba.api.models.news.Value
 import com.example.mynba.databinding.FragmentNewsBinding
 import com.example.mynba.databinding.NewsListItemBinding
 

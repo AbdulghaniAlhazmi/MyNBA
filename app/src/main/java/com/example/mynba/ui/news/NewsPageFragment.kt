@@ -27,6 +27,7 @@ class NewsPageFragment : Fragment() {
         (activity as AppCompatActivity).supportActionBar?.title = title
     }
 
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

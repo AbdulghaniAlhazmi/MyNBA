@@ -40,6 +40,6 @@ interface NbaApi {
         "x-rapidapi-key:9d71b15abfmsh023706e8cf3e55cp17600ajsn862e0a5d003f"
     )
     @GET("/api/search/NewsSearchAPI?q=NBA&pageNumber=1&pageSize=20&autoCorrect=true&safeSearch=true&withThumbnails=true")
-    fun getNews() : Call<com.example.mynba.api.models.webSearch.NewsResponse>
+    fun getNews() : Call<com.example.mynba.api.models.news.NewsResponse>
 
 }

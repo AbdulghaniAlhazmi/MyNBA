@@ -3,7 +3,7 @@ package com.example.mynba.api.repo
 import android.util.Log
 import com.example.mynba.api.NbaApi
 import com.example.mynba.api.models.games.Data
-import com.example.mynba.api.models.webSearch.Value
+import com.example.mynba.api.models.news.Value
 import retrofit2.Retrofit
 import retrofit2.awaitResponse
 import retrofit2.converter.gson.GsonConverterFactory

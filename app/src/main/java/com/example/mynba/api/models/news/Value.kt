@@ -1,4 +1,4 @@
-package com.example.mynba.api.models.webSearch
+package com.example.mynba.api.models.news
 
 data class Value(
     val body: String,
