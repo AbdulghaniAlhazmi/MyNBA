@@ -16,7 +16,6 @@ import com.example.mynba.R
 import com.example.mynba.api.models.games.Data
 import com.example.mynba.databinding.FragmentGamesBinding
 import com.example.mynba.databinding.GamesListItemBinding
-import com.example.mynba.ui.gameStatus.GameStatusFragment
 import com.vivekkaushik.datepicker.OnDateSelectedListener
 
 import com.vivekkaushik.datepicker.DatePickerTimeline
@@ -27,20 +26,23 @@ private const val TAG = "GamesFragment"
 const val KEY_GAME_ID = "GAME_ID"
 const val KEY_GAME_ID1 = "GAME_ID1"
 const val KEY_GAME_ID2 = "GAME_ID2"
+const val KEY_GAME_ID3 = "GAME_ID3"
+const val KEY_GAME_ID4 = "GAME_ID4"
+
+
+
 
 
 class GamesFragment : Fragment() {
 
     private val gamesViewModel : GamesViewModel by lazy { ViewModelProvider(this)[GamesViewModel::class.java] }
     private lateinit var binding: FragmentGamesBinding
-
-
     @SuppressLint("SimpleDateFormat")
+    private val sdf = SimpleDateFormat("yyyy-M-dd")
+    private val currentDate: String = sdf.format(Date())
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val sdf = SimpleDateFormat("yyyy-M-dd")
-        val currentDate = sdf.format(Date())
-        Log.d(TAG,currentDate.toString())
         gamesViewModel.getGames(currentDate).observe(
             this, {
                 binding.gamesRC.adapter = GamesAdapter(it)
@@ -99,8 +101,8 @@ class GamesFragment : Fragment() {
     private inner class GamesHolder(val binding: GamesListItemBinding):RecyclerView.ViewHolder(binding.root) {
 
         fun bind(game: Data) {
-            binding.awayLogo.load(game.home_team.logo)
-            binding.homeLogo.load(game.away_team.logo)
+            binding.awayLogo.load(game.away_team.logo)
+            binding.homeLogo.load(game.home_team.logo)
             if (game.status_more == "-"){
                 binding.gameStatus.text = game.start_at.takeLast(7)
             }
@@ -139,28 +141,29 @@ class GamesFragment : Fragment() {
             holder.itemView.setOnClickListener {
             Log.d(TAG,game.id.toString())
 
-                val args = Bundle()
-                args.putInt(KEY_GAME_ID, game.id)
-//                args.putString(KEY_GAME_ID,game.home_team.logo)
-//                args.putString(KEY_GAME_ID, game.home_score?.display.toString())
-//                args.putString(KEY_GAME_ID,game.away_team.logo)
-//                args.putString(KEY_GAME_ID, game.away_score?.display.toString())
-
-                val fragment = GameStatusFragment()
-                fragment.arguments = args
-
                 findNavController().navigate(R.id.action_navigation_games_to_gameStatusFragment,Bundle().apply {
                     putInt(KEY_GAME_ID,game.id)
                     putString(KEY_GAME_ID1,game.home_team.logo)
                     putString(KEY_GAME_ID2,game.away_team.logo)
+                    putString(KEY_GAME_ID3,game.away_team.name_code)
+                    putString(KEY_GAME_ID4,game.home_team.name_code)
                 })
-
-
 
             }
         }
 
         override fun getItemCount(): Int = game.size
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        gamesViewModel.getGames(currentDate).observe(
+            this, {
+                binding.gamesRC.adapter = GamesAdapter(it)
+            }
+        )
 
     }
 

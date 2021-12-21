@@ -2,9 +2,9 @@ package com.example.mynba.api.models.games
 
 data class AwayScore(
     val display: Int?,
-//    val current: Int,
-//    val normal_time: Int,
-//    val over_time: Int,
+    val current: Int?,
+    val normal_time: Int,
+    val over_time: Int,
 //    val period_1: Int,
 //    val period_2: Int,
 //    val period_3: Int,

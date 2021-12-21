@@ -3,7 +3,7 @@ package com.example.mynba.api.repo
 import android.util.Log
 import com.example.mynba.api.NbaApi
 import com.example.mynba.api.models.games.Data
-import com.example.mynba.api.models.news.Article
+import com.example.mynba.api.models.webSearch.Value
 import retrofit2.Retrofit
 import retrofit2.awaitResponse
 import retrofit2.converter.gson.GsonConverterFactory
@@ -18,7 +18,7 @@ class NbaRepo {
 
 
     private val retrofitNews: Retrofit = Retrofit.Builder()
-        .baseUrl("https://newsapi.org")
+        .baseUrl("https://contextualwebsearch-websearch-v1.p.rapidapi.com")
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
@@ -41,16 +41,16 @@ class NbaRepo {
     }
 
 
-    suspend fun getNews(): List<Article> {
-        var newsList: List<Article> = emptyList()
+    suspend fun getNews(): List<Value> {
+        var newsList: List<Value> = emptyList()
         val response = newsApi.getNews().awaitResponse()
 
         if (response.isSuccessful) {
-            newsList = response.body()?.articles ?: emptyList()
+            newsList = response.body()?.value ?: emptyList()
         } else {
             Log.d(TAG, "the error is {${response.errorBody()}")
         }
-        return newsList.sortedBy { it.publishedAt }
+        return newsList.sortedBy { it.id }
     }
 
     suspend fun getGames(date : String) : List<Data>{

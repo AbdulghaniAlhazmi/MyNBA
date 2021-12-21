@@ -7,21 +7,23 @@
     tools:context=".ui.gameStatus.GameStatusFragment">
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/away_logo"
         android:layout_width="87dp"
         android:layout_height="97dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="52dp"
+        android:contentDescription="@string/away_team_logo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@tools:sample/avatars" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/home_logoS"
         android:layout_width="87dp"
         android:layout_height="97dp"
         android:layout_marginTop="52dp"
         android:layout_marginEnd="44dp"
+        android:contentDescription="@string/home_team_logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@tools:sample/avatars" />

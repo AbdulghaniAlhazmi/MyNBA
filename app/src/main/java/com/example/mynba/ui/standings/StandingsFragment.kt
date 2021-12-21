@@ -1,9 +1,7 @@
 package com.example.mynba.ui.standings
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -28,6 +26,7 @@ class StandingsFragment : Fragment() {
             }
         )
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -68,49 +67,6 @@ class StandingsFragment : Fragment() {
             binding.loss.text = table.fields.losses_total
             binding.winPer.text = table.fields.percentage_total
             binding.gb.text = table.fields.games_behind_total
-
-
-//                binding.win.text = table.standings_rows.forEach { it.fields.wins_total }.toString()
-//                binding.loss.text = table.standings_rows.forEach { it.fields.losses_total }.toString()
-//                binding.winPer.text = table.standings_rows.forEach { it.fields.percentage_total }.toString()
-//                binding.gb.text = table.standings_rows.forEach { it.fields.games_behind_total }.toString()
-//                binding.imageView.load(table.standings_rows.forEach{it.team.logo}.toString())
-        }
-
-        private fun setImage(teamId: String) {
-            when (teamId) {
-                "1" -> { binding.imageView.setImageResource(R.drawable.id_1) }
-                "10" -> { binding.imageView.setImageResource(R.drawable.id_10) }
-                "15" -> { binding.imageView.setImageResource(R.drawable.id_15) }
-                "2" -> { binding.imageView.setImageResource(R.drawable.id_2) }
-                "20" -> { binding.imageView.setImageResource(R.drawable.id_20) }
-                "21" -> { binding.imageView.setImageResource(R.drawable.id_21) }
-                "24" -> { binding.imageView.setImageResource(R.drawable.id_24) }
-                "26" -> { binding.imageView.setImageResource(R.drawable.id_26) }
-                "27" -> { binding.imageView.setImageResource(R.drawable.id_27) }
-                "38" -> { binding.imageView.setImageResource(R.drawable.id_38) }
-                "4" -> { binding.imageView.setImageResource(R.drawable.id_4) }
-                "41" -> { binding.imageView.setImageResource(R.drawable.id_41) }
-                "5" -> { binding.imageView.setImageResource(R.drawable.id_5) }
-                "6" -> { binding.imageView.setImageResource(R.drawable.id_6) }
-                "7" -> { binding.imageView.setImageResource(R.drawable.id_7) }
-                "11" -> { binding.imageView.setImageResource(R.drawable.id_11) }
-                "14" -> { binding.imageView.setImageResource(R.drawable.id_14) }
-                "16" -> { binding.imageView.setImageResource(R.drawable.id_16) }
-                "17" -> { binding.imageView.setImageResource(R.drawable.id_17) }
-                "19" -> { binding.imageView.setImageResource(R.drawable.id_19) }
-                "22" -> { binding.imageView.setImageResource(R.drawable.id_22) }
-                "23" -> { binding.imageView.setImageResource(R.drawable.id_23) }
-                "25" -> { binding.imageView.setImageResource(R.drawable.id_25) }
-                "28" -> { binding.imageView.setImageResource(R.drawable.id_28) }
-                "29" -> { binding.imageView.setImageResource(R.drawable.id_29) }
-                "30" -> { binding.imageView.setImageResource(R.drawable.id_30) }
-                "31" -> { binding.imageView.setImageResource(R.drawable.id_31) }
-                "40" -> { binding.imageView.setImageResource(R.drawable.id_40) }
-                "8" -> { binding.imageView.setImageResource(R.drawable.id_8) }
-                "9" -> { binding.imageView.setImageResource(R.drawable.id_9) }
-
-            }
         }
     }
 

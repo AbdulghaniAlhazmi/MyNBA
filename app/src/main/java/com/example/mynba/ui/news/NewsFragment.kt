@@ -6,16 +6,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.example.mynba.R
+import com.example.mynba.api.models.webSearch.Value
 import com.example.mynba.databinding.FragmentNewsBinding
 import com.example.mynba.databinding.NewsListItemBinding
-import com.example.mynba.api.models.news.Article
-import java.text.SimpleDateFormat
-import java.util.*
+
+const val NEWS_ID_TITLE = "title"
+const val NEWS_ID_IMAGE = "IMAGE"
+const val NEWS_ID_CONTENT = "CONTENT"
+
 
 class NewsFragment : Fragment() {
 
@@ -46,15 +50,15 @@ class NewsFragment : Fragment() {
 
     private inner class NewsHolder(val binding: NewsListItemBinding):RecyclerView.ViewHolder(binding.root){
 
-        fun bind (news : Article){
-            binding.imageView3.load(news.urlToImage)
+        fun bind (news : Value){
+            binding.imageView3.load(news.image.url)
             binding.title.text = news.title
         }
 
     }
 
 
-    private inner class NewsAdapter(val news : List<Article>):RecyclerView.Adapter<NewsHolder>(){
+    private inner class NewsAdapter(val news : List<Value>):RecyclerView.Adapter<NewsHolder>(){
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsHolder {
             val binding = NewsListItemBinding.inflate(
                 layoutInflater,
@@ -67,10 +71,26 @@ class NewsFragment : Fragment() {
         override fun onBindViewHolder(holder: NewsHolder, position: Int) {
             val news = news[position]
             holder.bind(news)
+            holder.itemView.setOnClickListener {
+                findNavController().navigate(R.id.action_navigation_news_to_newsPageFragment,Bundle().apply {
+                    putString(NEWS_ID_TITLE,news.title)
+                    putString(NEWS_ID_IMAGE,news.image.url)
+                    putString(NEWS_ID_CONTENT,news.body)
+                })
+            }
         }
 
         override fun getItemCount(): Int = news.size
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        newsViewModel.getNews().observe(
+            this, {
+                binding.newsRC.adapter = NewsAdapter(it)
+            }
+        )
     }
 
 

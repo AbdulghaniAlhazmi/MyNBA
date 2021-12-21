@@ -9,7 +9,11 @@
         android:id="@+id/navigation_news"
         android:name="com.example.mynba.ui.news.NewsFragment"
         android:label="News"
-        tools:layout="@layout/fragment_news" />
+        tools:layout="@layout/fragment_news" >
+        <action
+            android:id="@+id/action_navigation_news_to_newsPageFragment"
+            app:destination="@id/newsPageFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_games"
@@ -31,4 +35,9 @@
         android:name="com.example.mynba.ui.gameStatus.GameStatusFragment"
         android:label="game_status_fragment"
         tools:layout="@layout/game_status_fragment" />
+    <fragment
+        android:id="@+id/newsPageFragment"
+        android:name="com.example.mynba.ui.news.NewsPageFragment"
+        android:label="news_page_fragment"
+        tools:layout="@layout/news_page_fragment" />
 </navigation>

@@ -7,15 +7,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.mynba.api.models.gameStatus.Data
 import com.example.mynba.databinding.GameStatusFragmentBinding
 import com.example.mynba.databinding.GameStatusItemBinding
-import com.example.mynba.ui.games.KEY_GAME_ID
-import com.example.mynba.ui.games.KEY_GAME_ID1
-import com.example.mynba.ui.games.KEY_GAME_ID2
+import com.example.mynba.ui.games.*
+import kotlin.properties.Delegates
 
 private const val TAG = "GameStatusFragment"
 
@@ -27,13 +27,22 @@ class GameStatusFragment : Fragment() {
         private lateinit var gameId : String
         private lateinit var homeLogo : String
         private lateinit var awayLogo : String
+        private lateinit var homeShort : String
+        private lateinit var awayShort : String
+
+
+
+
 
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+         awayShort= requireArguments().getString(KEY_GAME_ID3).toString()
+        homeShort = requireArguments().getString(KEY_GAME_ID4).toString()
+
+        (activity as AppCompatActivity).supportActionBar?.title = "$awayShort - $homeShort"
         gameId = requireArguments().getInt(KEY_GAME_ID).toString()
-        Log.d(TAG,gameId)
         homeLogo = requireArguments().getString(KEY_GAME_ID1).toString()
         awayLogo = requireArguments().getString(KEY_GAME_ID2).toString()
         gameStatusViewModel.getGamesStatus(gameId).observe(
@@ -51,8 +60,8 @@ class GameStatusFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = GameStatusFragmentBinding.inflate(layoutInflater)
-        binding.imageView2.load(homeLogo)
-        binding.imageView4.load(awayLogo)
+        binding.awayLogo.load(awayLogo)
+        binding.homeLogoS.load(homeLogo)
         binding.statusRC.layoutManager = LinearLayoutManager(context)
 
 

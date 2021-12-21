@@ -17,7 +17,6 @@ data class Team(
     val name_code: String,
     val name_full: String,
     val name_short: String,
-    val name_translations: NameTranslations,
     val slug: String,
     val sport_id: Int,
     val venue_id: Int
