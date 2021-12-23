@@ -1,4 +1,4 @@
-package com.example.mynba.api.models.test
+package com.example.mynba.api.models.boxScore
 
 data class MissingPlayer(
     val id: Int,

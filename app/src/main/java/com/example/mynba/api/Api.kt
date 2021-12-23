@@ -1,12 +1,11 @@
 package com.example.mynba.api
 
 
-import com.example.mynba.api.models.boxScore.BoxScoreResponse
 import com.example.mynba.api.models.gameStatus.StatusResponse
 import com.example.mynba.api.models.games.GamesResponse
 import com.example.mynba.api.models.news.NewsResponse
 import com.example.mynba.api.models.standings.StandingsResponse
-import com.example.mynba.api.models.test.ScoreResponse
+import com.example.mynba.api.models.boxScore.ScoreResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Headers

@@ -43,14 +43,15 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/min"
+                android:id="@+id/points"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/points"
+                android:id="@+id/min"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
+
         </TableRow>
 
     </TableLayout>

@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.mynba.api.models.test.Data
-import com.example.mynba.api.models.test.LineupPlayer
+import com.example.mynba.api.models.boxScore.Data
+import com.example.mynba.api.models.boxScore.LineupPlayer
 import com.example.mynba.api.repo.NbaRepo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -25,7 +25,9 @@ class BoxScoreViewModel : ViewModel() {
                 gameBoxScoreList.value = tempList.filter { it.is_confirmed }
                     .filter { it.team_id == teamId }
                     .flatMap { it.lineup_players }
-                    .sortedBy { it.substitute.toString() }
+                    .filter { !it.substitute }
+                    .sortedBy { it.player_statistics.seconds_played }
+
 
             }
         }

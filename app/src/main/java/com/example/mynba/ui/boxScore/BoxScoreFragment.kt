@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mynba.api.models.test.LineupPlayer
+import com.example.mynba.api.models.boxScore.LineupPlayer
 import com.example.mynba.databinding.BoxScoreFragmentBinding
 import com.example.mynba.databinding.BoxscoreListItemBinding
 import com.example.mynba.ui.games.KEY_GAME_ID
@@ -74,7 +74,9 @@ class BoxScoreFragment : Fragment() {
 
         fun bind (boxScore : LineupPlayer){
             binding.player.text = boxScore.player.name_short
-            binding.points.text = boxScore.player_statistics.points.toString()
+            binding.points.text = boxScore.position_key
+            val minPlayed : Int = (boxScore.player_statistics.seconds_played % 3600) / 60
+            binding.min.text = minPlayed.toString()
             Log.d(TAG,boxScore.player.name)
 
         }

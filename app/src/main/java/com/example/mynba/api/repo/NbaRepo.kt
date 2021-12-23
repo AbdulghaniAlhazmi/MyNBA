@@ -75,8 +75,8 @@ class NbaRepo {
         return gameStatusList
     }
 
-    suspend fun getGameBoxScore(gameId: String) : List<com.example.mynba.api.models.test.Data>{
-        var gameBoxScoreList : List<com.example.mynba.api.models.test.Data> = emptyList()
+    suspend fun getGameBoxScore(gameId: String) : List<com.example.mynba.api.models.boxScore.Data>{
+        var gameBoxScoreList : List<com.example.mynba.api.models.boxScore.Data> = emptyList()
         val response = nbaApi.getGameBoxScore(gameId).awaitResponse()
 
         if (response.isSuccessful){
