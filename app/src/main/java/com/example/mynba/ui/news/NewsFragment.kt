@@ -23,7 +23,7 @@ const val NEWS_ID_CONTENT = "CONTENT"
 
 class NewsFragment : Fragment() {
 
-    private val newsViewModel : NewsViewModel by lazy { ViewModelProvider(this)[NewsViewModel::class.java] }
+    private val newsViewModel: NewsViewModel by lazy { ViewModelProvider(this)[NewsViewModel::class.java] }
     private lateinit var binding: FragmentNewsBinding
 
     @SuppressLint("SimpleDateFormat")
@@ -48,9 +48,10 @@ class NewsFragment : Fragment() {
         return binding.root
     }
 
-    private inner class NewsHolder(val binding: NewsListItemBinding):RecyclerView.ViewHolder(binding.root){
+    private inner class NewsHolder(val binding: NewsListItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
-        fun bind (news : Value){
+        fun bind(news: Value) {
             binding.imageView3.load(news.image.url)
             binding.title.text = news.title
         }
@@ -58,7 +59,7 @@ class NewsFragment : Fragment() {
     }
 
 
-    private inner class NewsAdapter(val news : List<Value>):RecyclerView.Adapter<NewsHolder>(){
+    private inner class NewsAdapter(val news: List<Value>) : RecyclerView.Adapter<NewsHolder>() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsHolder {
             val binding = NewsListItemBinding.inflate(
                 layoutInflater,
@@ -72,11 +73,13 @@ class NewsFragment : Fragment() {
             val news = news[position]
             holder.bind(news)
             holder.itemView.setOnClickListener {
-                findNavController().navigate(R.id.action_navigation_news_to_newsPageFragment,Bundle().apply {
-                    putString(NEWS_ID_TITLE,news.title)
-                    putString(NEWS_ID_IMAGE,news.image.url)
-                    putString(NEWS_ID_CONTENT,news.body)
-                })
+                findNavController().navigate(
+                    R.id.action_navigation_news_to_newsPageFragment,
+                    Bundle().apply {
+                        putString(NEWS_ID_TITLE, news.title)
+                        putString(NEWS_ID_IMAGE, news.image.url)
+                        putString(NEWS_ID_CONTENT, news.body)
+                    })
             }
         }
 

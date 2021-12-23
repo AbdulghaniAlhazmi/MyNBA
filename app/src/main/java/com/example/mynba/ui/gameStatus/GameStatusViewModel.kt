@@ -12,13 +12,13 @@ import kotlinx.coroutines.launch
 class GameStatusViewModel : ViewModel() {
 
 
-    private val repo : NbaRepo = NbaRepo()
+    private val repo: NbaRepo = NbaRepo()
 
-    fun getGamesStatus(gameId : String) : LiveData<List<Data>>{
-        var tempList : List<Data> = emptyList()
-        val gameStatusList : MutableLiveData<List<Data>> = MutableLiveData()
+    fun getGamesStatus(gameId: String): LiveData<List<Data>> {
+        var tempList: List<Data> = emptyList()
+        val gameStatusList: MutableLiveData<List<Data>> = MutableLiveData()
 
-        viewModelScope.launch(Dispatchers.IO){
+        viewModelScope.launch(Dispatchers.IO) {
             tempList = repo.getGamesStatus(gameId)
         }.invokeOnCompletion {
             viewModelScope.launch {
@@ -27,6 +27,5 @@ class GameStatusViewModel : ViewModel() {
         }
         return gameStatusList
     }
-
 
 }

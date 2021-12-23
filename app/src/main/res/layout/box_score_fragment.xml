@@ -2,21 +2,24 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout3"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".ui.boxScore.BoxScoreFragment" >
+
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/table_RC"
+        android:id="@+id/boxScore_RC"
         android:layout_width="380dp"
         android:layout_height="520dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <RadioGroup
-        android:checkedButton="@+id/east"
-        android:id="@+id/toggle"
+        android:checkedButton="@id/home_button"
+        android:id="@+id/box_toggle"
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:layout_marginLeft="50dp"
@@ -25,38 +28,41 @@
         android:orientation="horizontal"
         tools:ignore="MissingConstraints">
 
+
         <RadioButton
-            android:id="@+id/west"
+            android:id="@+id/home_button"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginStart="1dp"
             android:layout_marginTop="1dp"
-            android:layout_marginBottom="1dp"
             android:layout_weight="1"
             android:background="@drawable/toggle_widget_background"
             android:button="@null"
             android:gravity="center"
-            android:paddingTop="5dp"
-            android:text="@string/western_conference"
             android:textColor="@color/white"
-            tools:ignore="TouchTargetSizeCheck" />
+            tools:ignore="TouchTargetSizeCheck"
+            android:text="HomeTeam" />
 
         <RadioButton
-            android:id="@+id/east"
+            android:id="@+id/away_button"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_marginStart="1dp"
             android:layout_marginTop="1dp"
-            android:layout_marginEnd="1dp"
-            android:layout_marginBottom="1dp"
             android:layout_weight="1"
             android:background="@drawable/toggle_widget_background"
             android:button="@null"
             android:gravity="center"
-            android:text="@string/eastern_conference"
-            android:textColor="@color/white"
-            tools:ignore="TouchTargetSizeCheck" />
+            android:textColor="#000000"
+            tools:ignore="TouchTargetSizeCheck"
+            android:text="AwayTeam" />
+
     </RadioGroup>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
 
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

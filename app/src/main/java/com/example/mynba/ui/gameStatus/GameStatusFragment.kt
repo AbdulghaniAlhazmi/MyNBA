@@ -1,13 +1,13 @@
 package com.example.mynba.ui.gameStatus
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
@@ -15,42 +15,38 @@ import com.example.mynba.api.models.gameStatus.Data
 import com.example.mynba.databinding.GameStatusFragmentBinding
 import com.example.mynba.databinding.GameStatusItemBinding
 import com.example.mynba.ui.games.*
-import kotlin.properties.Delegates
+import java.util.*
 
 private const val TAG = "GameStatusFragment"
 
 class GameStatusFragment : Fragment() {
 
 
-        private val gameStatusViewModel : GameStatusViewModel by lazy { ViewModelProvider(this)[GameStatusViewModel::class.java] }
-        private lateinit var binding: GameStatusFragmentBinding
-        private lateinit var gameId : String
-        private lateinit var homeLogo : String
-        private lateinit var awayLogo : String
-        private lateinit var homeShort : String
-        private lateinit var awayShort : String
-
-
-
-
-
+    private val gameStatusViewModel: GameStatusViewModel by lazy { ViewModelProvider(this)[GameStatusViewModel::class.java] }
+    private lateinit var binding: GameStatusFragmentBinding
+    private lateinit var gameId: String
+    private lateinit var homeLogo: String
+    private lateinit var awayLogo: String
+    private lateinit var homeShort: String
+    private lateinit var awayShort: String
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-         awayShort= requireArguments().getString(KEY_GAME_ID3).toString()
-        homeShort = requireArguments().getString(KEY_GAME_ID4).toString()
-
-        (activity as AppCompatActivity).supportActionBar?.title = "$awayShort - $homeShort"
         gameId = requireArguments().getInt(KEY_GAME_ID).toString()
         homeLogo = requireArguments().getString(KEY_GAME_ID1).toString()
         awayLogo = requireArguments().getString(KEY_GAME_ID2).toString()
+        awayShort = requireArguments().getString(KEY_GAME_ID3).toString()
+        homeShort = requireArguments().getString(KEY_GAME_ID4).toString()
+
+        (activity as AppCompatActivity).supportActionBar?.title = "$awayShort - $homeShort"
+
         gameStatusViewModel.getGamesStatus(gameId).observe(
-            this,{
+            this, {
                 binding.statusRC.adapter = StatusAdapter(it)
             }
         )
-        Log.d(TAG,"$gameId from status")
+        Log.d(TAG, "$gameId from status")
 
     }
 
@@ -68,17 +64,20 @@ class GameStatusFragment : Fragment() {
         return binding.root
     }
 
-    private inner class StatusHolder(val binding: GameStatusItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    private inner class StatusHolder(val binding: GameStatusItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bind(status: Data) {
-            binding.name.text = status.name
+            binding.name.text = status.name.replace("_"," ")
+                .replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
             binding.homeS.text = status.home
             binding.awayS.text = status.away
 
         }
     }
 
-    private inner class StatusAdapter(val status : List<Data>):RecyclerView.Adapter<StatusHolder>(){
+    private inner class StatusAdapter(val status: List<Data>) :
+        RecyclerView.Adapter<StatusHolder>() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StatusHolder {
             val binding = GameStatusItemBinding.inflate(
                 layoutInflater,
@@ -94,7 +93,6 @@ class GameStatusFragment : Fragment() {
         }
 
         override fun getItemCount(): Int = status.size
-
 
     }
 

@@ -23,11 +23,15 @@ class HomeActivity : AppCompatActivity() {
         val navController = findNavController(R.id.container)
 
         bottomNavigationView.setupWithNavController(navController)
-        setupActionBarWithNavController(navController, AppBarConfiguration(setOf(
-            R.layout.fragment_news,
-            R.layout.fragment_games,
-            R.layout.fragment_standings
-            ,R.layout.game_status_fragment)))
+        setupActionBarWithNavController(
+            navController, AppBarConfiguration(
+                setOf(
+                    R.layout.fragment_news,
+                    R.layout.fragment_games,
+                    R.layout.fragment_standings
+                )
+            )
+        )
     }
 
 

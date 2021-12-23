@@ -1,15 +1,15 @@
 package com.example.mynba
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import androidx.appcompat.app.AppCompatActivity
 import com.airbnb.lottie.LottieAnimationView
 
 class IntroActivity : AppCompatActivity() {
 
-    private lateinit var animation : LottieAnimationView
+    private lateinit var animation: LottieAnimationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

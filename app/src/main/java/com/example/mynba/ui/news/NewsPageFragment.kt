@@ -1,22 +1,22 @@
 package com.example.mynba.ui.news
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import coil.load
 import com.example.mynba.databinding.NewsPageFragmentBinding
 
 class NewsPageFragment : Fragment() {
 
-    private val newPageViewModel : NewsPageViewModel by lazy { ViewModelProvider(this)[NewsPageViewModel::class.java] }
-    private lateinit var binding : NewsPageFragmentBinding
-    private lateinit var title : String
-    private lateinit var image : String
-    private lateinit var content : String
+    private val newPageViewModel: NewsPageViewModel by lazy { ViewModelProvider(this)[NewsPageViewModel::class.java] }
+    private lateinit var binding: NewsPageFragmentBinding
+    private lateinit var title: String
+    private lateinit var image: String
+    private lateinit var content: String
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

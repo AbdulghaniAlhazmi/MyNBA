@@ -9,7 +9,7 @@ import com.example.mynba.api.repo.NbaRepo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class NewsViewModel: ViewModel() {
+class NewsViewModel : ViewModel() {
 
     private val repo: NbaRepo = NbaRepo()
 

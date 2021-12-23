@@ -15,14 +15,15 @@
         android:scaleType="fitXY"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:src="@tools:sample/avatars" />
+        tools:src="@tools:sample/avatars"
+        android:contentDescription="@string/news_image" />
 
     <TextView
         android:id="@+id/new_title"
         android:layout_width="204dp"
         android:layout_height="52dp"
         android:layout_marginBottom="36dp"
-        android:text="TextView"
+        tools:text="TextView"
         android:textColor="#DD2C00"
         app:layout_constraintBottom_toTopOf="@+id/content"
         app:layout_constraintStart_toStartOf="parent" />
@@ -33,7 +34,7 @@
         android:layout_height="372dp"
         android:layout_marginTop="35dp"
         android:layout_marginBottom="54dp"
-        android:text="TextView"
+        tools:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/news_image" />

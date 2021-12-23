@@ -23,14 +23,17 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.18425925925925926" />
         <entry key="app/src/main/res/layout/activity_main2.xml" value="0.18425925925925926" />
         <entry key="app/src/main/res/layout/bottom_sheet_fragment.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/box_score_fragment.xml" value="0.15121951219512195" />
+        <entry key="app/src/main/res/layout/boxscore_list_item.xml" value="0.1" />
         <entry key="app/src/main/res/layout/container.xml" value="0.1" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.165" />
         <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.18425925925925926" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_games.xml" value="0.2557291666666667" />
+        <entry key="app/src/main/res/layout/fragment_main.xml" value="0.24010416666666667" />
         <entry key="app/src/main/res/layout/fragment_news.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_standings.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_standings.xml" value="0.335" />
         <entry key="app/src/main/res/layout/game_status_fragment.xml" value="0.1" />
         <entry key="app/src/main/res/layout/game_status_item.xml" value="0.22592592592592592" />
         <entry key="app/src/main/res/layout/game_status_list.xml" value="0.22592592592592592" />

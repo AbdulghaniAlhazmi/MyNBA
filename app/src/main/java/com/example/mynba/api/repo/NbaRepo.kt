@@ -9,6 +9,7 @@ import retrofit2.awaitResponse
 import retrofit2.converter.gson.GsonConverterFactory
 
 private const val TAG = "NbaRepo"
+
 class NbaRepo {
 
     private val retrofitNba: Retrofit = Retrofit.Builder()
@@ -24,17 +25,17 @@ class NbaRepo {
 
 
     private val nbaApi: NbaApi = retrofitNba.create(NbaApi::class.java)
-    private val newsApi : NbaApi = retrofitNews.create(NbaApi::class.java)
+    private val newsApi: NbaApi = retrofitNews.create(NbaApi::class.java)
 //
 
 
-    suspend fun getStandings() : List<com.example.mynba.api.models.standings.Data>{
-        var standingList : List<com.example.mynba.api.models.standings.Data> = emptyList()
+    suspend fun getStandings(): List<com.example.mynba.api.models.standings.Data> {
+        var standingList: List<com.example.mynba.api.models.standings.Data> = emptyList()
         val response = nbaApi.getStandings().awaitResponse()
 
-        if (response.isSuccessful){
+        if (response.isSuccessful) {
             standingList = response.body()?.data ?: emptyList()
-        }else{
+        } else {
             Log.d(TAG, "the error is {${response.errorBody()}")
         }
         return standingList
@@ -53,25 +54,35 @@ class NbaRepo {
         return newsList.sortedBy { it.id }
     }
 
-    suspend fun getGames(date : String) : List<Data>{
-        var gamesList : List<Data> = emptyList()
+    suspend fun getGames(date: String): List<Data> {
+        var gamesList: List<Data> = emptyList()
         val response = nbaApi.getGames(date).awaitResponse()
 
-        if (response.isSuccessful){
+        if (response.isSuccessful) {
             gamesList = response.body()?.data ?: emptyList()
-       }
+        }
         return gamesList
     }
 
-    suspend fun getGamesStatus(gameId : String) : List<com.example.mynba.api.models.gameStatus.Data>{
-       var gameStatusList : List<com.example.mynba.api.models.gameStatus.Data> = emptyList()
+    suspend fun getGamesStatus(gameId: String): List<com.example.mynba.api.models.gameStatus.Data> {
+        var gameStatusList: List<com.example.mynba.api.models.gameStatus.Data> = emptyList()
         val response = nbaApi.getGameStatus(gameId).awaitResponse()
 
-        if (response.isSuccessful){
+        if (response.isSuccessful) {
             gameStatusList = response.body()?.data ?: emptyList()
         }
 
         return gameStatusList
+    }
+
+    suspend fun getGameBoxScore(gameId: String) : List<com.example.mynba.api.models.test.Data>{
+        var gameBoxScoreList : List<com.example.mynba.api.models.test.Data> = emptyList()
+        val response = nbaApi.getGameBoxScore(gameId).awaitResponse()
+
+        if (response.isSuccessful){
+            gameBoxScoreList = response.body()?.data ?: emptyList()
+        }
+        return gameBoxScoreList
     }
 
 

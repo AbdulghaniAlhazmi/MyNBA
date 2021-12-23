@@ -12,14 +12,14 @@ import kotlinx.coroutines.launch
 
 class StandingsViewModel : ViewModel() {
 
-    private val repo : NbaRepo = NbaRepo()
+    private val repo: NbaRepo = NbaRepo()
 
 
-    fun getStandings(conference : String):LiveData<List<StandingsRow>>{
-        var tempList : List<Data> = emptyList()
-        val standingsLiveData : MutableLiveData<List<StandingsRow>> = MutableLiveData()
+    fun getStandings(conference: String): LiveData<List<StandingsRow>> {
+        var tempList: List<Data> = emptyList()
+        val standingsLiveData: MutableLiveData<List<StandingsRow>> = MutableLiveData()
 
-        viewModelScope.launch(Dispatchers.IO){
+        viewModelScope.launch(Dispatchers.IO) {
             tempList = repo.getStandings()
         }.invokeOnCompletion {
             viewModelScope.launch {

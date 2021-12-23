@@ -23,6 +23,9 @@
         <action
             android:id="@+id/action_navigation_games_to_gameStatusFragment"
             app:destination="@id/gameStatusFragment" />
+        <action
+            android:id="@+id/action_navigation_games_to_boxScoreFragment"
+            app:destination="@id/boxScoreFragment" />
     </fragment>
 
     <fragment
@@ -40,4 +43,9 @@
         android:name="com.example.mynba.ui.news.NewsPageFragment"
         android:label="news_page_fragment"
         tools:layout="@layout/news_page_fragment" />
+    <fragment
+        android:id="@+id/boxScoreFragment"
+        android:name="com.example.mynba.ui.boxScore.BoxScoreFragment"
+        android:label="box_score_fragment"
+        tools:layout="@layout/box_score_fragment" />
 </navigation>

@@ -1,21 +1,23 @@
 package com.example.mynba.ui.standings
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.example.mynba.R
+import com.example.mynba.api.models.standings.StandingsRow
 import com.example.mynba.databinding.FragmentStandingsBinding
 import com.example.mynba.databinding.StandingsListItemBinding
-import com.example.mynba.api.models.standings.StandingsRow
 
 
 private const val TAG = "StandingsFragment"
+
 class StandingsFragment : Fragment() {
-    private val standingsViewModel : StandingsViewModel by lazy { ViewModelProvider(this)[StandingsViewModel::class.java] }
+    private val standingsViewModel: StandingsViewModel by lazy { ViewModelProvider(this)[StandingsViewModel::class.java] }
     private lateinit var binding: FragmentStandingsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,8 +58,8 @@ class StandingsFragment : Fragment() {
         return binding.root
     }
 
-    private inner class TableHolder(val binding: StandingsListItemBinding):
-            RecyclerView.ViewHolder(binding.root) {
+    private inner class TableHolder(val binding: StandingsListItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bind(table: StandingsRow) {
 
@@ -71,7 +73,8 @@ class StandingsFragment : Fragment() {
     }
 
 
-    private inner class TableAdapter(val table: List<StandingsRow>):RecyclerView.Adapter<TableHolder>(){
+    private inner class TableAdapter(val table: List<StandingsRow>) :
+        RecyclerView.Adapter<TableHolder>() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TableHolder {
             val binding = StandingsListItemBinding.inflate(
                 layoutInflater,

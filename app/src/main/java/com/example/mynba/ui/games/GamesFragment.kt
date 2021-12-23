@@ -16,9 +16,8 @@ import com.example.mynba.R
 import com.example.mynba.api.models.games.Data
 import com.example.mynba.databinding.FragmentGamesBinding
 import com.example.mynba.databinding.GamesListItemBinding
-import com.vivekkaushik.datepicker.OnDateSelectedListener
-
 import com.vivekkaushik.datepicker.DatePickerTimeline
+import com.vivekkaushik.datepicker.OnDateSelectedListener
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -30,13 +29,11 @@ const val KEY_GAME_ID3 = "GAME_ID3"
 const val KEY_GAME_ID4 = "GAME_ID4"
 
 
-
-
-
 class GamesFragment : Fragment() {
 
-    private val gamesViewModel : GamesViewModel by lazy { ViewModelProvider(this)[GamesViewModel::class.java] }
+    private val gamesViewModel: GamesViewModel by lazy { ViewModelProvider(this)[GamesViewModel::class.java] }
     private lateinit var binding: FragmentGamesBinding
+
     @SuppressLint("SimpleDateFormat")
     private val sdf = SimpleDateFormat("yyyy-M-dd")
     private val currentDate: String = sdf.format(Date())
@@ -66,12 +63,12 @@ class GamesFragment : Fragment() {
         datePickerTimeline.setInitialDate(2021, 10, 27)
         datePickerTimeline.setOnDateSelectedListener(object : OnDateSelectedListener {
             override fun onDateSelected(year: Int, month: Int, day: Int, dayOfWeek: Int) {
-                var emonth = "${month+1}"
+                var emonth = "${month + 1}"
                 var eday = "$day"
-                if (month < 10){
+                if (month < 10) {
                     emonth = "0${emonth}"
                 }
-                if (day < 10){
+                if (day < 10) {
                     eday = "0${day}"
                 }
                 val date = "$year-$emonth-${eday}"
@@ -80,7 +77,7 @@ class GamesFragment : Fragment() {
                         binding.gamesRC.adapter = GamesAdapter(it)
                     }
                 )
-                Log.d(TAG,date)
+                Log.d(TAG, date)
             }
 
             override fun onDisabledDateSelected(
@@ -98,34 +95,33 @@ class GamesFragment : Fragment() {
     }
 
 
-    private inner class GamesHolder(val binding: GamesListItemBinding):RecyclerView.ViewHolder(binding.root) {
+    private inner class GamesHolder(val binding: GamesListItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bind(game: Data) {
             binding.awayLogo.load(game.away_team.logo)
             binding.homeLogo.load(game.home_team.logo)
-            if (game.status_more == "-"){
+            if (game.status_more == "-") {
                 binding.gameStatus.text = game.start_at.takeLast(7)
-            }
-            else{
+            } else {
                 binding.gameStatus.text = game.status_more
             }
-            if (game.home_score == null){
+            if (game.home_score == null) {
                 binding.hScore.text = ""
-            }else{
+            } else {
                 binding.hScore.text = game.home_score.display.toString()
             }
-            if (game.away_score == null){
+            if (game.away_score == null) {
                 binding.vScore.text = ""
-            }else{
+            } else {
                 binding.vScore.text = game.away_score.display.toString()
             }
-
 
 
         }
     }
 
-    private inner class GamesAdapter(val game : List<Data>):RecyclerView.Adapter<GamesHolder>(){
+    private inner class GamesAdapter(val game: List<Data>) : RecyclerView.Adapter<GamesHolder>() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GamesHolder {
             val binding = GamesListItemBinding.inflate(
                 layoutInflater,
@@ -139,17 +135,23 @@ class GamesFragment : Fragment() {
             val game = game[position]
             holder.bind(game)
             holder.itemView.setOnClickListener {
-            Log.d(TAG,game.id.toString())
+                Log.d(TAG, game.id.toString())
 
-                findNavController().navigate(R.id.action_navigation_games_to_gameStatusFragment,Bundle().apply {
-                    putInt(KEY_GAME_ID,game.id)
-                    putString(KEY_GAME_ID1,game.home_team.logo)
-                    putString(KEY_GAME_ID2,game.away_team.logo)
-                    putString(KEY_GAME_ID3,game.away_team.name_code)
-                    putString(KEY_GAME_ID4,game.home_team.name_code)
-                })
+                findNavController().navigate(
+                    R.id.action_navigation_games_to_boxScoreFragment,
+                    Bundle().apply {
+                        putInt(KEY_GAME_ID, game.id)
+                        putInt(KEY_GAME_ID1,game.home_team_id)
+                        putInt(KEY_GAME_ID2,game.away_team_id)
 
+//                        putString(KEY_GAME_ID1, game.home_team.logo)
+//                        putString(KEY_GAME_ID2, game.away_team.logo)
+//                        putString(KEY_GAME_ID3, game.away_team.name_code)
+//                        putString(KEY_GAME_ID4, game.home_team.name_code)
+//                        game.away_score
+                    })
             }
+
         }
 
         override fun getItemCount(): Int = game.size

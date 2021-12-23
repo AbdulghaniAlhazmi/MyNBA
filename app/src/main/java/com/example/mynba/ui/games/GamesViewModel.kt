@@ -11,16 +11,16 @@ import kotlinx.coroutines.launch
 
 class GamesViewModel : ViewModel() {
 
-    private val repo : NbaRepo = NbaRepo()
+    private val repo: NbaRepo = NbaRepo()
 
-    fun getGames(date: String) : LiveData<List<Data>>{
-        var tempList : List<Data> = emptyList()
-        val gamesList : MutableLiveData<List<Data>> = MutableLiveData()
+    fun getGames(date: String): LiveData<List<Data>> {
+        var tempList: List<Data> = emptyList()
+        val gamesList: MutableLiveData<List<Data>> = MutableLiveData()
 
-        viewModelScope.launch(Dispatchers.IO){
+        viewModelScope.launch(Dispatchers.IO) {
             tempList = repo.getGames(date)
         }.invokeOnCompletion {
-            viewModelScope.launch{
+            viewModelScope.launch {
                 gamesList.value = tempList.filter { it.league_id == 7422 }
             }
         }
