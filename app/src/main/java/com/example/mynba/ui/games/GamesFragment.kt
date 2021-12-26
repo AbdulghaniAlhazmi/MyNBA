@@ -27,6 +27,8 @@ import java.util.*
 
 private const val TAG = "GamesFragment"
 const val KEY_GAME_ID = "GAME_ID"
+const val KEY_HOME_ID = "HOME_ID"
+const val KEY_AWAY_ID = "AWAY_ID"
 const val KEY_HOME_LOGO = "HOME_LOGO"
 const val KEY_AWAY_LOGO = "AWAY_LOGO"
 const val KEY_HOME_SHORT = "HOME_SHORT"
@@ -160,7 +162,7 @@ class GamesFragment : Fragment() {
                 Log.d(TAG, game.id.toString())
 
                 findNavController().navigate(
-                    R.id.action_navigation_games_to_gameStatusFragment,
+                    R.id.action_navigation_games_to_boxScoreFragment,
                     Bundle().apply {
                         putInt(KEY_GAME_ID, game.id)
                         putString(KEY_HOME_LOGO,game.home_team.logo)
@@ -169,7 +171,8 @@ class GamesFragment : Fragment() {
                         putString(KEY_AWAY_SHORT,game.away_team.name_code)
                         putString(KEY_HOME_SCORE, game.home_score?.display.toString())
                         putString(KEY_AWAY_SCORE, game.away_score?.display.toString())
-
+                        putInt(KEY_HOME_ID,game.home_team_id)
+                        putInt(KEY_AWAY_ID,game.away_team_id)
                     })
             }
 

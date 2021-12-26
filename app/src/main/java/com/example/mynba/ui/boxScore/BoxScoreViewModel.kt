@@ -14,7 +14,7 @@ class BoxScoreViewModel : ViewModel() {
 
     private val repo : NbaRepo = NbaRepo()
 
-    fun getGameBoxScore(gameId : String,teamId : Int) : LiveData<List<LineupPlayer>>{
+    fun getGameBoxScore(gameId : String,teamId : Int,players : Boolean) : LiveData<List<LineupPlayer>>{
         var tempList : List<Data> = emptyList()
         val gameBoxScoreList : MutableLiveData<List<LineupPlayer>> = MutableLiveData()
 
@@ -25,7 +25,7 @@ class BoxScoreViewModel : ViewModel() {
                 gameBoxScoreList.value = tempList.filter { it.is_confirmed }
                     .filter { it.team_id == teamId }
                     .flatMap { it.lineup_players }
-                    .filter { !it.substitute }
+                    .filter { it.substitute == players }
                     .sortedByDescending { it.player_statistics.seconds_played }
             }
         }
