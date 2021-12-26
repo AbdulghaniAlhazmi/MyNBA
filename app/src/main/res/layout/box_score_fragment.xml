@@ -8,17 +8,8 @@
     tools:context=".ui.boxScore.BoxScoreFragment" >
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/boxScore_RC"
-        android:layout_width="380dp"
-        android:layout_height="520dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
     <RadioGroup
-        android:checkedButton="@id/home_button"
+        android:checkedButton="@id/away_button"
         android:id="@+id/box_toggle"
         android:layout_width="match_parent"
         android:layout_height="30dp"
@@ -28,20 +19,6 @@
         android:orientation="horizontal"
         tools:ignore="MissingConstraints">
 
-
-        <RadioButton
-            android:id="@+id/home_button"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginStart="1dp"
-            android:layout_marginTop="1dp"
-            android:layout_weight="1"
-            android:background="@drawable/toggle_widget_background"
-            android:button="@null"
-            android:gravity="center"
-            android:textColor="@color/white"
-            tools:ignore="TouchTargetSizeCheck"
-            android:text="HomeTeam" />
 
         <RadioButton
             android:id="@+id/away_button"
@@ -57,12 +34,76 @@
             tools:ignore="TouchTargetSizeCheck"
             android:text="AwayTeam" />
 
+        <RadioButton
+            android:id="@+id/home_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="1dp"
+            android:layout_weight="1"
+            android:background="@drawable/toggle_widget_background"
+            android:button="@null"
+            android:gravity="center"
+            android:text="HomeTeam"
+            android:textColor="@color/white"
+            tools:ignore="TouchTargetSizeCheck" />
+
     </RadioGroup>
 
 
+    <TableLayout
+        android:id="@+id/tableLayout2"
+        android:layout_width="387dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.304"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/box_toggle"
+        app:layout_constraintVertical_bias="0.0">
 
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Starters" />
 
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="P" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Min" />
+        </TableRow>
+
+    </TableLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/boxScore_RC"
+        android:layout_width="372dp"
+        android:layout_height="475dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="29dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout2"
+        tools:ignore="MissingConstraints" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

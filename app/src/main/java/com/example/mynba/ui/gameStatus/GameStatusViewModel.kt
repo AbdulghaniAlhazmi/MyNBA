@@ -22,7 +22,7 @@ class GameStatusViewModel : ViewModel() {
             tempList = repo.getGamesStatus(gameId)
         }.invokeOnCompletion {
             viewModelScope.launch {
-                gameStatusList.value = tempList
+                gameStatusList.value = tempList.filterNot { it.name == "timeouts" }
             }
         }
         return gameStatusList

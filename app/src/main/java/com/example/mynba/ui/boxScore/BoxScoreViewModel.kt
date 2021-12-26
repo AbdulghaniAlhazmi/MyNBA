@@ -26,9 +26,7 @@ class BoxScoreViewModel : ViewModel() {
                     .filter { it.team_id == teamId }
                     .flatMap { it.lineup_players }
                     .filter { !it.substitute }
-                    .sortedBy { it.player_statistics.seconds_played }
-
-
+                    .sortedByDescending { it.player_statistics.seconds_played }
             }
         }
         return gameBoxScoreList

@@ -19,14 +19,24 @@ import com.example.mynba.databinding.GamesListItemBinding
 import com.vivekkaushik.datepicker.DatePickerTimeline
 import com.vivekkaushik.datepicker.OnDateSelectedListener
 import java.text.SimpleDateFormat
+import java.time.Instant
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
 import java.util.*
 
 private const val TAG = "GamesFragment"
 const val KEY_GAME_ID = "GAME_ID"
-const val KEY_GAME_ID1 = "GAME_ID1"
-const val KEY_GAME_ID2 = "GAME_ID2"
-const val KEY_GAME_ID3 = "GAME_ID3"
-const val KEY_GAME_ID4 = "GAME_ID4"
+const val KEY_HOME_LOGO = "HOME_LOGO"
+const val KEY_AWAY_LOGO = "AWAY_LOGO"
+const val KEY_HOME_SHORT = "HOME_SHORT"
+const val KEY_AWAY_SHORT = "AWAY_SHORT"
+const val KEY_HOME_SCORE = "HOME_SCORE"
+const val KEY_AWAY_SCORE = "AWAY_SCORE"
+
+
+
+
 
 
 class GamesFragment : Fragment() {
@@ -102,7 +112,7 @@ class GamesFragment : Fragment() {
             binding.awayLogo.load(game.away_team.logo)
             binding.homeLogo.load(game.home_team.logo)
             if (game.status_more == "-") {
-                binding.gameStatus.text = game.start_at.takeLast(7)
+                binding.gameStatus.text = convertDate(game.start_at)
             } else {
                 binding.gameStatus.text = game.status_more
             }
@@ -119,6 +129,18 @@ class GamesFragment : Fragment() {
 
 
         }
+    }
+
+    fun convertDate(date : String) : String{
+
+        var newDate = date
+        newDate = newDate.replace(" ","T")
+        newDate += "Z"
+        newDate = Instant.parse(newDate)
+            .atZone(ZoneId.of("Asia/Riyadh"))
+            .format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT))
+
+        return newDate
     }
 
     private inner class GamesAdapter(val game: List<Data>) : RecyclerView.Adapter<GamesHolder>() {
@@ -138,17 +160,16 @@ class GamesFragment : Fragment() {
                 Log.d(TAG, game.id.toString())
 
                 findNavController().navigate(
-                    R.id.action_navigation_games_to_boxScoreFragment,
+                    R.id.action_navigation_games_to_gameStatusFragment,
                     Bundle().apply {
                         putInt(KEY_GAME_ID, game.id)
-                        putInt(KEY_GAME_ID1,game.home_team_id)
-                        putInt(KEY_GAME_ID2,game.away_team_id)
+                        putString(KEY_HOME_LOGO,game.home_team.logo)
+                        putString(KEY_AWAY_LOGO,game.away_team.logo)
+                        putString(KEY_HOME_SHORT,game.home_team.name_code)
+                        putString(KEY_AWAY_SHORT,game.away_team.name_code)
+                        putString(KEY_HOME_SCORE, game.home_score?.display.toString())
+                        putString(KEY_AWAY_SCORE, game.away_score?.display.toString())
 
-//                        putString(KEY_GAME_ID1, game.home_team.logo)
-//                        putString(KEY_GAME_ID2, game.away_team.logo)
-//                        putString(KEY_GAME_ID3, game.away_team.name_code)
-//                        putString(KEY_GAME_ID4, game.home_team.name_code)
-//                        game.away_score
                     })
             }
 

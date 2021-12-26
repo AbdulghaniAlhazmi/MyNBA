@@ -9,6 +9,8 @@ import com.example.mynba.api.repo.NbaRepo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+const val LEAGUE_ID = 7422
+
 class GamesViewModel : ViewModel() {
 
     private val repo: NbaRepo = NbaRepo()
@@ -21,7 +23,7 @@ class GamesViewModel : ViewModel() {
             tempList = repo.getGames(date)
         }.invokeOnCompletion {
             viewModelScope.launch {
-                gamesList.value = tempList.filter { it.league_id == 7422 }
+                gamesList.value = tempList.filter { it.league_id == LEAGUE_ID }
             }
         }
         return gamesList
