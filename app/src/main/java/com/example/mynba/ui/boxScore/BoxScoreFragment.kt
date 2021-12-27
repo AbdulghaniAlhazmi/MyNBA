@@ -1,14 +1,14 @@
 package com.example.mynba.ui.boxScore
 
 import android.annotation.SuppressLint
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mynba.api.models.boxScore.LineupPlayer
@@ -22,13 +22,13 @@ private const val TAG = "BoxScoreFragment"
 class BoxScoreFragment : Fragment() {
 
 
-    private val boxScoreViewModel : BoxScoreViewModel by lazy { ViewModelProvider(this)[BoxScoreViewModel::class.java] }
-    private lateinit var binding : BoxScoreFragmentBinding
-    private lateinit var gameId : String
+    private val boxScoreViewModel: BoxScoreViewModel by lazy { ViewModelProvider(this)[BoxScoreViewModel::class.java] }
+    private lateinit var binding: BoxScoreFragmentBinding
+    private lateinit var gameId: String
     private var homeId by Delegates.notNull<Int>()
     private var awayId by Delegates.notNull<Int>()
-    private lateinit var homeShort : String
-    private lateinit var awayShort : String
+    private lateinit var homeShort: String
+    private lateinit var awayShort: String
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,8 +41,8 @@ class BoxScoreFragment : Fragment() {
 
         (activity as AppCompatActivity).supportActionBar?.title = "$awayShort - $homeShort"
 
-        observeStarter(gameId,homeId)
-        observeBench(gameId,homeId)
+        observeStarter(gameId, homeId)
+        observeBench(gameId, homeId)
 
     }
 
@@ -60,57 +60,62 @@ class BoxScoreFragment : Fragment() {
         binding.awayButton.text = awayShort
 
         binding.homeButton.setOnClickListener {
-            observeStarter(gameId,homeId)
-            observeBench(gameId,homeId)
+            observeStarter(gameId, homeId)
+            observeBench(gameId, homeId)
         }
 
         binding.awayButton.setOnClickListener {
-            observeStarter(gameId,awayId)
-            observeBench(gameId,awayId)
+            observeStarter(gameId, awayId)
+            observeBench(gameId, awayId)
         }
 
         return binding.root
     }
 
     @SuppressLint("FragmentLiveDataObserve")
-    private fun observeStarter(gameId : String, teamId: Int){
-        boxScoreViewModel.getGameBoxScore(gameId,teamId,false).observe(this,{
+    private fun observeStarter(gameId: String, teamId: Int) {
+        boxScoreViewModel.getGameBoxScore(gameId, teamId, false).observe(this, {
             binding.boxScoreRC.adapter = BoxScoreAdapter(it)
         })
     }
 
     @SuppressLint("FragmentLiveDataObserve")
-    private fun observeBench(gameId: String, teamId: Int){
-        boxScoreViewModel.getGameBoxScore(gameId,teamId,true).observe(this,{
+    private fun observeBench(gameId: String, teamId: Int) {
+        boxScoreViewModel.getGameBoxScore(gameId, teamId, true).observe(this, {
             binding.benchRC.adapter = BoxScoreAdapter(it)
         })
     }
 
-    private inner class BoxScoreViewHolder(val binding : BoxscoreListItemBinding) : RecyclerView.ViewHolder(binding.root){
+    private inner class BoxScoreViewHolder(val binding: BoxscoreListItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
-        fun bind (boxScore : LineupPlayer){
+        fun bind(boxScore: LineupPlayer) {
             binding.player.text = boxScore.player.name_short
-            if (boxScore.substitute){
-                binding.position.text = " "
-            }
-            else{
+            if (boxScore.substitute) {
+                binding.position.text = "  "
+            } else {
                 binding.position.text = boxScore.position_key
             }
-            val minPlayed : Int = (boxScore.player_statistics.seconds_played % 3600) / 60
+            val minPlayed: Int = (boxScore.player_statistics.seconds_played % 3600) / 60
             binding.min.text = minPlayed.toString()
-            Log.d(TAG,boxScore.player.name)
+            Log.d(TAG, boxScore.player.name)
             binding.points.text = boxScore.player_statistics.points.toString()
+            binding.rebound.text = boxScore.player_statistics.rebounds
+            binding.assist.text = boxScore.player_statistics.assists
+            binding.steal.text = boxScore.player_statistics.steals
+            binding.block.text = boxScore.player_statistics.blocks
 
         }
     }
 
-    private inner class BoxScoreAdapter(val boxScore: List<LineupPlayer>) : RecyclerView.Adapter<BoxScoreViewHolder>(){
+    private inner class BoxScoreAdapter(val boxScore: List<LineupPlayer>) :
+        RecyclerView.Adapter<BoxScoreViewHolder>() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BoxScoreViewHolder {
-           val binding = BoxscoreListItemBinding.inflate(
-               layoutInflater,
-               parent,
-               false
-           )
+            val binding = BoxscoreListItemBinding.inflate(
+                layoutInflater,
+                parent,
+                false
+            )
             return BoxScoreViewHolder(binding)
         }
 

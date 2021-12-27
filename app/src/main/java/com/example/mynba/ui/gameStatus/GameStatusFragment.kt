@@ -29,9 +29,8 @@ class GameStatusFragment : Fragment() {
     private lateinit var awayLogo: String
     private lateinit var homeShort: String
     private lateinit var awayShort: String
-    private lateinit var homeScore : String
-    private lateinit var awayScore : String
-
+    private lateinit var homeScore: String
+    private lateinit var awayScore: String
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,12 +40,13 @@ class GameStatusFragment : Fragment() {
         awayLogo = requireArguments().getString(KEY_AWAY_LOGO).toString()
         homeShort = requireArguments().getString(KEY_HOME_SHORT).toString()
         awayShort = requireArguments().getString(KEY_AWAY_SHORT).toString()
-        homeScore = requireArguments().getString(KEY_HOME_SCORE,"")
-        awayScore = requireArguments().getString(KEY_AWAY_SCORE,"")
+        homeScore = requireArguments().getString(KEY_HOME_SCORE, "")
+        awayScore = requireArguments().getString(KEY_AWAY_SCORE, "")
 
 
 
-        (activity as AppCompatActivity).supportActionBar?.title = "$awayShort $awayScore - $homeScore $homeShort"
+        (activity as AppCompatActivity).supportActionBar?.title =
+            "$awayShort $awayScore - $homeScore $homeShort"
 
         gameStatusViewModel.getGamesStatus(gameId).observe(
             this, {
@@ -74,7 +74,7 @@ class GameStatusFragment : Fragment() {
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(status: Data) {
-            binding.name.text = status.name.replace("_"," ")
+            binding.name.text = status.name.replace("_", " ")
                 .replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
             binding.homeS.text = status.home
             binding.awayS.text = status.away

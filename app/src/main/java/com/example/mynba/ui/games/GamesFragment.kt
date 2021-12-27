@@ -37,10 +37,6 @@ const val KEY_HOME_SCORE = "HOME_SCORE"
 const val KEY_AWAY_SCORE = "AWAY_SCORE"
 
 
-
-
-
-
 class GamesFragment : Fragment() {
 
     private val gamesViewModel: GamesViewModel by lazy { ViewModelProvider(this)[GamesViewModel::class.java] }
@@ -133,10 +129,10 @@ class GamesFragment : Fragment() {
         }
     }
 
-    fun convertDate(date : String) : String{
+    fun convertDate(date: String): String {
 
         var newDate = date
-        newDate = newDate.replace(" ","T")
+        newDate = newDate.replace(" ", "T")
         newDate += "Z"
         newDate = Instant.parse(newDate)
             .atZone(ZoneId.of("Asia/Riyadh"))
@@ -162,17 +158,17 @@ class GamesFragment : Fragment() {
                 Log.d(TAG, game.id.toString())
 
                 findNavController().navigate(
-                    R.id.action_navigation_games_to_boxScoreFragment,
+                    R.id.action_navigation_games_to_mainActivity,
                     Bundle().apply {
                         putInt(KEY_GAME_ID, game.id)
-                        putString(KEY_HOME_LOGO,game.home_team.logo)
-                        putString(KEY_AWAY_LOGO,game.away_team.logo)
-                        putString(KEY_HOME_SHORT,game.home_team.name_code)
-                        putString(KEY_AWAY_SHORT,game.away_team.name_code)
+                        putString(KEY_HOME_LOGO, game.home_team.logo)
+                        putString(KEY_AWAY_LOGO, game.away_team.logo)
+                        putString(KEY_HOME_SHORT, game.home_team.name_code)
+                        putString(KEY_AWAY_SHORT, game.away_team.name_code)
                         putString(KEY_HOME_SCORE, game.home_score?.display.toString())
                         putString(KEY_AWAY_SCORE, game.away_score?.display.toString())
-                        putInt(KEY_HOME_ID,game.home_team_id)
-                        putInt(KEY_AWAY_ID,game.away_team_id)
+                        putInt(KEY_HOME_ID, game.home_team_id)
+                        putInt(KEY_AWAY_ID, game.away_team_id)
                     })
             }
 

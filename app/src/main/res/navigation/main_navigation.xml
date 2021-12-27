@@ -21,11 +21,11 @@
         android:label="Games"
         tools:layout="@layout/fragment_games" >
         <action
+            android:id="@+id/action_navigation_games_to_mainActivity"
+            app:destination="@id/boxScoreFragment" />
+        <action
             android:id="@+id/action_navigation_games_to_gameStatusFragment"
             app:destination="@id/gameStatusFragment" />
-        <action
-            android:id="@+id/action_navigation_games_to_boxScoreFragment"
-            app:destination="@id/boxScoreFragment" />
     </fragment>
 
     <fragment
