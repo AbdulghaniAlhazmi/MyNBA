@@ -63,7 +63,7 @@ class LoginActivity : AppCompatActivity() {
         ref.child(firebaseUser.uid)
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
+                    startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                     finish()
                 }
 

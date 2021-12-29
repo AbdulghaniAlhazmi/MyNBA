@@ -26,7 +26,7 @@ class NbaRepo {
 
     private val nbaApi: NbaApi = retrofitNba.create(NbaApi::class.java)
     private val newsApi: NbaApi = retrofitNews.create(NbaApi::class.java)
-//
+
 
 
     suspend fun getStandings(): List<com.example.mynba.api.models.standings.Data> {
@@ -85,5 +85,14 @@ class NbaRepo {
         return gameBoxScoreList
     }
 
+    suspend fun getGameMedia(gameId: String) : List<com.example.mynba.api.models.gameMedia.Data>{
+        var gameMediaList : List<com.example.mynba.api.models.gameMedia.Data> = emptyList()
+        val response = nbaApi.getGameMedia(gameId).awaitResponse()
+
+        if (response.isSuccessful){
+            gameMediaList = response.body()?.data ?: emptyList()
+        }
+        return gameMediaList
+    }
 
 }

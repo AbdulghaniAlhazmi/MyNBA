@@ -6,6 +6,7 @@ import com.example.mynba.api.models.games.GamesResponse
 import com.example.mynba.api.models.news.NewsResponse
 import com.example.mynba.api.models.standings.StandingsResponse
 import com.example.mynba.api.models.boxScore.ScoreResponse
+import com.example.mynba.api.models.gameMedia.MediaResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Headers
@@ -45,6 +46,12 @@ interface NbaApi {
     @GET("events/{gameId}/lineups")
     fun getGameBoxScore(@Path("gameId") gameId: String): Call<ScoreResponse>
 
+    @Headers(
+        "x-rapidapi-host:sportscore1.p.rapidapi.com",
+        "x-rapidapi-key:9d71b15abfmsh023706e8cf3e55cp17600ajsn862e0a5d003f"
+    )
+    @GET("events/{gameId}/medias")
+    fun getGameMedia(@Path("gameId") gameId: String): Call<MediaResponse>
 
 
     @Headers(

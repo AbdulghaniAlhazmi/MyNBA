@@ -77,7 +77,7 @@ class RegisterActivity : AppCompatActivity() {
         ref.child(uid!!)
             .setValue(hashMap)
             .addOnSuccessListener {
-                startActivity(Intent(this, HomeActivity::class.java))
+                startActivity(Intent(this, MainActivity::class.java))
                 finish()
             }
             .addOnFailureListener { e ->

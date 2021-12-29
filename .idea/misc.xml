@@ -4,9 +4,15 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/ab909/Documents/MyNBA/app/src/main/res/layout/activity_home.xml" value="0.25" />
+        <entry key="..\:/Users/ab909/Documents/MyNBA/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/ab909/Documents/MyNBA/app/src/main/res/layout/fragment_games.xml" value="0.25" />
+        <entry key="..\:/Users/ab909/Documents/MyNBA/app/src/main/res/layout/fragment_news.xml" value="0.1" />
         <entry key="..\:/Users/ab909/Documents/MyNBA/app/src/main/res/layout/fragment_standings.xml" value="0.25" />
+        <entry key="..\:/Users/ab909/Documents/MyNBA/app/src/main/res/layout/game_media_fragment.xml" value="0.1" />
+        <entry key="..\:/Users/ab909/Documents/MyNBA/app/src/main/res/layout/media_list_item.xml" value="0.25" />
+        <entry key="..\:/Users/ab909/Documents/MyNBA/app/src/main/res/layout/nav_header.xml" value="0.25" />
         <entry key="..\:/Users/ab909/Documents/MyNBA/app/src/main/res/layout/standings_list_item.xml" value="0.25" />
+        <entry key="..\:/Users/ab909/Documents/MyNBA/app/src/main/res/menu/drawer_nav.xml" value="0.25" />
         <entry key="..\:/Users/ab909/MyNBA/app/src/main/res/layout/fragment_standings.xml" value="0.25" />
         <entry key="..\:/Users/ab909/MyNBA/app/src/main/res/layout/standings_list_item.xml" value="0.25" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.11018518518518519" />
