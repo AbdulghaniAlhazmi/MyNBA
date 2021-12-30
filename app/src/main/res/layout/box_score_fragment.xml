@@ -9,7 +9,7 @@
 
 
     <RadioGroup
-        android:checkedButton="@id/away_button"
+        android:checkedButton="@id/home_button"
         android:id="@+id/box_toggle"
         android:layout_width="match_parent"
         android:layout_height="30dp"
@@ -142,7 +142,7 @@
         android:layout_height="214dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="18dp"
-        android:layout_marginBottom="44dp"
+        android:layout_marginBottom="52dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -165,7 +165,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="Starters" />
+                android:text="Bench" />
 
             <TextView
                 android:id="@+id/textView3"
