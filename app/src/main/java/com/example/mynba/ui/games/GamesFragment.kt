@@ -161,14 +161,14 @@ class GamesFragment : Fragment() {
                     R.id.action_navigation_games_to_gameMediaFragment,
                     Bundle().apply {
                         putInt(KEY_GAME_ID, game.id)
-                        putString(KEY_HOME_LOGO, game.home_team.logo)
-                        putString(KEY_AWAY_LOGO, game.away_team.logo)
-                        putString(KEY_HOME_SHORT, game.home_team.name_code)
-                        putString(KEY_AWAY_SHORT, game.away_team.name_code)
-                        putString(KEY_HOME_SCORE, game.home_score?.display.toString())
-                        putString(KEY_AWAY_SCORE, game.away_score?.display.toString())
-                        putInt(KEY_HOME_ID, game.home_team_id)
-                        putInt(KEY_AWAY_ID, game.away_team_id)
+//                        putString(KEY_HOME_LOGO, game.home_team.logo)
+//                        putString(KEY_AWAY_LOGO, game.away_team.logo)
+//                        putString(KEY_HOME_SHORT, game.home_team.name_code)
+//                        putString(KEY_AWAY_SHORT, game.away_team.name_code)
+//                        putString(KEY_HOME_SCORE, game.home_score?.display.toString())
+//                        putString(KEY_AWAY_SCORE, game.away_score?.display.toString())
+//                        putInt(KEY_HOME_ID, game.home_team_id)
+//                        putInt(KEY_AWAY_ID, game.away_team_id)
                     })
             }
 

@@ -23,6 +23,12 @@
         <action
             android:id="@+id/action_navigation_games_to_gameMediaFragment"
             app:destination="@id/gameMediaFragment" />
+        <action
+            android:id="@+id/action_navigation_games_to_boxScoreFragment"
+            app:destination="@id/boxScoreFragment" />
+        <action
+            android:id="@+id/action_navigation_games_to_gameStatusFragment"
+            app:destination="@id/gameStatusFragment" />
     </fragment>
 
     <fragment
@@ -50,4 +56,14 @@
         android:name="com.example.mynba.ui.gameMedia.GameMediaFragment"
         android:label="game_media_fragment"
         tools:layout="@layout/game_media_fragment" />
+    <activity
+        android:id="@+id/registerActivity"
+        android:name="com.example.mynba.RegisterActivity"
+        android:label="activity_register"
+        tools:layout="@layout/activity_register" />
+    <activity
+        android:id="@+id/loginActivity"
+        android:name="com.example.mynba.LoginActivity"
+        android:label="activity_login"
+        tools:layout="@layout/activity_login" />
 </navigation>

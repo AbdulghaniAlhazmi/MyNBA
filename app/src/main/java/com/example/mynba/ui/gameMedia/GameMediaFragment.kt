@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.example.mynba.api.models.gameMedia.Data
 import com.example.mynba.databinding.GameMediaFragmentBinding
 import com.example.mynba.databinding.MediaListItemBinding
@@ -25,7 +26,7 @@ class GameMediaFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        gameId = requireArguments().getString(KEY_GAME_ID).toString()
+        gameId = requireArguments().getInt(KEY_GAME_ID).toString()
 
         gameMediaViewModel.getGameMedia(gameId).observe(this,{
             binding.gameMediaRc.adapter = MediaAdapter(it)
@@ -49,7 +50,8 @@ class GameMediaFragment : Fragment() {
 
         fun bind(media : Data){
 
-            binding.videoView2.setVideoURI(Uri.parse(media.url))
+            binding.title.text = media.sub_title
+            binding.imageView2.load(media.thumbnail_url)
 
         }
     }

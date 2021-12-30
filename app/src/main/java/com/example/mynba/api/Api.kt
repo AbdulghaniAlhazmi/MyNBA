@@ -50,7 +50,7 @@ interface NbaApi {
         "x-rapidapi-host:sportscore1.p.rapidapi.com",
         "x-rapidapi-key:9d71b15abfmsh023706e8cf3e55cp17600ajsn862e0a5d003f"
     )
-    @GET("events/{gameId}/medias")
+    @GET("/events/{gameId}/medias")
     fun getGameMedia(@Path("gameId") gameId: String): Call<MediaResponse>
 
 
