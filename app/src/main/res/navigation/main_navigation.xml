@@ -56,14 +56,4 @@
         android:name="com.example.mynba.ui.gameMedia.GameMediaFragment"
         android:label="game_media_fragment"
         tools:layout="@layout/game_media_fragment" />
-    <activity
-        android:id="@+id/registerActivity"
-        android:name="com.example.mynba.RegisterActivity"
-        android:label="activity_register"
-        tools:layout="@layout/activity_register" />
-    <activity
-        android:id="@+id/loginActivity"
-        android:name="com.example.mynba.LoginActivity"
-        android:label="activity_login"
-        tools:layout="@layout/activity_login" />
 </navigation>

@@ -84,6 +84,7 @@ dependencies {
 
     implementation 'com.google.firebase:firebase-analytics-ktx'
 
+    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.5'
 
 
 }

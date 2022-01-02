@@ -57,6 +57,7 @@ class GamesFragment : Fragment() {
     }
 
 
+    @SuppressLint("SimpleDateFormat")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -68,12 +69,12 @@ class GamesFragment : Fragment() {
 
 
         val datePickerTimeline: DatePickerTimeline = binding.datePickerTimeline
-        datePickerTimeline.setInitialDate(2021, 10, 27)
+        datePickerTimeline.setInitialDate(2021, 8, 20)
         datePickerTimeline.setOnDateSelectedListener(object : OnDateSelectedListener {
-            override fun onDateSelected(year: Int, month: Int, day: Int, dayOfWeek: Int) {
+            override fun onDateSelected(year: Int , month: Int, day: Int, dayOfWeek: Int) {
                 var emonth = "${month + 1}"
                 var eday = "$day"
-                if (month < 10) {
+                if (month <= 8) {
                     emonth = "0${emonth}"
                 }
                 if (day < 10) {
@@ -158,7 +159,7 @@ class GamesFragment : Fragment() {
                 Log.d(TAG, game.id.toString())
 
                 findNavController().navigate(
-                    R.id.action_navigation_games_to_boxScoreFragment,
+                    R.id.action_navigation_games_to_gameMediaFragment,
                     Bundle().apply {
                         putInt(KEY_GAME_ID, game.id)
                         putString(KEY_HOME_LOGO, game.home_team.logo)
