@@ -1,41 +1,33 @@
 {
   "project_info": {
-    "project_number": "473767043008",
-    "project_id": "mynba-3d983",
-    "storage_bucket": "mynba-3d983.appspot.com"
+    "project_number": "262570315744",
+    "project_id": "mynba2-d6da6",
+    "storage_bucket": "mynba2-d6da6.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:473767043008:android:d866f023f1614ce4f0b225",
+        "mobilesdk_app_id": "1:262570315744:android:d15c3a74014489cc932585",
         "android_client_info": {
           "package_name": "com.example.mynba"
         }
       },
       "oauth_client": [
         {
-          "client_id": "473767043008-8vgbqmobkqephe5qsjnsh0b0h61cdbd3.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.mynba",
-            "certificate_hash": "78f1e669a88e3f47a0a122ef914efc723690e08f"
-          }
-        },
-        {
-          "client_id": "473767043008-7rordihc3jtra52ri5f85cihs2po2ci0.apps.googleusercontent.com",
+          "client_id": "262570315744-8phgcu1s91823djnsdc9kggcs5f1jakk.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyC-W0_wpy1lLkJJ9YKejVeIh5o9zKX3Z8U"
+          "current_key": "AIzaSyDar4dKNlZyN3AzLVuwmeG2rGCvKLwmvWw"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "473767043008-7rordihc3jtra52ri5f85cihs2po2ci0.apps.googleusercontent.com",
+              "client_id": "262570315744-8phgcu1s91823djnsdc9kggcs5f1jakk.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

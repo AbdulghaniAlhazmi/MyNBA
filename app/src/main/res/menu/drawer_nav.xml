@@ -2,9 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:title="Register"
-        android:id="@+id/registerActivity"/>
+        android:id="@+id/signUpFragment"/>
 
 
     <item android:title="Login"
-        android:id="@+id/loginActivity"/>
+        android:id="@+id/loginFragment"/>
 </menu>

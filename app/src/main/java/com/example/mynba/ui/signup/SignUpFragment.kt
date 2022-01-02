@@ -1,60 +1,111 @@
 package com.example.mynba.ui.signup
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
+import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.mynba.R
+import com.example.mynba.databinding.FragmentSignUpBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [SignUpFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+private const val TAG = "SignUpFragment"
+
 class SignUpFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var binding : FragmentSignUpBinding
+    private lateinit var firebaseAuth: FirebaseAuth
+
+    private var username = ""
+    private var email = ""
+    private var password = ""
+    private var cPassword = ""
+    private var teamId = ""
+
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sign_up, container, false)
+    ): View {
+        binding = FragmentSignUpBinding.inflate(layoutInflater)
+        firebaseAuth = FirebaseAuth.getInstance()
+
+        binding.signupButton.setOnClickListener {
+            validateData()
+        }
+
+        binding.loginRedirect.setOnClickListener {
+            findNavController().navigate(R.id.action_signup_to_login)
+        }
+
+
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment SignUpFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            SignUpFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    private fun validateData() {
+        username = binding.signupUsername.text.toString().trim()
+        email = binding.signupEmail.text.toString().trim()
+        password = binding.signupPassword.text.toString().trim()
+        cPassword = binding.signupCpassword.text.toString().trim()
+
+        when {
+            username.isEmpty() -> {
+                toastMaker("Enter User Name")
+            }
+            !Patterns.EMAIL_ADDRESS.matcher(email).matches() -> {
+                toastMaker("Invalid Email")
+            }
+            cPassword != password -> {
+                toastMaker("Password Doesn't Match")
+            }
+            else -> {
+                createUser()
+            }
+        }
+
+    }
+
+    private fun createUser() {
+        firebaseAuth.createUserWithEmailAndPassword(email,password)
+            .addOnSuccessListener {
+                updateUserInfo()
+            }
+            .addOnFailureListener {
+                toastMaker("Failed To Create Account ${it.message}")
             }
     }
+
+    private fun updateUserInfo() {
+        val uid = firebaseAuth.uid
+        val db = FirebaseFirestore.getInstance()
+
+        val user = hashMapOf(
+            "uid" to uid,
+            "username" to username,
+            "email" to email,
+            "teamId" to teamId
+        )
+
+        db.collection("users")
+            .add(user)
+            .addOnSuccessListener {
+                Log.d(TAG,"Added with id : ${it.id}")
+            }
+            .addOnFailureListener {
+                Log.d(TAG,"error ${it.message}")
+            }
+    }
+
+    private fun toastMaker(message: String) {
+        Toast.makeText(context,message,Toast.LENGTH_SHORT).show()
+    }
+
+
 }
