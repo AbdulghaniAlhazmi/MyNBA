@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "262570315744",
-    "project_id": "mynba2-d6da6",
-    "storage_bucket": "mynba2-d6da6.appspot.com"
+    "project_number": "278756868003",
+    "project_id": "mynba-307c2",
+    "storage_bucket": "mynba-307c2.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:262570315744:android:d15c3a74014489cc932585",
+        "mobilesdk_app_id": "1:278756868003:android:19115d5b75a03e3f3d6416",
         "android_client_info": {
           "package_name": "com.example.mynba"
         }
       },
       "oauth_client": [
         {
-          "client_id": "262570315744-8phgcu1s91823djnsdc9kggcs5f1jakk.apps.googleusercontent.com",
+          "client_id": "278756868003-reu9mikolfv3cgoapv3m11fst1m7a95l.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDar4dKNlZyN3AzLVuwmeG2rGCvKLwmvWw"
+          "current_key": "AIzaSyCBAYlqw35Rv2SpL3lkCblwVvOsnOl0Mss"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "262570315744-8phgcu1s91823djnsdc9kggcs5f1jakk.apps.googleusercontent.com",
+              "client_id": "278756868003-reu9mikolfv3cgoapv3m11fst1m7a95l.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

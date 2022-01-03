@@ -10,8 +10,9 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.mynba.R
 import com.example.mynba.databinding.FragmentLoginBinding
-import com.example.mynba.databinding.FragmentSignUpBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 
 class LoginFragment : Fragment() {
@@ -25,7 +26,7 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentLoginBinding.inflate(layoutInflater)
 
         binding.loginButton.setOnClickListener {
@@ -47,6 +48,8 @@ class LoginFragment : Fragment() {
         binding.signupRedirect.setOnClickListener {
             findNavController().navigate(R.id.action_login_to_signup)
         }
+
+      firebaseAuth = Firebase.auth
 
         return binding.root
     }

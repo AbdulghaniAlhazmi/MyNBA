@@ -79,6 +79,7 @@ class SignUpFragment : Fragment() {
             }
             .addOnFailureListener {
                 toastMaker("Failed To Create Account ${it.message}")
+                Log.d(TAG,"${it.message}")
             }
     }
 
