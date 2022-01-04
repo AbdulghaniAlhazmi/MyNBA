@@ -69,7 +69,7 @@ class GamesFragment : Fragment() {
 
 
         val datePickerTimeline: DatePickerTimeline = binding.datePickerTimeline
-        datePickerTimeline.setInitialDate(2021, 8, 20)
+        datePickerTimeline.setInitialDate(2021, 9, 20)
         datePickerTimeline.setOnDateSelectedListener(object : OnDateSelectedListener {
             override fun onDateSelected(year: Int , month: Int, day: Int, dayOfWeek: Int) {
                 var emonth = "${month + 1}"

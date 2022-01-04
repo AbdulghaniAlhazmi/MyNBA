@@ -5,25 +5,50 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
+
+    <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+        android:id="@+id/youtube_player"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:contentDescription="Video image"
-        android:scaleType="fitXY"
+        android:layout_marginBottom="6dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/vv"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
+        tools:ignore="MissingConstraints" />
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="23dp"
-        android:layout_marginTop="29dp"
-        android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/vv"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/youtube_player"
+        app:layout_constraintVertical_bias="0.937">
+
+        <ImageView
+            android:id="@+id/thumnail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/title_video"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="39dp"
+            android:layout_marginTop="16dp"
+            android:text="TextView"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@+id/thumnail"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

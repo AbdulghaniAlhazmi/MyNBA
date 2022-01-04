@@ -27,7 +27,6 @@ class GameMediaFragment : Fragment() {
     private val gameMediaViewModel: GameMediaViewModel by lazy { ViewModelProvider(this)[GameMediaViewModel::class.java] }
     private lateinit var binding: GameMediaFragmentBinding
     private lateinit var gameId: String
-    private lateinit var videoId : String
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,9 +48,6 @@ class GameMediaFragment : Fragment() {
 
         binding = GameMediaFragmentBinding.inflate(layoutInflater)
         binding.gameMediaRc.layoutManager = LinearLayoutManager(context)
-        binding.youtubePlayer.visibility = View.GONE
-
-
 
 
         return binding.root
@@ -62,9 +58,16 @@ class GameMediaFragment : Fragment() {
 
         fun bind(media: Data) {
 
-            binding.title.text = media.sub_title
-            binding.imageView2.load(media.thumbnail_url)
-
+            binding.titleVideo.text = media.sub_title
+            binding.thumnail.load(media.thumbnail_url)
+            var videoId = media.source_url
+            videoId = videoId.substringAfter("watch?v=").substringBefore("&")
+            binding.youtubePlayer.getPlayerUiController().showFullscreenButton(true)
+            binding.youtubePlayer.addYouTubePlayerListener(object : AbstractYouTubePlayerListener(){
+                override fun onReady(youTubePlayer: YouTubePlayer) {
+                    youTubePlayer.cueVideo(videoId,0f)
+                }
+            })
         }
     }
 
@@ -82,34 +85,13 @@ class GameMediaFragment : Fragment() {
             val media = media[position]
             holder.bind(media)
             holder.itemView.setOnClickListener {
-                binding.youtubePlayer.visibility = View.VISIBLE
-                videoId = media.source_url
-                videoId = videoId.substringAfter("watch?v=").substringBefore("&")
-                Log.d(TAG,videoId)
-                binding.youtubePlayer.getPlayerUiController().showFullscreenButton(true)
-                binding.youtubePlayer.addYouTubePlayerListener(object : AbstractYouTubePlayerListener(){
-                    override fun onReady(@NonNull youTubePlayer: YouTubePlayer) {
-                        val id = videoId
-                        Log.d("AAAAA",videoId)
-                        youTubePlayer.cueVideo(id,0f)
-                    }
-                })
+                    holder.binding.youtubePlayer.visibility = View.VISIBLE
             }
+
         }
 
         override fun getItemCount(): Int = media.size
 
-    }
-
-    fun mediaPlayer(videoId : String){
-        binding.youtubePlayer.getPlayerUiController().showFullscreenButton(true)
-        binding.youtubePlayer.addYouTubePlayerListener(object : AbstractYouTubePlayerListener(){
-            override fun onReady(@NonNull youTubePlayer: YouTubePlayer) {
-                val id = videoId
-                Log.d("AAAAA",videoId)
-                youTubePlayer.cueVideo(id,0f)
-            }
-        })
     }
 
 }

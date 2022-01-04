@@ -50,7 +50,7 @@
         <entry key="app/src/main/res/layout/game_status_list.xml" value="0.22592592592592592" />
         <entry key="app/src/main/res/layout/games_container.xml" value="0.1" />
         <entry key="app/src/main/res/layout/games_list_item.xml" value="0.2557291666666667" />
-        <entry key="app/src/main/res/layout/media_list_item.xml" value="0.18425925925925926" />
+        <entry key="app/src/main/res/layout/media_list_item.xml" value="0.375" />
         <entry key="app/src/main/res/layout/news_list_item.xml" value="0.2557291666666667" />
         <entry key="app/src/main/res/layout/news_page_fragment.xml" value="0.2557291666666667" />
         <entry key="app/src/main/res/layout/standings_list_item.xml" value="0.335" />
