@@ -29,6 +29,9 @@
         <action
             android:id="@+id/action_navigation_games_to_gameStatusFragment"
             app:destination="@id/gameStatusFragment" />
+        <action
+            android:id="@+id/action_navigation_games_to_gameCommentsFragment"
+            app:destination="@id/gameCommentsFragment" />
     </fragment>
 
     <fragment
@@ -87,7 +90,10 @@
             app:popUpTo="@id/loginFragment"
             app:popUpToInclusive="true" />
     </fragment>
-
+    <fragment
+        android:id="@+id/gameCommentsFragment"
+        android:name="com.example.mynba.ui.gameComments.GameCommentsFragment"
+        android:label="GameCommentsFragment" />
 
 
 </navigation>

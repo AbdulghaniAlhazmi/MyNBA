@@ -6,6 +6,8 @@ import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -17,7 +19,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 private const val TAG = "SignUpFragment"
 
-class SignUpFragment : Fragment() {
+class SignUpFragment : Fragment(), AdapterView.OnItemClickListener {
 
     private lateinit var binding : FragmentSignUpBinding
     private lateinit var firebaseAuth: FirebaseAuth
@@ -26,7 +28,7 @@ class SignUpFragment : Fragment() {
     private var email = ""
     private var password = ""
     private var cPassword = ""
-    private var teamId = ""
+    private var favTeam = ""
 
 
     override fun onCreateView(
@@ -47,6 +49,17 @@ class SignUpFragment : Fragment() {
 
 
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val teams = resources.getStringArray(R.array.teams)
+        val arrayAdapter = ArrayAdapter(requireContext(),R.layout.dropdown_item,teams)
+
+        with(binding.favoriteTeam){
+            setAdapter(arrayAdapter)
+            onItemClickListener = this@SignUpFragment
+        }
     }
 
     private fun validateData() {
@@ -91,13 +104,14 @@ class SignUpFragment : Fragment() {
             "uid" to uid,
             "username" to username,
             "email" to email,
-            "teamId" to teamId
+            "favTeam" to favTeam
         )
 
         db.collection("users")
             .add(user)
             .addOnSuccessListener {
                 Log.d(TAG,"Added with id : ${it.id}")
+                findNavController().navigate(R.id.action_signup_to_login)
             }
             .addOnFailureListener {
                 Log.d(TAG,"error ${it.message}")
@@ -107,6 +121,13 @@ class SignUpFragment : Fragment() {
     private fun toastMaker(message: String) {
         Toast.makeText(context,message,Toast.LENGTH_SHORT).show()
     }
+
+    override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        if (parent != null) {
+            favTeam = parent.getItemAtPosition(position).toString()
+        }
+    }
+
 
 
 }

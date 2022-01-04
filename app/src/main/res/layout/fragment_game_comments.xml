@@ -1,0 +1,54 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingBottom="5dp"
+        android:baselineAligned="true" >
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="0dip"
+            android:layout_height="70dp"
+            android:layout_weight="1"
+            android:hint="comment">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/commentEt"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:inputType="textMultiLine|textCapSentences" />
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageButton
+            android:id="@+id/btnSend"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:minWidth="48dp"
+            android:src="@drawable/ic_baseline_add_comment_24"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/comments_rc"
+        android:layout_width="match_parent"
+        android:layout_height="545dp"
+        tools:listitem="@layout/comment_item"/>
+
+
+
+</LinearLayout>
+
+

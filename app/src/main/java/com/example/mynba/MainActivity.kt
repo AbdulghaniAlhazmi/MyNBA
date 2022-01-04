@@ -12,17 +12,22 @@ import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.mynba.databinding.ActivityMainBinding
+import com.example.mynba.databinding.NavHeaderBinding
+import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var navController: NavController
     lateinit var binding: ActivityMainBinding
+    private lateinit var firebaseAuth: FirebaseAuth
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
 
         navController = findNavController(R.id.main_nav_host)
 
@@ -36,6 +41,22 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
 
         visibilityNavElements(navController)
+
+        firebaseAuth = FirebaseAuth.getInstance()
+        checkUser()
+
+    }
+
+
+
+    private fun checkUser() {
+        val firebaseUser = firebaseAuth.currentUser
+        if (firebaseUser != null){
+            val viewHeader = binding.mainNavigationView.getHeaderView(0)
+            val navViewHeaderBinding : NavHeaderBinding = NavHeaderBinding.bind(viewHeader)
+            navViewHeaderBinding.textView4.text = firebaseUser.email
+
+        }
     }
 
     private fun visibilityNavElements(navController: NavController) {
@@ -45,17 +66,15 @@ class MainActivity : AppCompatActivity() {
                 R.id.boxScoreFragment -> hideBottomNavigation()
                 R.id.gameStatusFragment -> hideBottomNavigation()
                 R.id.newsPageFragment -> hideBottomNavigation()
+                R.id.loginFragment -> hideBottomNavigation()
+                R.id.signUpFragment -> hideBottomNavigation()
+                R.id.gameCommentsFragment -> hideBottomNavigation()
                 else -> showBothNavigation()
             }
         }
 
     }
 
-    private fun hideBothNavigation() {
-        binding.mainBottomNavigationView.visibility = View.GONE
-        binding.mainNavigationView.visibility = View.GONE
-        binding.mainDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
-    }
 
     private fun hideBottomNavigation() {
         binding.mainBottomNavigationView.visibility = View.GONE

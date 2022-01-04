@@ -8,8 +8,8 @@
 
     <com.vivekkaushik.datepicker.DatePickerTimeline
         android:id="@+id/datePickerTimeline"
-        android:layout_width="466dp"
-        android:layout_height="81dp"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,12 +18,14 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/games_RC"
-        android:layout_width="396dp"
-        android:layout_height="439dp"
+        android:layout_width="404dp"
+        android:layout_height="495dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="7dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.653" />
+        app:layout_constraintTop_toBottomOf="@+id/datePickerTimeline" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

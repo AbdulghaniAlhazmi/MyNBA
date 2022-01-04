@@ -66,6 +66,7 @@ class LoginFragment : Fragment() {
                     toastMaker("Authentication Failed")
                 }
             }
+
     }
 
 

@@ -6,7 +6,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.annotation.NonNull
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -62,12 +64,24 @@ class GameMediaFragment : Fragment() {
             binding.thumnail.load(media.thumbnail_url)
             var videoId = media.source_url
             videoId = videoId.substringAfter("watch?v=").substringBefore("&")
+            Log.d(TAG,videoId)
             binding.youtubePlayer.getPlayerUiController().showFullscreenButton(true)
             binding.youtubePlayer.addYouTubePlayerListener(object : AbstractYouTubePlayerListener(){
                 override fun onReady(youTubePlayer: YouTubePlayer) {
                     youTubePlayer.cueVideo(videoId,0f)
                 }
             })
+
+            binding.youtubePlayer.getPlayerUiController().setFullScreenButtonClickListener {
+                if (binding.youtubePlayer.isFullScreen()) {
+                    binding.youtubePlayer.exitFullScreen()
+                    activity?.window?.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+
+                } else {
+                    binding.youtubePlayer.enterFullScreen()
+                    activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+                }
+            }
         }
     }
 
@@ -87,7 +101,6 @@ class GameMediaFragment : Fragment() {
             holder.itemView.setOnClickListener {
                     holder.binding.youtubePlayer.visibility = View.VISIBLE
             }
-
         }
 
         override fun getItemCount(): Int = media.size

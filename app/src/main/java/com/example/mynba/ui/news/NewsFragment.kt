@@ -19,6 +19,8 @@ import com.example.mynba.databinding.NewsListItemBinding
 const val NEWS_ID_TITLE = "title"
 const val NEWS_ID_IMAGE = "IMAGE"
 const val NEWS_ID_CONTENT = "CONTENT"
+const val NEWS_ID = "id"
+
 
 
 class NewsFragment : Fragment() {
@@ -54,6 +56,7 @@ class NewsFragment : Fragment() {
         fun bind(news: Value) {
             binding.imageView3.load(news.image.url)
             binding.title.text = news.title
+
         }
 
     }
@@ -79,6 +82,8 @@ class NewsFragment : Fragment() {
                         putString(NEWS_ID_TITLE, news.title)
                         putString(NEWS_ID_IMAGE, news.image.url)
                         putString(NEWS_ID_CONTENT, news.body)
+                        putString(NEWS_ID, news.id)
+
                     })
             }
         }
