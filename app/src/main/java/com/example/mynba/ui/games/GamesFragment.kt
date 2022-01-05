@@ -178,6 +178,7 @@ class GamesFragment : Fragment() {
 
     }
 
+
     override fun onResume() {
         super.onResume()
 

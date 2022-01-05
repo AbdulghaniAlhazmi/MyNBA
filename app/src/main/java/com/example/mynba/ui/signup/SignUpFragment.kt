@@ -107,10 +107,10 @@ class SignUpFragment : Fragment(), AdapterView.OnItemClickListener {
             "favTeam" to favTeam
         )
 
-        db.collection("users")
-            .add(user)
+        db.collection("users").document(uid.toString())
+            .set(user)
             .addOnSuccessListener {
-                Log.d(TAG,"Added with id : ${it.id}")
+                Log.d(TAG,"Added with id : $it")
                 findNavController().navigate(R.id.action_signup_to_login)
             }
             .addOnFailureListener {
