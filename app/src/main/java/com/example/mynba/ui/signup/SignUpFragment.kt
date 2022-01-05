@@ -1,20 +1,25 @@
 package com.example.mynba.ui.signup
 
 import android.os.Bundle
-import android.util.Log
-import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.mynba.R
+import com.example.mynba.database.User
 import com.example.mynba.databinding.FragmentSignUpBinding
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 
 
 private const val TAG = "SignUpFragment"
@@ -23,12 +28,13 @@ class SignUpFragment : Fragment(), AdapterView.OnItemClickListener {
 
     private lateinit var binding : FragmentSignUpBinding
     private lateinit var firebaseAuth: FirebaseAuth
+    private val userCollectionRef = Firebase.firestore.collection("users")
+    private lateinit var username : String
+    private lateinit var uid : String
+    private lateinit var password : String
+    private lateinit var email : String
+    private lateinit var favTeam : String
 
-    private var username = ""
-    private var email = ""
-    private var password = ""
-    private var cPassword = ""
-    private var favTeam = ""
 
 
     override fun onCreateView(
@@ -40,7 +46,10 @@ class SignUpFragment : Fragment(), AdapterView.OnItemClickListener {
         firebaseAuth = FirebaseAuth.getInstance()
 
         binding.signupButton.setOnClickListener {
-            validateData()
+            username = binding.signupUsername.text.toString()
+            email = binding.signupEmail.text.toString()
+            password = binding.signupPassword.text.toString()
+            registerUser()
         }
 
         binding.loginRedirect.setOnClickListener {
@@ -49,6 +58,39 @@ class SignUpFragment : Fragment(), AdapterView.OnItemClickListener {
 
 
         return binding.root
+    }
+
+    private fun registerUser() {
+
+        if (email.isNotEmpty() && password.isNotEmpty())
+            CoroutineScope(Dispatchers.IO).launch {
+                try {
+                    firebaseAuth.createUserWithEmailAndPassword(email,password).await()
+                    uid = firebaseAuth.currentUser?.uid.toString()
+                    val user = User(uid,email,favTeam,username)
+                    updateUser(user)
+                }catch (e : Exception){
+                    withContext(Dispatchers.Main){
+                        Snackbar.make(requireView(), "Failed To Create User", Snackbar.LENGTH_LONG).show()
+                    }
+                }
+            }
+
+    }
+
+    private fun updateUser(user: User) = CoroutineScope(Dispatchers.IO).launch {
+        val uid = firebaseAuth.currentUser?.uid
+
+        try {
+            userCollectionRef.document(uid.toString()).set(user).await()
+            withContext(Dispatchers.Main) {
+                Snackbar.make(requireView(), "User Registered Success", Snackbar.LENGTH_LONG).show()
+            }
+        } catch (e: Exception) {
+            withContext(Dispatchers.Main) {
+                Snackbar.make(requireView(), "Failed to Register User info", Snackbar.LENGTH_LONG).show()
+            }
+        }
     }
 
     override fun onResume() {
@@ -62,65 +104,6 @@ class SignUpFragment : Fragment(), AdapterView.OnItemClickListener {
         }
     }
 
-    private fun validateData() {
-        username = binding.signupUsername.text.toString().trim()
-        email = binding.signupEmail.text.toString().trim()
-        password = binding.signupPassword.text.toString().trim()
-        cPassword = binding.signupCpassword.text.toString().trim()
-
-        when {
-            username.isEmpty() -> {
-                toastMaker("Enter User Name")
-            }
-            !Patterns.EMAIL_ADDRESS.matcher(email).matches() -> {
-                toastMaker("Invalid Email")
-            }
-            cPassword != password -> {
-                toastMaker("Password Doesn't Match")
-            }
-            else -> {
-                createUser()
-            }
-        }
-
-    }
-
-    private fun createUser() {
-        firebaseAuth.createUserWithEmailAndPassword(email,password)
-            .addOnSuccessListener {
-                updateUserInfo()
-            }
-            .addOnFailureListener {
-                toastMaker("Failed To Create Account ${it.message}")
-                Log.d(TAG,"${it.message}")
-            }
-    }
-
-    private fun updateUserInfo() {
-        val uid = firebaseAuth.uid
-        val db = FirebaseFirestore.getInstance()
-
-        val user = hashMapOf(
-            "uid" to uid,
-            "username" to username,
-            "email" to email,
-            "favTeam" to favTeam
-        )
-
-        db.collection("users").document(uid.toString())
-            .set(user)
-            .addOnSuccessListener {
-                Log.d(TAG,"Added with id : $it")
-                findNavController().navigate(R.id.action_signup_to_login)
-            }
-            .addOnFailureListener {
-                Log.d(TAG,"error ${it.message}")
-            }
-    }
-
-    private fun toastMaker(message: String) {
-        Toast.makeText(context,message,Toast.LENGTH_SHORT).show()
-    }
 
     override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         if (parent != null) {

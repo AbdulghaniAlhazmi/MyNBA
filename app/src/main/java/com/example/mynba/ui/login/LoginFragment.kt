@@ -1,26 +1,27 @@
 package com.example.mynba.ui.login
 
 import android.os.Bundle
-import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.mynba.R
 import com.example.mynba.databinding.FragmentLoginBinding
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 
 
 class LoginFragment : Fragment() {
 
     private lateinit var binding: FragmentLoginBinding
     private lateinit var firebaseAuth: FirebaseAuth
-    private var email = ""
-    private var password = ""
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,51 +29,51 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentLoginBinding.inflate(layoutInflater)
+        firebaseAuth = FirebaseAuth.getInstance()
 
         binding.loginButton.setOnClickListener {
-            email = binding.loginEmail.text.toString().trim()
-            password = binding.loginPassword.text.toString().trim()
-            when {
-                !Patterns.EMAIL_ADDRESS.matcher(email).matches() -> {
-                    toastMaker("Invalid Email")
-                }
-                password.isEmpty() -> {
-                    toastMaker("Enter Password")
-                }
-                else -> {
-                    signIn(email,password)
-                }
-            }
+            loginUser()
         }
+
 
         binding.signupRedirect.setOnClickListener {
             findNavController().navigate(R.id.action_login_to_signup)
         }
 
-      firebaseAuth = Firebase.auth
-
         return binding.root
     }
 
-    private fun signIn(email: String, password: String) {
+    override fun onStart() {
+        super.onStart()
+        checkLoggedIn()
+    }
 
-        firebaseAuth.signInWithEmailAndPassword(email,password)
-            .addOnCompleteListener(requireActivity()){task ->
-                if (task.isSuccessful){
-                    val user = firebaseAuth.currentUser
-                    findNavController().navigate(R.id.action_loginFragment_to_navigation_news)
-                }
-                else{
-                    toastMaker("Authentication Failed")
+    private fun loginUser() {
+        val email = binding.loginEmail.text.toString()
+        val password = binding.loginPassword.text.toString()
+        if (email.isNotEmpty() && password.isNotEmpty()){
+            CoroutineScope(Dispatchers.IO).launch {
+                try {
+                    firebaseAuth.signInWithEmailAndPassword(email,password).await()
+                    withContext(Dispatchers.Main){
+                        checkLoggedIn()
+                    }
+                }catch (e: Exception){
+                    withContext(Dispatchers.Main){
+
+                    }
                 }
             }
-
+        }
     }
 
+    private fun checkLoggedIn() {
+        if (firebaseAuth.currentUser == null){
 
-    private fun toastMaker(message: String) {
-    Toast.makeText(context,message,Toast.LENGTH_SHORT).show()
+        }else{
+            findNavController().navigate(R.id.navigation_news)
+            Snackbar.make(requireView(), "Logged In", Snackbar.LENGTH_LONG).show()
+
+        }
     }
-
-
 }
