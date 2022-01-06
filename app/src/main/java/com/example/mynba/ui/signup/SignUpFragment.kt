@@ -33,7 +33,7 @@ class SignUpFragment : Fragment(), AdapterView.OnItemClickListener {
     private lateinit var uid : String
     private lateinit var password : String
     private lateinit var email : String
-    private lateinit var favTeam : String
+    private var favTeam : String = ""
 
 
 
@@ -50,6 +50,7 @@ class SignUpFragment : Fragment(), AdapterView.OnItemClickListener {
             email = binding.signupEmail.text.toString()
             password = binding.signupPassword.text.toString()
             registerUser()
+
         }
 
         binding.loginRedirect.setOnClickListener {
@@ -69,6 +70,7 @@ class SignUpFragment : Fragment(), AdapterView.OnItemClickListener {
                     uid = firebaseAuth.currentUser?.uid.toString()
                     val user = User(uid,email,favTeam,username)
                     updateUser(user)
+                    findNavController().navigate(R.id.action_signUpFragment_to_navigation_standings)
                 }catch (e : Exception){
                     withContext(Dispatchers.Main){
                         Snackbar.make(requireView(), "Failed To Create User", Snackbar.LENGTH_LONG).show()

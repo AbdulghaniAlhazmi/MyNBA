@@ -2,9 +2,11 @@ package com.example.mynba
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -14,6 +16,10 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.mynba.databinding.ActivityMainBinding
 import com.example.mynba.databinding.NavHeaderBinding
 import com.google.firebase.auth.FirebaseAuth
+import android.content.Intent
+
+
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -43,7 +49,7 @@ class MainActivity : AppCompatActivity() {
         visibilityNavElements(navController)
 
         firebaseAuth = FirebaseAuth.getInstance()
-        checkUser()
+
 
     }
 
@@ -54,7 +60,8 @@ class MainActivity : AppCompatActivity() {
         if (firebaseUser != null){
             val viewHeader = binding.mainNavigationView.getHeaderView(0)
             val navViewHeaderBinding : NavHeaderBinding = NavHeaderBinding.bind(viewHeader)
-            navViewHeaderBinding.textView4.text = firebaseUser.email
+            navViewHeaderBinding.usernameTv.visibility = View.VISIBLE
+            navViewHeaderBinding.usernameTv.text = firebaseUser.email
 
         }
     }
@@ -104,10 +111,41 @@ class MainActivity : AppCompatActivity() {
         when {
             binding.mainDrawerLayout.isDrawerOpen(GravityCompat.START) -> {
                 binding.mainDrawerLayout.closeDrawer(GravityCompat.START)
+
             }
             else -> {
                 super.onBackPressed()
             }
         }
     }
+
+    override fun onStart() {
+        super.onStart()
+        checkLoggedIn()
+
+    }
+
+    private fun checkLoggedIn() {
+        if (firebaseAuth.currentUser == null){
+
+        }else{
+            val viewHeader = binding.mainNavigationView.getHeaderView(0)
+            val navViewHeaderBinding : NavHeaderBinding = NavHeaderBinding.bind(viewHeader)
+            navViewHeaderBinding.usernameTv.visibility = View.VISIBLE
+            navViewHeaderBinding.usernameTv.text = firebaseAuth.currentUser!!.email
+            binding.mainNavigationView.menu.clear()
+            binding.mainNavigationView.inflateMenu(R.menu.drawer_user)
+            binding.mainNavigationView.setNavigationItemSelectedListener {
+                when(it.itemId){
+                    R.id.sign_out -> {
+                        firebaseAuth.signOut()
+                        recreate()
+                        true
+                    }
+                    else -> true
+                }
+            }
+        }
+    }
 }
+

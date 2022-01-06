@@ -70,7 +70,7 @@ class GamesFragment : Fragment() {
         val datePickerTimeline: DatePickerTimeline = binding.datePickerTimeline
         datePickerTimeline.setInitialDate(2021, 9, 20)
         datePickerTimeline.setOnDateSelectedListener(object : OnDateSelectedListener {
-            override fun onDateSelected(year: Int , month: Int, day: Int, dayOfWeek: Int) {
+            override fun onDateSelected(year: Int, month: Int, day: Int, dayOfWeek: Int) {
                 var emonth = "${month + 1}"
                 var eday = "$day"
                 if (month <= 8) {
@@ -158,7 +158,7 @@ class GamesFragment : Fragment() {
                 Log.d(TAG, game.id.toString())
 
                 findNavController().navigate(
-                    R.id.action_navigation_games_to_gameCommentsFragment,
+                    R.id.action_navigation_games_to_gameMediaFragment,
                     Bundle().apply {
                         putInt(KEY_GAME_ID, game.id)
                         putString(KEY_HOME_LOGO, game.home_team.logo)
@@ -171,7 +171,6 @@ class GamesFragment : Fragment() {
                         putInt(KEY_AWAY_ID, game.away_team_id)
                     })
             }
-
         }
 
         override fun getItemCount(): Int = game.size

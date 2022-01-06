@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/profileIv"
-            android:text="Person Name"
+            android:text=""
             android:layout_toStartOf="@+id/dateTv"
             android:textColor="@color/black"
             android:textSize="16sp"/>
@@ -50,7 +50,6 @@
             android:textColor="@color/black"
             android:textSize="12sp"
             android:layout_marginTop="5dp"/>
-
 
 
 

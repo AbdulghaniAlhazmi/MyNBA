@@ -75,11 +75,14 @@ class GameMediaFragment : Fragment() {
             binding.youtubePlayer.getPlayerUiController().setFullScreenButtonClickListener {
                 if (binding.youtubePlayer.isFullScreen()) {
                     binding.youtubePlayer.exitFullScreen()
-                    activity?.window?.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+                    activity?.window?.decorView?.systemUiVisibility = View.SYSTEM_UI_FLAG_VISIBLE
+                    (activity as AppCompatActivity).supportActionBar?.show()
 
                 } else {
                     binding.youtubePlayer.enterFullScreen()
-                    activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+                    activity?.window?.decorView?.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
+                    (activity as AppCompatActivity).supportActionBar?.hide()
+
                 }
             }
         }
