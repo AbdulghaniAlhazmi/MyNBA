@@ -48,6 +48,7 @@
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_sign_up.xml" value="0.2212962962962963" />
         <entry key="app/src/main/res/layout/fragment_standings.xml" value="0.24313725490196078" />
+        <entry key="app/src/main/res/layout/fragment_tabs.xml" value="0.1" />
         <entry key="app/src/main/res/layout/game_media_fragment.xml" value="0.18425925925925926" />
         <entry key="app/src/main/res/layout/game_status_fragment.xml" value="0.1" />
         <entry key="app/src/main/res/layout/game_status_item.xml" value="0.22592592592592592" />

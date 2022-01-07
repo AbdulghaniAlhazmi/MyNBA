@@ -21,17 +21,8 @@
         android:label="Games"
         tools:layout="@layout/fragment_games" >
         <action
-            android:id="@+id/action_navigation_games_to_gameMediaFragment"
-            app:destination="@id/gameMediaFragment" />
-        <action
-            android:id="@+id/action_navigation_games_to_boxScoreFragment"
-            app:destination="@id/boxScoreFragment" />
-        <action
-            android:id="@+id/action_navigation_games_to_gameStatusFragment"
-            app:destination="@id/gameStatusFragment" />
-        <action
-            android:id="@+id/action_navigation_games_to_gameCommentsFragment"
-            app:destination="@id/gameCommentsFragment" />
+            android:id="@+id/action_navigation_games_to_tabsFragment"
+            app:destination="@id/tabsFragment" />
     </fragment>
 
     <fragment
@@ -64,8 +55,8 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.mynba.ui.login.LoginFragment"
-        android:label="fragment_login"
-        tools:layout="@layout/fragment_login" >
+        android:label="Login"
+        tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_login_to_signup"
             app:destination="@id/signUpFragment"
@@ -80,7 +71,7 @@
     <fragment
         android:id="@+id/signUpFragment"
         android:name="com.example.mynba.ui.signup.SignUpFragment"
-        android:label="SignUpFragment"
+        android:label="Sign Up"
         tools:layout="@layout/fragment_sign_up">
         <action
             android:id="@+id/action_signup_to_login"
@@ -96,7 +87,11 @@
     <fragment
         android:id="@+id/gameCommentsFragment"
         android:name="com.example.mynba.ui.gameComments.GameCommentsFragment"
-        android:label="GameCommentsFragment" />
+        android:label="Discuss" />
+    <fragment
+        android:id="@+id/tabsFragment"
+        android:name="com.example.mynba.TabsFragment"
+        tools:layout="@layout/fragment_tabs" />
 
 
 </navigation>

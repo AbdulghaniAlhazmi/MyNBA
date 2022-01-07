@@ -158,7 +158,7 @@ class GamesFragment : Fragment() {
                 Log.d(TAG, game.id.toString())
 
                 findNavController().navigate(
-                    R.id.action_navigation_games_to_gameMediaFragment,
+                    R.id.action_navigation_games_to_tabsFragment,
                     Bundle().apply {
                         putInt(KEY_GAME_ID, game.id)
                         putString(KEY_HOME_LOGO, game.home_team.logo)
