@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/profile_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -33,11 +32,11 @@
                 android:layout_marginStart="30dp"
                 android:layout_marginEnd="30dp"
                 android:clickable="false"
-                android:textSize="18sp"
                 android:ems="10"
-                android:hint="Username"
+                android:hint="@string/username"
                 android:inputType="none"
-                android:minHeight="48dp" />
+                android:minHeight="48dp"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/signup_email"
@@ -47,11 +46,11 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="30dp"
                 android:clickable="false"
-                android:textSize="18sp"
                 android:ems="10"
-                android:hint="E-mail"
+                android:hint="@string/e_mail"
                 android:inputType="none"
-                android:minHeight="48dp" />
+                android:minHeight="48dp"
+                android:textSize="18sp" />
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
@@ -60,7 +59,7 @@
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="30dp"
-                android:hint="Favorite Team" >
+                android:hint="@string/favorite_team" >
 
                 <AutoCompleteTextView
                     android:id="@+id/favorite_team"
@@ -68,10 +67,10 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:inputType="none"
-                    android:text=""/>
+                    android:text=""
+                    tools:ignore="LabelFor" />
 
             </com.google.android.material.textfield.TextInputLayout>
-
 
 
             <Button
@@ -79,7 +78,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="30dp"
-                android:text="Update" />
+                android:text="@string/update" />
 
 
         </LinearLayout>

@@ -1,32 +1,44 @@
 <resources>
     <string name="app_name">MyNBA</string>
-    <string name="title_activity_main2">MainActivity2</string>
     <string name="news">News</string>
     <string name="games">Games</string>
     <string name="standings">Standings</string>
-    <string name="photo_for_the_news">Photo for the news</string>
     <string name="home_team_logo">Home Team Logo</string>
     <string name="away_team_logo">Away Team Logo</string>
-    <string name="team_logo">Team Logo</string>
     <string name="western_conference">Western Conference</string>
     <string name="eastern_conference">Eastern Conference</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-    <string name="Status" />
     <string name="news_image">News Image</string>
-    <string name="title_activity_main">MainActivity</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="confWest">Western</string>
     <string name="confEast">Eastern</string>
+    <string name="send_comment">Send Comment</string>
+    <string name="image">Image</string>
+    <string name="starters">Starters</string>
+    <string name="min">MIN</string>
+    <string name="pts">PTS</string>
+    <string name="reb">REB</string>
+    <string name="ast">AST</string>
+    <string name="stl">STL</string>
+    <string name="blk">BLK</string>
+    <string name="profile">Profile</string>
+    <string name="signout">SignOut</string>
+    <string name="textview">textView</string>
+    <string name="comment">comment</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="signup">Signup</string>
+    <string name="username">Username</string>
+    <string name="update">Update</string>
+    <string name="e_mail">E-mail</string>
+    <string name="favorite_team">Favorite Team</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="w_l">W-L</string>
+    <string name="pct">PCT</string>
+    <string name="strk">STRK</string>
+    <string name="gb">GB</string>
+    <string name="confirm_password">Confirm Password</string>
 
     <string-array name="teams">
         <item>Golden State Warriors</item>

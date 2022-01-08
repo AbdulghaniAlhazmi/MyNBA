@@ -12,7 +12,6 @@ import com.example.mynba.databinding.NewsPageFragmentBinding
 
 class NewsPageFragment : Fragment() {
 
-    private val newPageViewModel: NewsPageViewModel by lazy { ViewModelProvider(this)[NewsPageViewModel::class.java] }
     private lateinit var binding: NewsPageFragmentBinding
     private lateinit var title: String
     private lateinit var image: String
@@ -36,7 +35,7 @@ class NewsPageFragment : Fragment() {
 
         binding = NewsPageFragmentBinding.inflate(layoutInflater)
         binding.newTitle.text = title
-        binding.newsImage.load(image)
+        binding.image.load(image)
         binding.content.text = content
 
         return binding.root

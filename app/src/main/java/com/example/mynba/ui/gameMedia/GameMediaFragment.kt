@@ -61,30 +61,30 @@ class GameMediaFragment : Fragment() {
         fun bind(media: Data) {
 
             binding.titleVideo.text = media.sub_title
-            binding.thumnail.load(media.thumbnail_url)
+            binding.videoPicture.load(media.thumbnail_url)
             var videoId = media.source_url
             videoId = videoId.substringAfter("watch?v=").substringBefore("&")
             Log.d(TAG,videoId)
-            binding.youtubePlayer.getPlayerUiController().showFullscreenButton(true)
-            binding.youtubePlayer.addYouTubePlayerListener(object : AbstractYouTubePlayerListener(){
-                override fun onReady(youTubePlayer: YouTubePlayer) {
-                    youTubePlayer.cueVideo(videoId,0f)
-                }
-            })
+//            binding.youtubePlayer.getPlayerUiController().showFullscreenButton(true)
+//            binding.youtubePlayer.addYouTubePlayerListener(object : AbstractYouTubePlayerListener(){
+//                override fun onReady(youTubePlayer: YouTubePlayer) {
+//                    youTubePlayer.cueVideo(videoId,0f)
+//                }
+//            })
 
-            binding.youtubePlayer.getPlayerUiController().setFullScreenButtonClickListener {
-                if (binding.youtubePlayer.isFullScreen()) {
-                    binding.youtubePlayer.exitFullScreen()
-                    activity?.window?.decorView?.systemUiVisibility = View.SYSTEM_UI_FLAG_VISIBLE
-                    (activity as AppCompatActivity).supportActionBar?.show()
-
-                } else {
-                    binding.youtubePlayer.enterFullScreen()
-                    activity?.window?.decorView?.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
-                    (activity as AppCompatActivity).supportActionBar?.hide()
-
-                }
-            }
+//            binding.youtubePlayer.getPlayerUiController().setFullScreenButtonClickListener {
+//                if (binding.youtubePlayer.isFullScreen()) {
+//                    binding.youtubePlayer.exitFullScreen()
+//                    activity?.window?.decorView?.systemUiVisibility = View.SYSTEM_UI_FLAG_VISIBLE
+//                    (activity as AppCompatActivity).supportActionBar?.show()
+//
+//                } else {
+//                    binding.youtubePlayer.enterFullScreen()
+//                    activity?.window?.decorView?.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
+//                    (activity as AppCompatActivity).supportActionBar?.hide()
+//
+//                }
+//            }
         }
     }
 

@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="#EAEAEA"
     tools:context=".MainActivity" android:layout_height="match_parent" android:layout_width="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -30,7 +31,7 @@
                         android:id="@+id/main_toolbar"
                         android:layout_width="match_parent"
                         android:layout_height="?attr/actionBarSize"
-                        app:popupTheme="@style/Theme.MyNBA.PopupOverlay"/>
+                        app:popupTheme="@style/Theme.MyNBA.PopupOverlay" />
 
                 </com.google.android.material.appbar.AppBarLayout>
 
@@ -47,9 +48,9 @@
                     android:id="@+id/main_bottom_navigation_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="#EAEAEA"
                     app:labelVisibilityMode="labeled"
-                    android:background="?android:attr/windowBackground"
-                    app:menu="@menu/bottom_nav_menu"/>
+                    app:menu="@menu/bottom_nav_menu" />
 
             </LinearLayout>
 
@@ -60,7 +61,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="start"
                 app:headerLayout="@layout/nav_header"
-                app:menu="@menu/drawer_nav"/>
+                app:menu="@menu/drawer_nav" />
 
         </androidx.drawerlayout.widget.DrawerLayout>
 

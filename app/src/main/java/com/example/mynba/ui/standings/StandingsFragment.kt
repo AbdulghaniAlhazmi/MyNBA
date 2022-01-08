@@ -15,8 +15,6 @@ import com.example.mynba.databinding.FragmentStandingsBinding
 import com.example.mynba.databinding.StandingsListItemBinding
 
 
-private const val TAG = "StandingsFragment"
-
 class StandingsFragment : Fragment() {
     private val standingsViewModel: StandingsViewModel by lazy { ViewModelProvider(this)[StandingsViewModel::class.java] }
     private lateinit var binding: FragmentStandingsBinding
@@ -26,7 +24,7 @@ class StandingsFragment : Fragment() {
         standingsViewModel.getStandings("Eastern Conference").observe(
             this, {
                 binding.tableRC.adapter = TableAdapter(it)
-                binding.confText.text = getString(R.string.confEast)
+                binding.confTv.text = getString(R.string.confEast)
             }
         )
     }
@@ -45,7 +43,7 @@ class StandingsFragment : Fragment() {
             standingsViewModel.getStandings("Eastern Conference").observe(
                 viewLifecycleOwner, {
                     binding.tableRC.adapter = TableAdapter(it)
-                    binding.confText.text = getString(R.string.confEast)
+                    binding.confTv.text = getString(R.string.confEast)
 
                 }
             )
@@ -55,7 +53,7 @@ class StandingsFragment : Fragment() {
             standingsViewModel.getStandings("Western Conference").observe(
                 viewLifecycleOwner, {
                     binding.tableRC.adapter = TableAdapter(it)
-                    binding.confText.text = getString(R.string.confWest)
+                    binding.confTv.text = getString(R.string.confWest)
 
                 }
             )
@@ -68,19 +66,19 @@ class StandingsFragment : Fragment() {
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(table: StandingsRow) {
-            binding.txtTeamRank.text = table.position.toString()
-            binding.imgTeam.load(table.team.logo)
-            binding.teamShort.text = table.team.name_code
-            binding.txtTotal.text = table.fields.wins_losses_total
-            binding.txtWinPer.text = table.fields.percentage_total
+            binding.teamRankTv.text = table.position.toString()
+            binding.teamLogo.load(table.team.logo)
+            binding.teamShortTv.text = table.team.name_code
+            binding.totalTv.text = table.fields.wins_losses_total
+            binding.perTv.text = table.fields.percentage_total
             val streakNum = table.fields.streak_total.toInt()
             val streak = if (streakNum <= 0 ){
                 "L${streakNum*-1}"
             }else{
                 "W$streakNum"
             }
-            binding.txtStr.text = streak
-            binding.txtGB.text = table.fields.games_behind_total
+            binding.strkTv.text = streak
+            binding.gbTv.text = table.fields.games_behind_total
 
         }
     }

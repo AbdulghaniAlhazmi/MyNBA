@@ -1,6 +1,9 @@
 package com.example.mynba.ui.games
 
 import android.annotation.SuppressLint
+import android.app.*
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,10 +15,13 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.example.mynba.R
+import com.example.mynba.*
+import com.example.mynba.Notification
 import com.example.mynba.api.models.games.Data
 import com.example.mynba.databinding.FragmentGamesBinding
 import com.example.mynba.databinding.GamesListItemBinding
+import com.vivekkaushik.datepicker.DatePickerTimeline
+import com.vivekkaushik.datepicker.OnDateSelectedListener
 import java.text.SimpleDateFormat
 import java.time.Instant
 import java.time.ZoneId
@@ -40,6 +46,7 @@ class GamesFragment : Fragment() {
     private val gamesViewModel: GamesViewModel by lazy { ViewModelProvider(this)[GamesViewModel::class.java] }
     private lateinit var binding: FragmentGamesBinding
 
+    @SuppressLint("SimpleDateFormat")
     private val sdf = SimpleDateFormat("yyyy-MM-dd")
     private var currentDate: String = sdf.format(Date())
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,7 +56,7 @@ class GamesFragment : Fragment() {
         Log.d(TAG, currentDate)
         gamesViewModel.getGames(currentDate).observe(
             this, {
-                binding.gamesRC.adapter = GamesAdapter(it)
+                binding.gamesRc.adapter = GamesAdapter(it)
             }
         )
 
@@ -63,46 +70,52 @@ class GamesFragment : Fragment() {
     ): View {
 
         binding = FragmentGamesBinding.inflate(layoutInflater)
-        binding.gamesRC.layoutManager = LinearLayoutManager(context)
-        binding.composeView.setContent {
+        binding.gamesRc.layoutManager = LinearLayoutManager(context)
 
-        }
+        createNotificationChanel()
+//        binding.button2.setOnClickListener {
+//            scheduleNotification()
+//        }
 
+//        binding.composeView.setContent {
 //
-//        val datePickerTimeline: DatePickerTimeline = binding.datePickerTimeline
-//        datePickerTimeline.setInitialDate(2021,10,10)
-//        val date = Calendar.getInstance()
-//            date.add(Calendar.DATE,1)
-//        datePickerTimeline.setActiveDate(date)
-//        datePickerTimeline.setOnDateSelectedListener(object : OnDateSelectedListener {
-//            override fun onDateSelected(year: Int, month: Int, day: Int, dayOfWeek: Int) {
-//                var emonth = "${month + 1}"
-//                var eday = "$day"
-//                if (month <= 8) {
-//                    emonth = "0${emonth}"
-//                }
-//                if (day < 10) {
-//                    eday = "0${day}"
-//                }
-//                val date = "$year-$emonth-${eday}"
-//                gamesViewModel.getGames(date).observe(
-//                    viewLifecycleOwner, {
-//                        binding.gamesRC.adapter = GamesAdapter(it)
-//                    }
-//                )
-//                Log.d(TAG, date)
-//            }
-//
-//            override fun onDisabledDateSelected(
-//                year: Int,
-//                month: Int,
-//                day: Int,
-//                dayOfWeek: Int,
-//                isDisabled: Boolean
-//            ) {
-//            }
-//
-//        })
+//        }
+
+
+        val datePickerTimeline: DatePickerTimeline = binding.datePickerTimeline
+        datePickerTimeline.setInitialDate(2021,10,10)
+        val date = Calendar.getInstance()
+            date.add(Calendar.DATE,1)
+        datePickerTimeline.setActiveDate(date)
+        datePickerTimeline.setOnDateSelectedListener(object : OnDateSelectedListener {
+            override fun onDateSelected(year: Int, month: Int, day: Int, dayOfWeek: Int) {
+                var emonth = "${month + 1}"
+                var eday = "$day"
+                if (month <= 8) {
+                    emonth = "0${emonth}"
+                }
+                if (day < 10) {
+                    eday = "0${day}"
+                }
+                val date = "$year-$emonth-${eday}"
+                gamesViewModel.getGames(date).observe(
+                    viewLifecycleOwner, {
+                        binding.gamesRc.adapter = GamesAdapter(it)
+                    }
+                )
+                Log.d(TAG, date)
+            }
+
+            override fun onDisabledDateSelected(
+                year: Int,
+                month: Int,
+                day: Int,
+                dayOfWeek: Int,
+                isDisabled: Boolean
+            ) {
+            }
+
+        })
 
         return binding.root
     }
@@ -134,6 +147,57 @@ class GamesFragment : Fragment() {
         }
     }
 
+    @SuppressLint("SimpleDateFormat")
+    private fun scheduleNotification(){
+
+        val intent = Intent(activity?.applicationContext,Notification::class.java)
+        val title = "Its Game Time"
+        val message = "Game Time Now"
+        intent.putExtra(titleExtra,title)
+        intent.putExtra(messageExtra,message)
+
+        val pendingIntent = PendingIntent.getBroadcast(
+            activity?.applicationContext,
+            notificationID,
+            intent,
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+        )
+
+        val alarmManager = activity?.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val time = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2022-01-08 23:32:00")
+        time.time
+        alarmManager.setExactAndAllowWhileIdle(
+            AlarmManager.RTC_WAKEUP,
+            time.time,
+            pendingIntent
+        )
+        showAlert(time.time,title,message)
+    }
+
+    private fun showAlert(time: Long, title: String, message: String) {
+
+        AlertDialog.Builder(context)
+            .setTitle("Notification")
+            .setMessage(
+                "Title" + title +
+                        "\n Message : " + message +
+                    "$time")
+            .setPositiveButton("Okay"){_,_->}
+            .show()
+    }
+
+    private fun createNotificationChanel(){
+
+        val name = "Notifi Chanel"
+        val desc = "Chanel"
+        val importance = NotificationManager.IMPORTANCE_DEFAULT
+        val channel = NotificationChannel(ChanelId,name,importance)
+        channel.description = desc
+        val manager = activity?.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        manager.createNotificationChannel(channel)
+    }
+
+
     fun convertDate(date: String): String {
 
         var newDate = date
@@ -143,7 +207,7 @@ class GamesFragment : Fragment() {
             .atZone(ZoneId.of("Asia/Riyadh"))
             .format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT))
 
-        return newDate
+        return newDate.substringAfter(",")
     }
 
     private inner class GamesAdapter(val game: List<Data>) : RecyclerView.Adapter<GamesHolder>() {

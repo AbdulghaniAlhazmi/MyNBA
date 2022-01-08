@@ -16,89 +16,89 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/teamRankTv"
-            android:layout_width="20dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:fontFamily="@font/montserrat"
-            android:gravity="center"
-            android:textColor="@color/black"
-            tools:text="1"
-            tools:textSize="18sp" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="65dp"
             android:layout_height="match_parent"
-            android:layout_marginEnd="70dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="60dp"
             android:gravity="center">
 
-            <ImageView
-                android:id="@+id/teamLogo"
-                android:layout_width="60dp"
-                android:layout_height="40dp"
-                android:scaleType="fitCenter"
-                tools:ignore="ContentDescription"
-                tools:srcCompat="@tools:sample/avatars" />
-
-
             <TextView
-                android:id="@+id/teamShortTv"
-                android:layout_width="37dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center"
-                android:fontFamily="@font/montserrat"
-                android:gravity="center|start"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                tools:text="SAC" />
+                android:id="@+id/playerNameTV"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center" />
 
         </LinearLayout>
 
         <TextView
-            android:id="@+id/totalTv"
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:fontFamily="@font/montserrat"
-            android:gravity="center"
-            android:textColor="@color/black"
-            tools:text="25-24"
-            tools:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/perTv"
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:fontFamily="@font/montserrat"
-            android:gravity="center"
-            android:textColor="@color/black"
-            tools:text="0.713"
-            tools:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/strkTv"
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:fontFamily="@font/montserrat"
-            android:gravity="center"
-            android:textColor="@color/black"
-            tools:text="W8"
-            tools:textAlignment="center"
-            tools:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/gbTv"
+            android:id="@+id/minTV"
             android:layout_width="45dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:fontFamily="@font/montserrat"
             android:gravity="center"
             android:textColor="@color/black"
-            tools:text="2.5"
+            tools:text="34"
+            tools:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/ptsTV"
+            android:layout_width="45dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center"
+            android:textColor="@color/black"
+            tools:text="33"
+            tools:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/rebTV"
+            android:layout_width="45dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center"
+            android:textColor="@color/black"
+            tools:text="8"
+            tools:textAlignment="center"
+            tools:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/astTV"
+            android:layout_width="45dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center"
+            android:textColor="@color/black"
+            tools:text="12"
+            tools:textAlignment="center"
+            tools:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/stlTV"
+            android:layout_width="45dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center"
+            android:textColor="@color/black"
+            tools:text="15"
+            tools:textAlignment="center"
+            tools:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/blkTV"
+            android:layout_width="45dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center"
+            android:textColor="@color/black"
+            tools:text="12"
             tools:textAlignment="center"
             tools:textSize="18sp" />
 

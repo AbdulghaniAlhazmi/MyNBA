@@ -31,7 +31,7 @@ class ProfileFragment : Fragment() {
 
     private lateinit var binding: FragmentProfileBinding
     private lateinit var firebaseAuth: FirebaseAuth
-    var curFile : Uri? = null
+    private var curFile : Uri? = null
     private val imageRef = Firebase.storage.reference
     private val userCollectionRef = Firebase.firestore.collection("users")
 
@@ -74,8 +74,8 @@ class ProfileFragment : Fragment() {
                     if (it.result.exists()) {
                         val username = it.result.getString("username")
                         val email = it.result.getString("email")
-                        binding.signupUsername.setText(username)
-                        binding.signupEmail.setText(email)
+                        binding.signupUsername.text = username
+                        binding.signupEmail.text = email
 
                     }
                 }

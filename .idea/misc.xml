@@ -17,10 +17,15 @@
         <entry key="..\:/Users/ab909/MyNBA/app/src/main/res/layout/standings_list_item.xml" value="0.25" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.11018518518518519" />
         <entry key="app/src/main/res/drawable/background_colour.xml" value="0.165" />
+        <entry key="app/src/main/res/drawable/ic_baseline_add_comment_24.xml" value="0.11018518518518519" />
         <entry key="app/src/main/res/drawable/ic_baseline_comment_24.xml" value="0.18981481481481483" />
+        <entry key="app/src/main/res/drawable/ic_baseline_info_24.xml" value="0.11018518518518519" />
+        <entry key="app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.11018518518518519" />
+        <entry key="app/src/main/res/drawable/ic_baseline_send_24.xml" value="0.11018518518518519" />
         <entry key="app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.11018518518518519" />
         <entry key="app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.11018518518518519" />
+        <entry key="app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.14583333333333334" />
         <entry key="app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.11018518518518519" />
         <entry key="app/src/main/res/drawable/out_line.xml" value="0.2361111111111111" />
         <entry key="app/src/main/res/drawable/pink_out_line.xml" value="0.11574074074074074" />
@@ -28,12 +33,13 @@
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.22314814814814815" />
         <entry key="app/src/main/res/layout/activity_intro.xml" value="0.18425925925925926" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.2" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.2833333333333333" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main2.xml" value="0.18425925925925926" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.2" />
         <entry key="app/src/main/res/layout/bottom_sheet_fragment.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/box_score_fragment.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/boxscore_list_item.xml" value="0.24010416666666667" />
+        <entry key="app/src/main/res/layout/box_score_fragment.xml" value="0.362962962962963" />
+        <entry key="app/src/main/res/layout/boxscore_item.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/boxscore_list_item.xml" value="0.375" />
         <entry key="app/src/main/res/layout/comment_item.xml" value="0.2557291666666667" />
         <entry key="app/src/main/res/layout/container.xml" value="0.1" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.165" />
@@ -51,8 +57,8 @@
         <entry key="app/src/main/res/layout/fragment_standings.xml" value="0.24313725490196078" />
         <entry key="app/src/main/res/layout/fragment_tabs.xml" value="0.1" />
         <entry key="app/src/main/res/layout/game_media_fragment.xml" value="0.18425925925925926" />
-        <entry key="app/src/main/res/layout/game_status_fragment.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/game_status_item.xml" value="0.22592592592592592" />
+        <entry key="app/src/main/res/layout/game_status_fragment.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/game_status_item.xml" value="0.375" />
         <entry key="app/src/main/res/layout/game_status_list.xml" value="0.22592592592592592" />
         <entry key="app/src/main/res/layout/games_container.xml" value="0.1" />
         <entry key="app/src/main/res/layout/games_list_item.xml" value="0.45" />
@@ -67,9 +73,15 @@
         <entry key="app/src/main/res/menu/drawer_nav.xml" value="0.1" />
         <entry key="app/src/main/res/menu/drawer_user.xml" value="0.1" />
         <entry key="app/src/main/res/menu/standings_menu.xml" value="0.1" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.11018518518518519" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.11018518518518519" />
       </map>
     </option>
+  </component>
+  <component name="EntryPointsManager">
+    <list size="1">
+      <item index="0" class="java.lang.String" itemvalue="android.annotation.SuppressLint" />
+    </list>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />

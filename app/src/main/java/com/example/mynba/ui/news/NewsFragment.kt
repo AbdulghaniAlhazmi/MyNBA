@@ -34,7 +34,7 @@ class NewsFragment : Fragment() {
 
         newsViewModel.getNews().observe(
             this, {
-                binding.newsRC.adapter = NewsAdapter(it)
+                binding.newsRc.adapter = NewsAdapter(it)
             }
         )
     }
@@ -45,7 +45,7 @@ class NewsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentNewsBinding.inflate(layoutInflater)
-        binding.newsRC.layoutManager = LinearLayoutManager(context)
+        binding.newsRc.layoutManager = LinearLayoutManager(context)
 
         return binding.root
     }
@@ -54,8 +54,8 @@ class NewsFragment : Fragment() {
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(news: Value) {
-            binding.imageView3.load(news.image.url)
-            binding.title.text = news.title
+            binding.newsImage.load(news.image.url)
+            binding.titleTv.text = news.title
 
         }
 
@@ -96,7 +96,7 @@ class NewsFragment : Fragment() {
         super.onResume()
         newsViewModel.getNews().observe(
             this, {
-                binding.newsRC.adapter = NewsAdapter(it)
+                binding.newsRc.adapter = NewsAdapter(it)
             }
         )
     }

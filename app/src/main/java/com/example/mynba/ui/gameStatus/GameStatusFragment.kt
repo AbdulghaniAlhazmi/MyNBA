@@ -1,5 +1,6 @@
 package com.example.mynba.ui.gameStatus
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.example.mynba.R
 import com.example.mynba.api.models.gameStatus.Data
 import com.example.mynba.databinding.GameStatusFragmentBinding
 import com.example.mynba.databinding.GameStatusItemBinding
@@ -50,7 +52,7 @@ class GameStatusFragment : Fragment() {
 
         gameStatusViewModel.getGamesStatus(gameId).observe(
             this, {
-                binding.statusRC.adapter = StatusAdapter(it)
+                binding.statusRc.adapter = StatusAdapter(it)
             }
         )
         Log.d(TAG, "$gameId from status")
@@ -64,8 +66,8 @@ class GameStatusFragment : Fragment() {
     ): View {
         binding = GameStatusFragmentBinding.inflate(layoutInflater)
         binding.awayLogo.load(awayLogo)
-        binding.homeLogoS.load(homeLogo)
-        binding.statusRC.layoutManager = LinearLayoutManager(context)
+        binding.homeLogo.load(homeLogo)
+        binding.statusRc.layoutManager = LinearLayoutManager(context)
 
         return binding.root
     }
@@ -74,10 +76,12 @@ class GameStatusFragment : Fragment() {
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(status: Data) {
-            binding.name.text = status.name.replace("_", " ")
+            binding.status.text = status.name.replace("_", " ")
                 .replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
-            binding.homeS.text = status.home
-            binding.awayS.text = status.away
+            binding.homeStatus.text = status.home
+            binding.awayStatus.text = status.away
+
+            binding.progressBar2.progress = 34
 
         }
     }

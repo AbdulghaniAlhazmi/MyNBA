@@ -7,36 +7,37 @@
     tools:context=".ui.gameStatus.GameStatusFragment">
 
     <ImageView
-        android:id="@+id/away_logo"
+        android:id="@+id/awayLogo"
         android:layout_width="87dp"
         android:layout_height="97dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="44dp"
         android:contentDescription="@string/away_team_logo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@tools:sample/avatars" />
 
     <ImageView
-        android:id="@+id/home_logoS"
+        android:id="@+id/homeLogo"
         android:layout_width="87dp"
         android:layout_height="97dp"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="44dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="28dp"
         android:contentDescription="@string/home_team_logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@tools:sample/avatars" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/status_RC"
-        android:layout_width="405dp"
+        android:id="@+id/status_rc"
+        android:layout_width="match_parent"
         android:layout_height="343dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.938">
+        app:layout_constraintVertical_bias="0.607"
+        tools:listitem="@layout/game_status_item">
 
     </androidx.recyclerview.widget.RecyclerView>
 </androidx.constraintlayout.widget.ConstraintLayout>

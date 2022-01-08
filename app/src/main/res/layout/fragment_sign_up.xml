@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/signup_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -27,7 +26,7 @@
                 android:layout_marginStart="30dp"
                 android:layout_marginEnd="30dp"
                 android:ems="10"
-                android:hint="Username"
+                android:hint="@string/username"
                 android:inputType="textPersonName"
                 android:minHeight="48dp" />
 
@@ -39,7 +38,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="30dp"
                 android:ems="10"
-                android:hint="E-mail"
+                android:hint="@string/e_mail"
                 android:inputType="textEmailAddress"
                 android:minHeight="48dp" />
 
@@ -51,7 +50,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="30dp"
                 android:ems="10"
-                android:hint="Password"
+                android:hint="@string/password"
                 android:inputType="textPassword"
                 android:minHeight="48dp" />
 
@@ -63,7 +62,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="30dp"
                 android:ems="10"
-                android:hint="Confirm Password"
+                android:hint="@string/confirm_password"
                 android:inputType="textPassword"
                 android:minHeight="48dp" />
 
@@ -74,7 +73,7 @@
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="30dp"
-                android:hint="Favorite Team" >
+                android:hint="@string/favorite_team" >
 
                 <AutoCompleteTextView
                     android:id="@+id/favorite_team"
@@ -82,10 +81,9 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:inputType="none"
-                    android:text=""/>
+                    android:text="" />
 
             </com.google.android.material.textfield.TextInputLayout>
-
 
 
             <Button
@@ -93,7 +91,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="30dp"
-                android:text="signup" />
+                android:text="@string/signup" />
 
 
         </LinearLayout>
@@ -102,7 +100,7 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Already have an account?"
+            android:text="@string/already_have_an_account"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/login_redirect"
             app:layout_constraintHorizontal_bias="0.5"
@@ -113,7 +111,7 @@
             android:id="@+id/login_redirect"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Login"
+            android:text="@string/login"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"

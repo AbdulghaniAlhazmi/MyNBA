@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mynba.api.models.boxScore.LineupPlayer
 import com.example.mynba.databinding.BoxScoreFragmentBinding
-import com.example.mynba.databinding.BoxscoreListItemBinding
+import com.example.mynba.databinding.BoxscoreItemBinding
 import com.example.mynba.ui.games.*
 import kotlin.properties.Delegates
 
@@ -41,8 +41,11 @@ class BoxScoreFragment : Fragment() {
 
         (activity as AppCompatActivity).supportActionBar?.title = "$awayShort - $homeShort"
 
-        observeStarter(gameId, homeId)
-        observeBench(gameId, homeId)
+        boxScoreViewModel.getGameBoxScore(gameId, homeId, false).observe(this, {
+            binding.starterRC.adapter = BoxScoreAdapter(it)
+        })
+//        observeStarter(gameId, homeId)
+//        observeBench(gameId, homeId)
 
     }
 
@@ -54,8 +57,8 @@ class BoxScoreFragment : Fragment() {
     ): View {
 
         binding = BoxScoreFragmentBinding.inflate(layoutInflater)
-        binding.boxScoreRC.layoutManager = LinearLayoutManager(context)
-        binding.benchRC.layoutManager = LinearLayoutManager(context)
+        binding.starterRC.layoutManager = LinearLayoutManager(context)
+//        binding.benchRC.layoutManager = LinearLayoutManager(context)
         binding.homeButton.text = homeShort
         binding.awayButton.text = awayShort
 
@@ -75,35 +78,31 @@ class BoxScoreFragment : Fragment() {
     @SuppressLint("FragmentLiveDataObserve")
     private fun observeStarter(gameId: String, teamId: Int) {
         boxScoreViewModel.getGameBoxScore(gameId, teamId, false).observe(this, {
-            binding.boxScoreRC.adapter = BoxScoreAdapter(it)
+            binding.starterRC.adapter = BoxScoreAdapter(it)
         })
     }
 
     @SuppressLint("FragmentLiveDataObserve")
     private fun observeBench(gameId: String, teamId: Int) {
         boxScoreViewModel.getGameBoxScore(gameId, teamId, true).observe(this, {
-            binding.benchRC.adapter = BoxScoreAdapter(it)
+//            binding.benchRC.adapter = BoxScoreAdapter(it)
         })
     }
 
-    private inner class BoxScoreViewHolder(val binding: BoxscoreListItemBinding) :
+    private inner class BoxScoreViewHolder(val binding: BoxscoreItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(boxScore: LineupPlayer) {
-            binding.player.text = boxScore.player.name_short
-            if (boxScore.substitute) {
-                binding.position.text = "  "
-            } else {
-                binding.position.text = boxScore.position_key
-            }
+            binding.playerNameTV.text = boxScore.player.name_short
             val minPlayed: Int = (boxScore.player_statistics.seconds_played % 3600) / 60
-            binding.min.text = minPlayed.toString()
+            binding.minTV.text = minPlayed.toString()
             Log.d(TAG, boxScore.player.name)
-            binding.points.text = boxScore.player_statistics.points.toString()
-            binding.rebound.text = boxScore.player_statistics.rebounds
-            binding.assist.text = boxScore.player_statistics.assists
-            binding.steal.text = boxScore.player_statistics.steals
-            binding.block.text = boxScore.player_statistics.blocks
+            binding.ptsTV.text = boxScore.player_statistics.points.toString()
+            binding.rebTV.text = boxScore.player_statistics.rebounds
+            binding.astTV.text = boxScore.player_statistics.assists
+            binding.stlTV.text = boxScore.player_statistics.steals
+            binding.blkTV.text = boxScore.player_statistics.blocks
+
 
         }
     }
@@ -111,7 +110,7 @@ class BoxScoreFragment : Fragment() {
     private inner class BoxScoreAdapter(val boxScore: List<LineupPlayer>) :
         RecyclerView.Adapter<BoxScoreViewHolder>() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BoxScoreViewHolder {
-            val binding = BoxscoreListItemBinding.inflate(
+            val binding = BoxscoreItemBinding.inflate(
                 layoutInflater,
                 parent,
                 false

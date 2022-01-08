@@ -22,8 +22,6 @@ import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 
 
-private const val TAG = "SignUpFragment"
-
 class SignUpFragment : Fragment(), AdapterView.OnItemClickListener {
 
     private lateinit var binding : FragmentSignUpBinding

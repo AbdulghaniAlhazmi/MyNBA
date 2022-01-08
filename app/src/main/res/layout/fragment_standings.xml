@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:layout_marginTop="60dp"
-        android:background="#4D6388"
+        android:background="@color/blue2"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/table_RC"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/txtTeamRank"
+            android:id="@+id/teamRankTv"
             android:layout_width="20dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
@@ -27,55 +27,65 @@
             tools:textSize="18sp" />
 
         <LinearLayout
-            android:id="@+id/linear_avatar"
             android:layout_width="85dp"
             android:layout_height="match_parent"
-            android:layout_marginRight="80dp"
+            android:layout_marginEnd="80dp"
             android:gravity="center">
 
             <TextView
-                android:id="@+id/confText"
-                android:layout_width="wrap_content"
+                android:id="@+id/confTv"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="TextView" />
+                android:fontFamily="@font/montserrat"
+                android:textColor="#FBFBFB"
+                android:textSize="16sp"
+                tools:text="TextView" />
         </LinearLayout>
 
         <TextView
-            android:id="@+id/txtTotal"
+            android:id="@+id/totalTv"
             android:layout_width="50dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
+            android:fontFamily="@font/montserrat"
             android:gravity="center"
-            android:text="W-L"
+            android:text="@string/w_l"
+            android:textColor="#FBFBFB"
             tools:textSize="16sp" />
 
         <TextView
-            android:id="@+id/txtWinPer"
+            android:id="@+id/pctTv"
             android:layout_width="50dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
+            android:fontFamily="@font/montserrat"
             android:gravity="center"
-            android:text="PCT"
+            android:text="@string/pct"
+            android:textColor="#FBFBFB"
             tools:textSize="16sp" />
 
         <TextView
-            android:id="@+id/txtStr"
+            android:id="@+id/strkTv"
             android:layout_width="50dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
+            android:fontFamily="@font/montserrat"
             android:gravity="center"
-            android:text="STRK"
+            android:text="@string/strk"
+            android:textColor="#FBFBFB"
             tools:textAlignment="center"
             tools:textSize="16sp" />
 
         <TextView
-            android:id="@+id/txtGB"
+            android:id="@+id/gbTv"
             android:layout_width="45dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
+            android:fontFamily="@font/montserrat"
             android:gravity="center"
-            android:text="GB"
+            android:text="@string/gb"
+            android:textColor="#FBFBFB"
             tools:textAlignment="center"
             tools:textSize="16sp" />
 
@@ -94,7 +104,6 @@
         tools:listitem="@layout/standings_list_item" />
 
     <RadioGroup
-        android:id="@+id/toggle"
         android:layout_width="270dp"
         android:layout_height="35dp"
         android:layout_marginStart="68dp"

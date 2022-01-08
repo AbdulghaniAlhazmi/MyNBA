@@ -6,7 +6,6 @@
     android:layout_height="fill_parent">
 
     <LinearLayout
-        android:id="@+id/linearLayout1"
         android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -19,7 +18,7 @@
             android:layout_width="0dip"
             android:layout_height="70dp"
             android:layout_weight="1"
-            android:hint="comment">
+            android:hint="@string/comment">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/commentEt"
@@ -35,6 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
+            android:contentDescription="@string/send_comment"
             android:minWidth="48dp"
             android:src="@drawable/ic_baseline_add_comment_24"
             tools:ignore="SpeakableTextPresentCheck" />
@@ -45,7 +45,7 @@
         android:id="@+id/comments_rc"
         android:layout_width="match_parent"
         android:layout_height="545dp"
-        tools:listitem="@layout/comment_item"/>
+        tools:listitem="@layout/comment_item" />
 
 
 
