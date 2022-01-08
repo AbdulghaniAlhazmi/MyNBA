@@ -6,16 +6,24 @@
     android:layout_height="match_parent"
     tools:context=".ui.games.GamesFragment">
 
-    <com.vivekkaushik.datepicker.DatePickerTimeline
-        android:id="@+id/datePickerTimeline"
+<!--    <com.vivekkaushik.datepicker.DatePickerTimeline-->
+<!--        android:id="@+id/datePickerTimeline"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="90dp"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.006" />-->
+
+
+    <androidx.compose.ui.platform.ComposeView
+        android:id="@+id/composeView"
         android:layout_width="match_parent"
         android:layout_height="90dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.006" />
+        tools:ignore="MissingConstraints" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/games_RC"

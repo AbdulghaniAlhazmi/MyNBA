@@ -38,10 +38,10 @@ class GameStatusFragment : Fragment() {
         gameId = requireArguments().getInt(KEY_GAME_ID).toString()
         homeLogo = requireArguments().getString(KEY_HOME_LOGO).toString()
         awayLogo = requireArguments().getString(KEY_AWAY_LOGO).toString()
-        homeShort = requireArguments().getString(KEY_HOME_SHORT).toString()
-        awayShort = requireArguments().getString(KEY_AWAY_SHORT).toString()
-        homeScore = requireArguments().getString(KEY_HOME_SCORE, "")
-        awayScore = requireArguments().getString(KEY_AWAY_SCORE, "")
+        homeShort = requireArguments().getString(KEY_HOME_SHORT)?: ""
+        awayShort = requireArguments().getString(KEY_AWAY_SHORT)?:""
+        homeScore = requireArguments().getString(KEY_HOME_SCORE)?:""
+        awayScore = requireArguments().getString(KEY_AWAY_SCORE)?:""
 
 
 

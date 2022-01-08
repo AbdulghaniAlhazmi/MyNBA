@@ -1,7 +1,6 @@
 package com.example.mynba.ui.games
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -17,8 +16,6 @@ import com.example.mynba.R
 import com.example.mynba.api.models.games.Data
 import com.example.mynba.databinding.FragmentGamesBinding
 import com.example.mynba.databinding.GamesListItemBinding
-import com.vivekkaushik.datepicker.DatePickerTimeline
-import com.vivekkaushik.datepicker.OnDateSelectedListener
 import java.text.SimpleDateFormat
 import java.time.Instant
 import java.time.ZoneId
@@ -43,12 +40,13 @@ class GamesFragment : Fragment() {
     private val gamesViewModel: GamesViewModel by lazy { ViewModelProvider(this)[GamesViewModel::class.java] }
     private lateinit var binding: FragmentGamesBinding
 
-    @SuppressLint("SimpleDateFormat")
-    private val sdf = SimpleDateFormat("yyyy-M-dd")
-    private val currentDate: String = sdf.format(Date())
-
+    private val sdf = SimpleDateFormat("yyyy-MM-dd")
+    private var currentDate: String = sdf.format(Date())
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        sdf.timeZone = TimeZone.getTimeZone("Asia/Riyadh")
+        currentDate = sdf.format(Date())
+        Log.d(TAG, currentDate)
         gamesViewModel.getGames(currentDate).observe(
             this, {
                 binding.gamesRC.adapter = GamesAdapter(it)
@@ -66,42 +64,45 @@ class GamesFragment : Fragment() {
 
         binding = FragmentGamesBinding.inflate(layoutInflater)
         binding.gamesRC.layoutManager = LinearLayoutManager(context)
+        binding.composeView.setContent {
 
+        }
 
-        val datePickerTimeline: DatePickerTimeline = binding.datePickerTimeline
-        datePickerTimeline.setInitialDate(2021,10,10)
-        val date = Calendar.getInstance()
-            date.add(Calendar.DATE,1)
-        datePickerTimeline.setActiveDate(date)
-        datePickerTimeline.setOnDateSelectedListener(object : OnDateSelectedListener {
-            override fun onDateSelected(year: Int, month: Int, day: Int, dayOfWeek: Int) {
-                var emonth = "${month + 1}"
-                var eday = "$day"
-                if (month <= 8) {
-                    emonth = "0${emonth}"
-                }
-                if (day < 10) {
-                    eday = "0${day}"
-                }
-                val date = "$year-$emonth-${eday}"
-                gamesViewModel.getGames(date).observe(
-                    viewLifecycleOwner, {
-                        binding.gamesRC.adapter = GamesAdapter(it)
-                    }
-                )
-                Log.d(TAG, date)
-            }
-
-            override fun onDisabledDateSelected(
-                year: Int,
-                month: Int,
-                day: Int,
-                dayOfWeek: Int,
-                isDisabled: Boolean
-            ) {
-            }
-
-        })
+//
+//        val datePickerTimeline: DatePickerTimeline = binding.datePickerTimeline
+//        datePickerTimeline.setInitialDate(2021,10,10)
+//        val date = Calendar.getInstance()
+//            date.add(Calendar.DATE,1)
+//        datePickerTimeline.setActiveDate(date)
+//        datePickerTimeline.setOnDateSelectedListener(object : OnDateSelectedListener {
+//            override fun onDateSelected(year: Int, month: Int, day: Int, dayOfWeek: Int) {
+//                var emonth = "${month + 1}"
+//                var eday = "$day"
+//                if (month <= 8) {
+//                    emonth = "0${emonth}"
+//                }
+//                if (day < 10) {
+//                    eday = "0${day}"
+//                }
+//                val date = "$year-$emonth-${eday}"
+//                gamesViewModel.getGames(date).observe(
+//                    viewLifecycleOwner, {
+//                        binding.gamesRC.adapter = GamesAdapter(it)
+//                    }
+//                )
+//                Log.d(TAG, date)
+//            }
+//
+//            override fun onDisabledDateSelected(
+//                year: Int,
+//                month: Int,
+//                day: Int,
+//                dayOfWeek: Int,
+//                isDisabled: Boolean
+//            ) {
+//            }
+//
+//        })
 
         return binding.root
     }
