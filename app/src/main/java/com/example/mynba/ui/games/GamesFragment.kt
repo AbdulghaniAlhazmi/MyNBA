@@ -1,6 +1,7 @@
 package com.example.mynba.ui.games
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -68,7 +69,10 @@ class GamesFragment : Fragment() {
 
 
         val datePickerTimeline: DatePickerTimeline = binding.datePickerTimeline
-        datePickerTimeline.setInitialDate(2021, 9, 20)
+        datePickerTimeline.setInitialDate(2021,10,10)
+        val date = Calendar.getInstance()
+            date.add(Calendar.DATE,1)
+        datePickerTimeline.setActiveDate(date)
         datePickerTimeline.setOnDateSelectedListener(object : OnDateSelectedListener {
             override fun onDateSelected(year: Int, month: Int, day: Int, dayOfWeek: Int) {
                 var emonth = "${month + 1}"
@@ -174,18 +178,6 @@ class GamesFragment : Fragment() {
         }
 
         override fun getItemCount(): Int = game.size
-
-    }
-
-
-    override fun onResume() {
-        super.onResume()
-
-        gamesViewModel.getGames(currentDate).observe(
-            this, {
-                binding.gamesRC.adapter = GamesAdapter(it)
-            }
-        )
 
     }
 
