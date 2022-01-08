@@ -14,12 +14,11 @@
         android:layout_height="wrap_content">
 
 
-        <com.google.android.material.imageview.ShapeableImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profileIv"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_baseline_person_24" />
+            android:scaleType="centerCrop" />
 
         <TextView
             android:id="@+id/nameTV"

@@ -85,13 +85,10 @@ class SignUpFragment : Fragment(), AdapterView.OnItemClickListener {
 
         try {
             userCollectionRef.document(uid.toString()).set(user).await()
-            withContext(Dispatchers.Main) {
-                Snackbar.make(requireView(), "User Registered Success", Snackbar.LENGTH_LONG).show()
-            }
+            Snackbar.make(requireView(), "User Registered Success", Snackbar.LENGTH_LONG).show()
         } catch (e: Exception) {
-            withContext(Dispatchers.Main) {
-                Snackbar.make(requireView(), "Failed to Register User info", Snackbar.LENGTH_LONG).show()
-            }
+            Snackbar.make(requireView(), "Failed to Register User info", Snackbar.LENGTH_LONG).show()
+
         }
     }
 

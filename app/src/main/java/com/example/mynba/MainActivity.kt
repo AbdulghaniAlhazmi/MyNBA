@@ -55,17 +55,6 @@ class MainActivity : AppCompatActivity() {
 
 
 
-    private fun checkUser() {
-        val firebaseUser = firebaseAuth.currentUser
-        if (firebaseUser != null){
-            val viewHeader = binding.mainNavigationView.getHeaderView(0)
-            val navViewHeaderBinding : NavHeaderBinding = NavHeaderBinding.bind(viewHeader)
-            navViewHeaderBinding.usernameTv.visibility = View.VISIBLE
-            navViewHeaderBinding.usernameTv.text = firebaseUser.email
-
-        }
-    }
-
     private fun visibilityNavElements(navController: NavController) {
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
@@ -140,6 +129,10 @@ class MainActivity : AppCompatActivity() {
                     R.id.sign_out -> {
                         firebaseAuth.signOut()
                         recreate()
+                        true
+                    }
+                    R.id.profileFragment ->{
+                        navController.navigate(R.id.profileFragment)
                         true
                     }
                     else -> true

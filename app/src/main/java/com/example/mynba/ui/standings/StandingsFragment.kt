@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.example.mynba.R
 import com.example.mynba.api.models.standings.StandingsRow
 import com.example.mynba.databinding.FragmentStandingsBinding
 import com.example.mynba.databinding.StandingsListItemBinding
@@ -25,6 +26,7 @@ class StandingsFragment : Fragment() {
         standingsViewModel.getStandings("Eastern Conference").observe(
             this, {
                 binding.tableRC.adapter = TableAdapter(it)
+                binding.confText.text = getString(R.string.confEast)
             }
         )
     }
@@ -43,6 +45,8 @@ class StandingsFragment : Fragment() {
             standingsViewModel.getStandings("Eastern Conference").observe(
                 viewLifecycleOwner, {
                     binding.tableRC.adapter = TableAdapter(it)
+                    binding.confText.text = getString(R.string.confEast)
+
                 }
             )
         }
@@ -51,6 +55,8 @@ class StandingsFragment : Fragment() {
             standingsViewModel.getStandings("Western Conference").observe(
                 viewLifecycleOwner, {
                     binding.tableRC.adapter = TableAdapter(it)
+                    binding.confText.text = getString(R.string.confWest)
+
                 }
             )
         }
@@ -62,13 +68,20 @@ class StandingsFragment : Fragment() {
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(table: StandingsRow) {
+            binding.txtTeamRank.text = table.position.toString()
+            binding.imgTeam.load(table.team.logo)
+            binding.teamShort.text = table.team.name_code
+            binding.txtTotal.text = table.fields.wins_losses_total
+            binding.txtWinPer.text = table.fields.percentage_total
+            val streakNum = table.fields.streak_total.toInt()
+            val streak = if (streakNum <= 0 ){
+                "L${streakNum*-1}"
+            }else{
+                "W$streakNum"
+            }
+            binding.txtStr.text = streak
+            binding.txtGB.text = table.fields.games_behind_total
 
-            binding.imageView.load(table.team.logo)
-            binding.rank.text = table.position.toString()
-            binding.win.text = table.fields.wins_total
-            binding.loss.text = table.fields.losses_total
-            binding.winPer.text = table.fields.percentage_total
-            binding.gb.text = table.fields.games_behind_total
         }
     }
 

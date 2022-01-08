@@ -3,40 +3,125 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@+id/linearlayout"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="60dp"
+        android:background="#4D6388"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/table_RC"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/txtTeamRank"
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            tools:textSize="18sp" />
+
+        <LinearLayout
+            android:id="@+id/linear_avatar"
+            android:layout_width="85dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="80dp"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/confText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="TextView" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txtTotal"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="W-L"
+            tools:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/txtWinPer"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="PCT"
+            tools:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/txtStr"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="STRK"
+            tools:textAlignment="center"
+            tools:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/txtGB"
+            android:layout_width="45dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="GB"
+            tools:textAlignment="center"
+            tools:textSize="16sp" />
+
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/table_RC"
-        android:layout_width="380dp"
+        android:layout_width="match_parent"
         android:layout_height="520dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/linearlayout"
+        app:layout_constraintVertical_bias="0.317"
+        tools:listitem="@layout/standings_list_item" />
 
     <RadioGroup
-        android:checkedButton="@+id/east"
         android:id="@+id/toggle"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
+        android:layout_width="270dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="15dp"
         android:background="@drawable/out_line"
+        android:checkedButton="@+id/east"
+        android:gravity="center"
         android:orientation="horizontal"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@id/linearlayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         tools:ignore="MissingConstraints">
 
         <RadioButton
             android:id="@+id/west"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginStart="1dp"
             android:layout_marginTop="1dp"
+            android:layout_marginEnd="1dp"
             android:layout_marginBottom="1dp"
             android:layout_weight="1"
             android:background="@drawable/toggle_widget_background"
             android:button="@null"
             android:gravity="center"
-            android:paddingTop="5dp"
             android:text="@string/western_conference"
             android:textColor="@color/white"
             tools:ignore="TouchTargetSizeCheck" />

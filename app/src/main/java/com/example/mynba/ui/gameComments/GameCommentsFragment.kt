@@ -1,13 +1,16 @@
 package com.example.mynba.ui.gameComments
 
 
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.example.mynba.database.Comment
 import com.example.mynba.databinding.CommentItemBinding
 import com.example.mynba.databinding.FragmentGameCommentsBinding
@@ -17,6 +20,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -39,12 +43,16 @@ class GameCommentsFragment : Fragment() {
     private var commentArray: ArrayList<Comment> = ArrayList()
     private val commentCollectionRef = Firebase.firestore.collection("comments")
     private val userCollectionRef = Firebase.firestore.collection("users")
+    private val imageRef = Firebase.storage.reference
+    private lateinit var image : Uri
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         gameId = requireArguments().getInt(KEY_GAME_ID).toString()
         firebaseAuth = FirebaseAuth.getInstance()
+
 
     }
 
@@ -98,6 +106,7 @@ class GameCommentsFragment : Fragment() {
             val comment = commentArray[position]
             holder.bind(comment)
             userName(comment.uid, holder)
+            getImage(comment.uid,holder)
             holder.itemView.setOnClickListener {
                 if (firebaseAuth.currentUser?.uid == comment.uid) {
                     deleteDialog(comment)
@@ -170,6 +179,16 @@ class GameCommentsFragment : Fragment() {
             }
         }
 
+    }
+
+    private fun getImage(userId : String,holder: GameCommentsFragment.CommentHolder) = CoroutineScope(Dispatchers.IO).launch {
+        try {
+            image = imageRef.child("images/myImage-${userId}").downloadUrl.await()
+            withContext(Dispatchers.Main){
+                holder.binding.profileIv.load(image)
+            }
+        }catch (e: java.lang.Exception){
+                Log.d(TAG,e.message.toString())        }
     }
 
     private fun saveComment(comment: Comment) = CoroutineScope(Dispatchers.IO).launch {
