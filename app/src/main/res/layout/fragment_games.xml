@@ -12,10 +12,11 @@
         android:layout_margin="10dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="9dp"
+        android:visibility="visible"
         app:cardCornerRadius="10dp"
         app:cardElevation="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/datePickerTimeline">
+        app:layout_constraintTop_toBottomOf="@+id/composeView">
 
         <Switch
             android:id="@+id/hideScore"
@@ -23,42 +24,38 @@
             android:layout_height="match_parent"
             android:layout_margin="10dp"
             android:checked="false"
+            android:fontFamily="@font/montserrat"
             android:text="@string/hide_score"
+            android:visibility="visible"
             tools:ignore="TouchTargetSizeCheck,UseSwitchCompatOrMaterialXml" />
 
 
     </androidx.cardview.widget.CardView>
 
-    <com.vivekkaushik.datepicker.DatePickerTimeline
-        android:id="@+id/datePickerTimeline"
+
+    <androidx.compose.ui.platform.ComposeView
+        android:id="@+id/composeView"
         android:layout_width="match_parent"
-        android:layout_height="90dp"
-        android:layout_marginTop="8dp"
+        android:layout_height="170dp"
+        android:background="#EAEAEA"
+        android:backgroundTint="#EAEAEA"
         android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.006" />
-
-
-    <androidx.compose.ui.platform.ComposeView
-        android:layout_width="match_parent"
-        android:layout_height="90dp"
-        android:visibility="gone"
         tools:ignore="MissingConstraints" />
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/games_rc"
         android:layout_width="match_parent"
-        android:layout_height="520dp"
+        android:layout_height="460dp"
         android:layout_marginTop="70dp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/datePickerTimeline"
+        app:layout_constraintTop_toBottomOf="@+id/composeView"
         app:layout_constraintVertical_bias="0.0"
         tools:listitem="@layout/games_list_item" />
 
