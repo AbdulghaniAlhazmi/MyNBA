@@ -81,4 +81,5 @@
     <string name="filedRegister">Failed to Register User info</string>
     <string name="logged">Logged In</string>
     <string name="bench">Bench  </string>
+    <string name="hide_score">Hide Score</string>
 </resources>

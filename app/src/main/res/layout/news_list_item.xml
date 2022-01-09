@@ -17,7 +17,7 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:contentDescription="@string/news_image"
-            android:scaleType="centerCrop"></ImageView>
+            android:scaleType="fitCenter"></ImageView>
 
         <TextView
             android:id="@+id/titleTv"

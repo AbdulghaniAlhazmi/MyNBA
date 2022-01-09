@@ -1,9 +1,11 @@
 package com.example.mynba.ui.games
 
+import android.R.id
 import android.annotation.SuppressLint
 import android.app.*
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -28,6 +30,11 @@ import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
 import java.util.*
+import android.R.id.toggle
+
+import android.content.Context.MODE_PRIVATE
+import kotlin.properties.Delegates
+
 
 private const val TAG = "GamesFragment"
 const val KEY_GAME_ID = "GAME_ID"
@@ -39,6 +46,7 @@ const val KEY_HOME_SHORT = "HOME_SHORT"
 const val KEY_AWAY_SHORT = "AWAY_SHORT"
 const val KEY_HOME_SCORE = "HOME_SCORE"
 const val KEY_AWAY_SCORE = "AWAY_SCORE"
+private var hideScore by Delegates.notNull<Boolean>()
 
 
 class GamesFragment : Fragment() {
@@ -54,6 +62,15 @@ class GamesFragment : Fragment() {
         sdf.timeZone = TimeZone.getTimeZone("Asia/Riyadh")
         currentDate = sdf.format(Date())
         Log.d(TAG, currentDate)
+
+        val sharedPrefs: SharedPreferences? = activity?.getSharedPreferences("com.example.mynba", Context.MODE_PRIVATE)
+        if (sharedPrefs != null) {
+            hideScore = sharedPrefs.getBoolean("HideScore", false)
+        }
+
+        Log.d(TAG, hideScore.toString())
+
+
         gamesViewModel.getGames(currentDate).observe(
             this, {
                 binding.gamesRc.adapter = GamesAdapter(it)
@@ -62,7 +79,7 @@ class GamesFragment : Fragment() {
 
     }
 
-    @SuppressLint("SimpleDateFormat")
+    @SuppressLint("SimpleDateFormat", "CommitPrefEdits")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -71,6 +88,27 @@ class GamesFragment : Fragment() {
 
         binding = FragmentGamesBinding.inflate(layoutInflater)
         binding.gamesRc.layoutManager = LinearLayoutManager(context)
+
+        if (hideScore){
+            binding.hideScore.isChecked = true
+        }
+        binding.hideScore.setOnClickListener {
+            if (binding.hideScore.isChecked){
+                hideScore = true
+                    val editor : SharedPreferences.Editor? =
+                        activity?.getSharedPreferences("com.example.mynba",Context.MODE_PRIVATE)
+                            ?.edit()
+                editor?.putBoolean("HideScore", hideScore)
+                editor?.apply()
+            }else{
+                hideScore = false
+                val editor : SharedPreferences.Editor? =
+                    activity?.getSharedPreferences("com.example.mynba",Context.MODE_PRIVATE)
+                        ?.edit()
+                editor?.putBoolean("HideScore", hideScore)
+                editor?.apply()
+            }
+        }
 
         createNotificationChanel()
 //        binding.button2.setOnClickListener {
@@ -132,16 +170,21 @@ class GamesFragment : Fragment() {
             } else {
                 binding.gameStatus.text = game.status_more
             }
-            if (game.home_score == null) {
-                binding.hScore.text = ""
-            } else {
-                binding.hScore.text = game.home_score.display.toString()
-            }
-            if (game.away_score == null) {
-                binding.vScore.text = ""
-            } else {
-                binding.vScore.text = game.away_score.display.toString()
-            }
+           if (hideScore){
+               binding.hScore.text = "-"
+               binding.vScore.text = "-"
+           }else{
+               if (game.home_score == null) {
+                   binding.hScore.text = ""
+               } else {
+                   binding.hScore.text = game.home_score.display.toString()
+               }
+               if (game.away_score == null) {
+                   binding.vScore.text = ""
+               } else {
+                   binding.vScore.text = game.away_score.display.toString()
+               }
+           }
 
 
         }

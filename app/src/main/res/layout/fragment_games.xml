@@ -6,6 +6,29 @@
     android:layout_height="match_parent"
     tools:context=".ui.games.GamesFragment">
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="47dp"
+        android:layout_margin="10dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="9dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/datePickerTimeline">
+
+        <Switch
+            android:id="@+id/hideScore"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:checked="false"
+            android:text="@string/hide_score"
+            tools:ignore="TouchTargetSizeCheck,UseSwitchCompatOrMaterialXml" />
+
+
+    </androidx.cardview.widget.CardView>
+
     <com.vivekkaushik.datepicker.DatePickerTimeline
         android:id="@+id/datePickerTimeline"
         android:layout_width="match_parent"
@@ -30,6 +53,7 @@
         android:id="@+id/games_rc"
         android:layout_width="match_parent"
         android:layout_height="520dp"
+        android:layout_marginTop="70dp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
