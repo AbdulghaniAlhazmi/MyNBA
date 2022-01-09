@@ -1,10 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+
+    <group android:checkableBehavior="single"
+        android:fontFamily="@font/montserrat"
+        >
+
     <item android:title="@string/profile"
-        android:id="@+id/profileFragment"/>
+        android:id="@+id/profileFragment"
+        android:fontFamily="@font/montserrat"
+        />
 
     <item android:title="@string/signout"
-        android:id="@+id/sign_out"/>
+        android:id="@+id/sign_out"
+        android:fontFamily="@font/montserrat"
+        />
 
-</menu>
+        </group>
+
+        <item android:title="Explore NBA"
+            android:fontFamily="@font/montserrat"
+            >
+            <menu>
+                <item
+                    android:id="@+id/nav_share"
+                    android:title="WB2"
+                    android:fontFamily="@font/montserrat"
+                    />
+                <item
+                    android:id="@+id/nav_send"
+                    android:title="Wb1"
+                    android:fontFamily="@font/montserrat"
+                    />
+            </menu>
+        </item>
+    </menu>

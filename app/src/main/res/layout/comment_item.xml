@@ -26,6 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_toStartOf="@+id/dateTv"
             android:layout_toEndOf="@+id/profileIv"
+            android:fontFamily="@font/montserrat"
             android:text=""
             android:textColor="@color/black"
             android:textSize="16sp" />
@@ -34,10 +35,11 @@
             android:id="@+id/dateTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
             android:layout_marginTop="5dp"
-            android:textSize="12sp"
-            android:textColor="@color/grey"
-            android:layout_alignParentEnd="true"/>
+            android:fontFamily="@font/montserrat"
+            android:textColor="#817D7D"
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/comment"
@@ -46,6 +48,7 @@
             android:layout_below="@+id/nameTV"
             android:layout_marginTop="5dp"
             android:layout_toEndOf="@id/profileIv"
+            android:fontFamily="@font/montserrat"
             android:textColor="@color/black"
             android:textSize="12sp" />
 

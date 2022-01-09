@@ -32,12 +32,24 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.1.0-rc02"
+    }
 
     kotlinOptions {
         jvmTarget = '1.8'
+        freeCompilerArgs += [
+                "-Xopt-in=kotlin.RequiresOptIn",
+                "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+                "-Xopt-in=kotlinx.coroutines.FlowPreview",
+                "-Xopt-in=kotlin.Experimental"
+        ]
     }
+
     buildFeatures {
         viewBinding true
+        compose true
+
     }
 }
 
@@ -77,7 +89,6 @@ dependencies {
     implementation 'androidx.preference:preference-ktx:1.1.1'
 
     implementation 'androidx.work:work-runtime-ktx:2.7.1'
-    implementation 'com.vivekkaushik.datepicker:datePickerTimeline:0.0.4'
 
     implementation 'com.airbnb.android:lottie:4.2.2'
     implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.3'
@@ -114,6 +125,9 @@ dependencies {
 
     // UI Tests
     androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.0.5")
+
+    implementation ("com.github.Rafsanjani:datepickertimeline:0.5.0")
+
 
 
 

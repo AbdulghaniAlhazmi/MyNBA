@@ -17,13 +17,14 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:contentDescription="@string/news_image"
-            android:scaleType="fitCenter"></ImageView>
+            android:scaleType="centerCrop"/>
 
         <TextView
             android:id="@+id/titleTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:fontFamily="@font/montserrat"
             android:padding="10dp"
             android:textColor="@color/black"
             android:textSize="16sp">

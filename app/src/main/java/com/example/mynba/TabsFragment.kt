@@ -30,8 +30,6 @@ class TabsFragment : Fragment() {
     private lateinit var awayLogo : String
     private lateinit var homeCode : String
     private lateinit var awayCode : String
-    private lateinit var awayScore : String
-    private lateinit var homeScore : String
     private var homeId by Delegates.notNull<Int>()
     private var awayId by Delegates.notNull<Int>()
 
@@ -49,8 +47,8 @@ class TabsFragment : Fragment() {
         awayLogo = requireArguments().getString(KEY_AWAY_LOGO).toString()
         homeCode = requireArguments().getString(KEY_HOME_SHORT).toString()
         awayCode = requireArguments().getString(KEY_AWAY_SHORT).toString()
-        homeScore = requireArguments().getString(KEY_HOME_SCORE).toString()
-        awayScore = requireArguments().getString(KEY_AWAY_SCORE).toString()
+
+
 
         gameStatusArgs()
         gameBoxScoreArgs()
@@ -114,8 +112,6 @@ class TabsFragment : Fragment() {
             putString(KEY_AWAY_LOGO,awayLogo)
             putString(KEY_HOME_SHORT,homeCode)
             putString(KEY_AWAY_SHORT,awayCode)
-            putString(KEY_HOME_SCORE,homeScore)
-            putString(KEY_AWAY_SCORE,awayScore)
         }
     }
 

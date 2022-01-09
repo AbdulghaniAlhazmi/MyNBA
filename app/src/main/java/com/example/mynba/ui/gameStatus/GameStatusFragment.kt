@@ -31,8 +31,7 @@ class GameStatusFragment : Fragment() {
     private lateinit var awayLogo: String
     private lateinit var homeShort: String
     private lateinit var awayShort: String
-    private lateinit var homeScore: String
-    private lateinit var awayScore: String
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,13 +41,12 @@ class GameStatusFragment : Fragment() {
         awayLogo = requireArguments().getString(KEY_AWAY_LOGO).toString()
         homeShort = requireArguments().getString(KEY_HOME_SHORT)?: ""
         awayShort = requireArguments().getString(KEY_AWAY_SHORT)?:""
-        homeScore = requireArguments().getString(KEY_HOME_SCORE)?:""
-        awayScore = requireArguments().getString(KEY_AWAY_SCORE)?:""
+
 
 
 
         (activity as AppCompatActivity).supportActionBar?.title =
-            "$awayShort $awayScore - $homeScore $homeShort"
+            "$awayShort - $homeShort"
 
         gameStatusViewModel.getGamesStatus(gameId).observe(
             this, {

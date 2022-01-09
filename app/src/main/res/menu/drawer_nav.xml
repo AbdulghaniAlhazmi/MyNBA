@@ -3,7 +3,8 @@
 
 
     <item android:title="@string/login"
-        android:id="@+id/loginFragment"/>
+        android:id="@+id/loginFragment"
+        android:fontFamily="@font/montserrat" />
 
 
 

@@ -24,6 +24,7 @@
                 android:id="@+id/commentEt"
                 android:layout_width="match_parent"
                 android:layout_height="65dp"
+                android:fontFamily="@font/montserrat"
                 android:inputType="textMultiLine|textCapSentences" />
 
 

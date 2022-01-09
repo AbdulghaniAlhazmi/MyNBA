@@ -23,6 +23,7 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.Abs
 
 
 private const val TAG = "GameMediaFragment"
+var viewClicked = 0
 
 class GameMediaFragment : Fragment() {
 
@@ -102,7 +103,17 @@ class GameMediaFragment : Fragment() {
             val media = media[position]
             holder.bind(media)
             holder.itemView.setOnClickListener {
-                    holder.binding.youtubePlayer.visibility = View.VISIBLE
+                    if (viewClicked == 0){
+                        viewClicked = 1
+                        holder.binding.youtubePlayer.visibility = View.VISIBLE
+                        holder.binding.videoImage.visibility = View.GONE
+                        holder.binding.titleTv.visibility = View.GONE
+                    }else{
+                        holder.binding.youtubePlayer.visibility = View.GONE
+                        holder.binding.videoImage.visibility = View.VISIBLE
+                        holder.binding.titleTv.visibility = View.VISIBLE
+                        viewClicked = 0
+                    }
             }
         }
 

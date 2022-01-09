@@ -133,8 +133,8 @@ class MainActivity : AppCompatActivity() {
         }else{
             val viewHeader = binding.mainNavigationView.getHeaderView(0)
             val navViewHeaderBinding : NavHeaderBinding = NavHeaderBinding.bind(viewHeader)
-            navViewHeaderBinding.usernameTv.visibility = View.VISIBLE
-            navViewHeaderBinding.usernameTv.text = firebaseAuth.currentUser!!.email
+            navViewHeaderBinding.userEmail.visibility = View.VISIBLE
+            navViewHeaderBinding.userEmail.text = firebaseAuth.currentUser!!.email
             binding.mainNavigationView.menu.clear()
             binding.mainNavigationView.inflateMenu(R.menu.drawer_user)
             binding.mainNavigationView.setNavigationItemSelectedListener {

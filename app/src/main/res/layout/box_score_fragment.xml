@@ -24,6 +24,7 @@
             android:layout_width="20dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
+            android:fontFamily="@font/montserrat"
             android:gravity="center"
             tools:textSize="18sp" />
 
@@ -273,6 +274,7 @@
             android:layout_weight="1"
             android:background="@drawable/toggle_widget_background"
             android:button="@null"
+            android:fontFamily="@font/montserrat"
             android:gravity="center"
             android:textColor="@color/blue"
             tools:ignore="TouchTargetSizeCheck"
@@ -288,6 +290,7 @@
             android:layout_weight="1"
             android:background="@drawable/toggle_widget_background"
             android:button="@null"
+            android:fontFamily="@font/montserrat"
             android:gravity="center"
             android:textColor="@color/white"
             tools:ignore="TouchTargetSizeCheck"

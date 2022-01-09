@@ -1,8 +1,10 @@
 package com.example.mynba.ui.games
 
-import android.R.id
 import android.annotation.SuppressLint
-import android.app.*
+import android.app.AlarmManager
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -11,6 +13,17 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
+import androidx.compose.material.Text
+import androidx.compose.runtime.*
+import androidx.compose.ui.ExperimentalComposeUiApi
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -18,21 +31,24 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.mynba.*
-import com.example.mynba.Notification
+import com.example.mynba.R
 import com.example.mynba.api.models.games.Data
 import com.example.mynba.databinding.FragmentGamesBinding
 import com.example.mynba.databinding.GamesListItemBinding
-import com.vivekkaushik.datepicker.DatePickerTimeline
-import com.vivekkaushik.datepicker.OnDateSelectedListener
+import com.example.mynba.datePicker.Blue
+import com.example.mynba.datePicker.DatePickerTimeLineTheme
+import com.example.mynba.datePicker.Grey
+import com.example.mynba.datePicker.White
+import com.foreverrafs.datepicker.DatePickerTimeline
+import com.foreverrafs.datepicker.Orientation
+import com.foreverrafs.datepicker.state.rememberDatePickerState
+import com.google.android.material.snackbar.Snackbar
 import java.text.SimpleDateFormat
 import java.time.Instant
+import java.time.LocalDate
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
-import java.util.*
-import android.R.id.toggle
-
-import android.content.Context.MODE_PRIVATE
 import kotlin.properties.Delegates
 
 
@@ -49,29 +65,24 @@ const val KEY_AWAY_SCORE = "AWAY_SCORE"
 private var hideScore by Delegates.notNull<Boolean>()
 
 
+
 class GamesFragment : Fragment() {
 
     private val gamesViewModel: GamesViewModel by lazy { ViewModelProvider(this)[GamesViewModel::class.java] }
     private lateinit var binding: FragmentGamesBinding
+    private var date = LocalDate.now().toString()
 
-    @SuppressLint("SimpleDateFormat")
-    private val sdf = SimpleDateFormat("yyyy-MM-dd")
-    private var currentDate: String = sdf.format(Date())
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sdf.timeZone = TimeZone.getTimeZone("Asia/Riyadh")
-        currentDate = sdf.format(Date())
-        Log.d(TAG, currentDate)
-
+        Log.d(TAG, date)
         val sharedPrefs: SharedPreferences? = activity?.getSharedPreferences("com.example.mynba", Context.MODE_PRIVATE)
         if (sharedPrefs != null) {
             hideScore = sharedPrefs.getBoolean("HideScore", false)
         }
-
         Log.d(TAG, hideScore.toString())
 
-
-        gamesViewModel.getGames(currentDate).observe(
+        gamesViewModel.getGames(date).observe(
             this, {
                 binding.gamesRc.adapter = GamesAdapter(it)
             }
@@ -110,52 +121,63 @@ class GamesFragment : Fragment() {
             }
         }
 
-        createNotificationChanel()
-//        binding.button2.setOnClickListener {
+//        createNotificationChanel()
+//        binding.button.setOnClickListener {
 //            scheduleNotification()
 //        }
 
-//        binding.composeView.setContent {
-//
-//        }
-
-
-        val datePickerTimeline: DatePickerTimeline = binding.datePickerTimeline
-        datePickerTimeline.setInitialDate(2021,10,10)
-        val date = Calendar.getInstance()
-            date.add(Calendar.DATE,1)
-        datePickerTimeline.setActiveDate(date)
-        datePickerTimeline.setOnDateSelectedListener(object : OnDateSelectedListener {
-            override fun onDateSelected(year: Int, month: Int, day: Int, dayOfWeek: Int) {
-                var emonth = "${month + 1}"
-                var eday = "$day"
-                if (month <= 8) {
-                    emonth = "0${emonth}"
-                }
-                if (day < 10) {
-                    eday = "0${day}"
-                }
-                val date = "$year-$emonth-${eday}"
-                gamesViewModel.getGames(date).observe(
-                    viewLifecycleOwner, {
-                        binding.gamesRc.adapter = GamesAdapter(it)
-                    }
-                )
-                Log.d(TAG, date)
-            }
-
-            override fun onDisabledDateSelected(
-                year: Int,
-                month: Int,
-                day: Int,
-                dayOfWeek: Int,
-                isDisabled: Boolean
-            ) {
-            }
-
-        })
+        binding.composeView.setContent {
+                datePick()
+        }
 
         return binding.root
+    }
+
+    @OptIn(ExperimentalComposeUiApi::class)
+    @Composable
+    fun datePick() {
+        DatePickerTimeLineTheme {
+            Surface(
+                modifier = Modifier.wrapContentSize(),
+            ){
+                Column(
+                    modifier = Modifier.padding(8.dp).fillMaxSize()
+                ) {
+                    val datePickerState = rememberDatePickerState(initialDate = LocalDate.now())
+
+                    val mainBackgroundColor by remember { mutableStateOf(White)}
+                    val selectedDateBackground by remember { mutableStateOf(Grey)}
+                    val dateTextColor by remember { mutableStateOf(Blue) }
+
+                    DatePickerTimeline(
+                        modifier = Modifier.wrapContentSize(),
+                        onDateSelected = { selectedDate ->
+                            Log.d(TAG,selectedDate.toString())
+                            gamesViewModel.getGames(selectedDate.toString()).observe(
+                                viewLifecycleOwner, {
+                                    binding.gamesRc.adapter = GamesAdapter(it)
+                                })
+                        },
+                        backgroundColor = mainBackgroundColor,
+                        orientation = Orientation.Horizontal,
+                        state = datePickerState,
+                        selectedBackgroundColor = selectedDateBackground,
+                        dateTextColor = dateTextColor,
+                        selectedTextColor = Blue,
+                        todayLabel = {
+                            Log.d(TAG,date.toString())
+                            Text(
+                                modifier = Modifier.padding(10.dp),
+                                text = "Today",
+                                color = Blue,
+                                style = MaterialTheme.typography.h6
+                            )
+                        },
+                        pastDaysCount = 120,
+                    )
+                }
+            }
+        }
     }
 
 
@@ -186,6 +208,12 @@ class GamesFragment : Fragment() {
                }
            }
 
+//            binding.notify.setOnClickListener {
+//                scheduleNotification(game.start_at)
+//                Snackbar.make(requireView(), getString(R.string.fileduser), Snackbar.LENGTH_LONG).show()
+//            }
+
+
 
         }
     }
@@ -201,14 +229,15 @@ class GamesFragment : Fragment() {
 
         val pendingIntent = PendingIntent.getBroadcast(
             activity?.applicationContext,
-            NOTIFICATION_ID,
+            notificationId,
             intent,
             PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
         )
 
         val alarmManager = activity?.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        val time = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2022-01-08 23:32:00")
+        val time = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2022-01-10 00:26:00")
         time.time
+        Log.d(TAG,time.toString())
         alarmManager.setExactAndAllowWhileIdle(
             AlarmManager.RTC_WAKEUP,
             time.time,
@@ -254,6 +283,7 @@ class GamesFragment : Fragment() {
         override fun onBindViewHolder(holder: GamesHolder, position: Int) {
             val game = game[position]
             holder.bind(game)
+            createNotificationChanel()
             holder.itemView.setOnClickListener {
                 Log.d(TAG, game.id.toString())
 

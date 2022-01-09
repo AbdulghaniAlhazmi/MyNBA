@@ -22,6 +22,7 @@
         android:id="@+id/new_title"
         android:layout_width="203dp"
         android:layout_height="63dp"
+        android:fontFamily="@font/montserrat"
         android:textColor="#DD2C00"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints"
@@ -34,11 +35,12 @@
         android:layout_height="139dp"
         android:layout_marginTop="35dp"
         android:layout_marginBottom="195dp"
+        android:fontFamily="@font/montserrat"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/new_title"
+        tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="0dp"
-        tools:text="TextView"
-        tools:ignore="MissingConstraints" />
+        tools:text="TextView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
