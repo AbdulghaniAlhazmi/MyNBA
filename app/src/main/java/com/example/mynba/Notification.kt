@@ -6,23 +6,22 @@ import android.content.Context
 import android.content.Intent
 import androidx.core.app.NotificationCompat
 
-const val notificationID = 1
-const val ChanelId = "chanelid"
-const val titleExtra = "titleExtra"
-const val messageExtra = "messageExtra"
+const val NOTIFICATION_ID = 1
+const val CHANNEL_ID = "chanelid"
+const val TITLE_KEY = "titleExtra"
+const val MESSAGE_KEY = "messageExtra"
 
 class Notification : BroadcastReceiver() {
 
     override fun onReceive(context: Context?, intent: Intent?) {
         val notification = context?.let {
-            NotificationCompat.Builder(it, ChanelId)
-                .setSmallIcon(R.drawable.ic_baseline_comment_24)
-                .setContentTitle(intent?.getStringExtra(titleExtra))
-                .setContentText(intent?.getStringExtra(messageExtra))
+            NotificationCompat.Builder(it, CHANNEL_ID)
+                .setContentTitle(intent?.getStringExtra(TITLE_KEY))
+                .setContentText(intent?.getStringExtra(MESSAGE_KEY))
                 .build()
         }
 
         val manger = context?.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        manger.notify(notificationID,notification)
+        manger.notify(NOTIFICATION_ID,notification)
     }
 }

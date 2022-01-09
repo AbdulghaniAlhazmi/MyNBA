@@ -37,7 +37,7 @@
         <entry key="app/src/main/res/layout/activity_main2.xml" value="0.18425925925925926" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.2" />
         <entry key="app/src/main/res/layout/bottom_sheet_fragment.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/box_score_fragment.xml" value="0.362962962962963" />
+        <entry key="app/src/main/res/layout/box_score_fragment.xml" value="0.335" />
         <entry key="app/src/main/res/layout/boxscore_item.xml" value="0.335" />
         <entry key="app/src/main/res/layout/boxscore_list_item.xml" value="0.375" />
         <entry key="app/src/main/res/layout/comment_item.xml" value="0.2557291666666667" />

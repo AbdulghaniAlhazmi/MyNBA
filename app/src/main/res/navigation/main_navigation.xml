@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/navigation_news"
         android:name="com.example.mynba.ui.news.NewsFragment"
-        android:label="News"
+        android:label="@string/news"
         tools:layout="@layout/fragment_news" >
         <action
             android:id="@+id/action_navigation_news_to_newsPageFragment"
@@ -17,7 +17,7 @@
     <fragment
         android:id="@+id/navigation_games"
         android:name="com.example.mynba.ui.games.GamesFragment"
-        android:label="Games"
+        android:label="@string/games"
         tools:layout="@layout/fragment_games" >
         <action
             android:id="@+id/action_navigation_games_to_tabsFragment"
@@ -27,34 +27,34 @@
     <fragment
         android:id="@+id/navigation_standings"
         android:name="com.example.mynba.ui.standings.StandingsFragment"
-        android:label="Standings"
+        android:label="@string/standings"
         tools:layout="@layout/fragment_standings" />
     <fragment
         android:id="@+id/gameStatusFragment"
         android:name="com.example.mynba.ui.gameStatus.GameStatusFragment"
-        android:label="game_status_fragment"
+        android:label="@string/status"
         tools:layout="@layout/game_status_fragment" />
     <fragment
         android:id="@+id/newsPageFragment"
         android:name="com.example.mynba.ui.news.NewsPageFragment"
-        android:label="news_page_fragment"
+        android:label="@string/news"
         tools:layout="@layout/news_page_fragment" />
     <fragment
         android:id="@+id/boxScoreFragment"
         android:name="com.example.mynba.ui.boxScore.BoxScoreFragment"
-        android:label="box_score_fragment"
+        android:label="@string/boxScore"
         tools:layout="@layout/box_score_fragment" />
     <fragment
         android:id="@+id/gameMediaFragment"
         android:name="com.example.mynba.ui.gameMedia.GameMediaFragment"
-        android:label="game_media_fragment"
+        android:label="@string/highlights"
         tools:layout="@layout/game_media_fragment" />
 
 
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.mynba.ui.login.LoginFragment"
-        android:label="Login"
+        android:label="@string/login"
         tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_login_to_signup"
@@ -70,7 +70,7 @@
     <fragment
         android:id="@+id/signUpFragment"
         android:name="com.example.mynba.ui.signup.SignUpFragment"
-        android:label="Sign Up"
+        android:label="@string/signup"
         tools:layout="@layout/fragment_sign_up">
         <action
             android:id="@+id/action_signup_to_login"
@@ -86,7 +86,7 @@
     <fragment
         android:id="@+id/gameCommentsFragment"
         android:name="com.example.mynba.ui.gameComments.GameCommentsFragment"
-        android:label="Discuss" />
+        android:label="@string/discuss" />
     <fragment
         android:id="@+id/tabsFragment"
         android:name="com.example.mynba.TabsFragment"
@@ -94,7 +94,7 @@
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.mynba.ui.profile.ProfileFragment"
-        android:label="ProfileFragment" />
+        android:label="@string/profile" />
 
 
 </navigation>

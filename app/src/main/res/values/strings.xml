@@ -1,29 +1,27 @@
 <resources>
     <string name="app_name">MyNBA</string>
-    <string name="news">News</string>
-    <string name="games">Games</string>
     <string name="standings">Standings</string>
-    <string name="home_team_logo">Home Team Logo</string>
-    <string name="away_team_logo">Away Team Logo</string>
+    <string name="home_team_logo" translatable="false">Home Team Logo</string>
+    <string name="away_team_logo" translatable="false">Away Team Logo</string>
     <string name="western_conference">Western Conference</string>
     <string name="eastern_conference">Eastern Conference</string>
     <!-- Strings used for fragments for navigation -->
 
     <string name="news_image">News Image</string>
-    <string name="confWest">Western</string>
-    <string name="confEast">Eastern</string>
+    <string name="confWest" translatable="false">Western</string>
+    <string name="confEast" translatable="false">Eastern</string>
     <string name="send_comment">Send Comment</string>
-    <string name="image">Image</string>
+    <string name="image" translatable="false">Image</string>
     <string name="starters">Starters</string>
-    <string name="min">MIN</string>
-    <string name="pts">PTS</string>
-    <string name="reb">REB</string>
+    <string name="min" translatable="false">MIN</string>
+    <string name="pts" translatable="false">PTS</string>
+    <string name="reb" translatable="false">REB</string>
     <string name="ast">AST</string>
-    <string name="stl">STL</string>
-    <string name="blk">BLK</string>
+    <string name="stl" translatable="false">STL</string>
+    <string name="blk" translatable="false">BLK</string>
     <string name="profile">Profile</string>
     <string name="signout">SignOut</string>
-    <string name="textview">textView</string>
+    <string name="textview" translatable="false">textView</string>
     <string name="comment">comment</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
@@ -38,7 +36,7 @@
     <string name="pct">PCT</string>
     <string name="strk">STRK</string>
     <string name="gb">GB</string>
-    <string name="confirm_password">Confirm Password</string>
+    <string name="video_image">Video Image</string>
 
     <string-array name="teams">
         <item>Golden State Warriors</item>
@@ -72,4 +70,15 @@
         <item>New Orleans Pelicans</item>
         <item>Houston Rockets</item>
     </string-array>
+    <string name="news">News</string>
+    <string name="games">Games</string>
+    <string name="status">Status</string>
+    <string name="boxScore">Box Score</string>
+    <string name="discuss">Discuss</string>
+    <string name="highlights" translatable="false">Highlights</string>
+    <string name="fileduser">Failed To Create User</string>
+    <string name="registerSucess">User Registered Success</string>
+    <string name="filedRegister">Failed to Register User info</string>
+    <string name="logged">Logged In</string>
+    <string name="bench">Bench  </string>
 </resources>

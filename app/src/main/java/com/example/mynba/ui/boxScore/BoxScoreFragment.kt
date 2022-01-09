@@ -41,11 +41,8 @@ class BoxScoreFragment : Fragment() {
 
         (activity as AppCompatActivity).supportActionBar?.title = "$awayShort - $homeShort"
 
-        boxScoreViewModel.getGameBoxScore(gameId, homeId, false).observe(this, {
-            binding.starterRC.adapter = BoxScoreAdapter(it)
-        })
-//        observeStarter(gameId, homeId)
-//        observeBench(gameId, homeId)
+        observeStarter(gameId, homeId)
+        observeBench(gameId, homeId)
 
     }
 
@@ -58,7 +55,7 @@ class BoxScoreFragment : Fragment() {
 
         binding = BoxScoreFragmentBinding.inflate(layoutInflater)
         binding.starterRC.layoutManager = LinearLayoutManager(context)
-//        binding.benchRC.layoutManager = LinearLayoutManager(context)
+        binding.benchRC.layoutManager = LinearLayoutManager(context)
         binding.homeButton.text = homeShort
         binding.awayButton.text = awayShort
 
@@ -85,7 +82,7 @@ class BoxScoreFragment : Fragment() {
     @SuppressLint("FragmentLiveDataObserve")
     private fun observeBench(gameId: String, teamId: Int) {
         boxScoreViewModel.getGameBoxScore(gameId, teamId, true).observe(this, {
-//            binding.benchRC.adapter = BoxScoreAdapter(it)
+            binding.benchRC.adapter = BoxScoreAdapter(it)
         })
     }
 

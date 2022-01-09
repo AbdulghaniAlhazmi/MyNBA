@@ -52,6 +52,18 @@ class MainActivity : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
 
 
+
+    }
+
+
+    override fun onRestart() {
+        super.onRestart()
+        checkLoggedIn()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        checkLoggedIn()
     }
 
 

@@ -153,12 +153,12 @@ class GamesFragment : Fragment() {
         val intent = Intent(activity?.applicationContext,Notification::class.java)
         val title = "Its Game Time"
         val message = "Game Time Now"
-        intent.putExtra(titleExtra,title)
-        intent.putExtra(messageExtra,message)
+        intent.putExtra(TITLE_KEY,title)
+        intent.putExtra(MESSAGE_KEY,message)
 
         val pendingIntent = PendingIntent.getBroadcast(
             activity?.applicationContext,
-            notificationID,
+            NOTIFICATION_ID,
             intent,
             PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
         )
@@ -171,27 +171,15 @@ class GamesFragment : Fragment() {
             time.time,
             pendingIntent
         )
-        showAlert(time.time,title,message)
     }
 
-    private fun showAlert(time: Long, title: String, message: String) {
-
-        AlertDialog.Builder(context)
-            .setTitle("Notification")
-            .setMessage(
-                "Title" + title +
-                        "\n Message : " + message +
-                    "$time")
-            .setPositiveButton("Okay"){_,_->}
-            .show()
-    }
 
     private fun createNotificationChanel(){
 
         val name = "Notifi Chanel"
         val desc = "Chanel"
         val importance = NotificationManager.IMPORTANCE_DEFAULT
-        val channel = NotificationChannel(ChanelId,name,importance)
+        val channel = NotificationChannel(CHANNEL_ID,name,importance)
         channel.description = desc
         val manager = activity?.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         manager.createNotificationChannel(channel)

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyNBA</string>
+    <string name="standings">Classement</string>
+    <string name="western_conference">Western Conférence</string>
+    <string name="eastern_conference">Eastern Conférence</string>
+    <string name="news_image">Image d\'actualité</string>
+    <string name="send_comment">"Envoyer un commentaire "</string>
+    <string name="starters">Titulaires</string>
+    <string name="ast">PD</string>
+    <string name="profile">Profil</string>
+    <string name="comment">Commenter</string>
+    <string name="password">Mot de passe</string>
+    <string name="login">SE CONNECTER</string>
+    <string name="don_t_have_an_account">Vous n\'avez pas de compte ?</string>
+    <string name="signup">S\'inscrire</string>
+    <string name="username">"Nom d'utilisateur "</string>
+    <string name="update">"Mettre à jour "</string>
+    <string name="e_mail">Adresse e-mail</string>
+    <string name="favorite_team">"squipe favorite "</string>
+    <string name="already_have_an_account">"Vous avez déjà un compte? "</string>
+    <string name="w_l">V-D</string>
+    <string name="pct">%</string>
+    <string name="strk">SÉRIE</string>
+    <string name="gb">Diff</string>
+    <string name="video_image">"Image vidéo "</string>
+    <string name="news">Accueil</string>
+    <string name="games">Matchs</string>
+    <string name="signout">"Se déconnecter "</string>
+    <string name="status">Statut</string>
+    <string name="boxScore">Statistiques</string>
+    <string name="discuss">Discuter</string>
+    <string name="fileduser">"Échec de la création de l'utilisateur "</string>
+    <string name="registerSucess">"Utilisateur enregistré avec succès "</string>
+    <string name="filedRegister">"Échec de l'enregistrement des informations sur l'utilisateur "</string>
+    <string name="logged">Connecté</string>
+    <string name="bench">Remplaçants</string>
+</resources>

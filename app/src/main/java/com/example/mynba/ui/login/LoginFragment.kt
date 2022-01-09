@@ -72,7 +72,7 @@ class LoginFragment : Fragment() {
 
         }else{
             findNavController().navigate(R.id.navigation_news)
-            Snackbar.make(requireView(), "Logged In", Snackbar.LENGTH_LONG).show()
+            Snackbar.make(requireView(), getString(R.string.logged), Snackbar.LENGTH_LONG).show()
 
         }
     }

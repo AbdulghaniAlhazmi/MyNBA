@@ -64,16 +64,16 @@ class TabsFragment : Fragment() {
         TabLayoutMediator(binding.tabs,binding.viewPager2){tabs,position ->
             when(position){
                 0 ->{
-                    tabs.text = "Status"
+                    tabs.text = getString(R.string.status)
                 }
                 1 ->{
-                    tabs.text = "Box Score"
+                    tabs.text = getString(R.string.boxScore)
                 }
                 2 ->{
-                    tabs.text = "Highlight"
+                    tabs.text = getString(R.string.highlights)
                 }
                 3 ->{
-                    tabs.text = "Discuss"
+                    tabs.text = getString(R.string.discuss)
                 }
             }
 

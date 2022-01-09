@@ -48,6 +48,7 @@ class SignUpFragment : Fragment(), AdapterView.OnItemClickListener {
             email = binding.signupEmail.text.toString()
             password = binding.signupPassword.text.toString()
             registerUser()
+            findNavController().navigate(R.id.loginFragment)
 
         }
 
@@ -71,7 +72,7 @@ class SignUpFragment : Fragment(), AdapterView.OnItemClickListener {
                     findNavController().navigate(R.id.action_signUpFragment_to_navigation_standings)
                 }catch (e : Exception){
                     withContext(Dispatchers.Main){
-                        Snackbar.make(requireView(), "Failed To Create User", Snackbar.LENGTH_LONG).show()
+                        Snackbar.make(requireView(), getString(R.string.fileduser), Snackbar.LENGTH_LONG).show()
                     }
                 }
             }
@@ -83,9 +84,9 @@ class SignUpFragment : Fragment(), AdapterView.OnItemClickListener {
 
         try {
             userCollectionRef.document(uid.toString()).set(user).await()
-            Snackbar.make(requireView(), "User Registered Success", Snackbar.LENGTH_LONG).show()
+            Snackbar.make(requireView(), getString(R.string.registerSucess), Snackbar.LENGTH_LONG).show()
         } catch (e: Exception) {
-            Snackbar.make(requireView(), "Failed to Register User info", Snackbar.LENGTH_LONG).show()
+            Snackbar.make(requireView(), getString(R.string.filedRegister), Snackbar.LENGTH_LONG).show()
 
         }
     }
