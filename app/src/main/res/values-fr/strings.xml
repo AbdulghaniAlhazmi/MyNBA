@@ -35,4 +35,21 @@
     <string name="filedRegister">"Échec de l'enregistrement des informations sur l'utilisateur "</string>
     <string name="logged">Connecté</string>
     <string name="bench">Remplaçants</string>
+    <string name="hide_score">Masquer le score</string>
+    <string name="sign_in">S\'identifier</string>
+    <string name="sign_up">"S'inscrire "</string>
+    <string name="gameAlert">Alerte de jeu</string>
+    <string name="gameTime">C\'est l\'heure du jeu</string>
+    <string name="alertMessage">Ce jeu commencera à</string>
+    <string name="cancel">Annuler</string>
+    <string name="reminder">Définir un rappel</string>
+    <string name="signInToComment">Connectez-vous pour ajouter un commentaire</string>
+    <string name="signIn">S\'identifier</string>
+    <string name="deleteCommentMessage">Êtes-vous sûr de vouloir supprimer le commentaire</string>
+    <string name="yes">OUI</string>
+    <string name="commentDeleted">Commentaire supprimé</string>
+    <string name="commentFailed">Échec de la suppression du commentaire</string>
+    <string name="addCommentFailed">Échec de l\'ajout d\'un commentaire</string>
+    <string name="imageUploaded">Image téléchargée</string>
+    <string name="userUpdateFail">Échec de la mise à jour des informations utilisateur</string>
 </resources>
