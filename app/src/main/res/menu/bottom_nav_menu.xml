@@ -3,21 +3,21 @@
 
     <item
         android:id="@+id/navigation_news"
-        android:title="@string/news"
         android:fontFamily="@font/montserrat"
-        />
+        android:icon="@drawable/ic_baseline_comment_24"
+        android:title="@string/news" />
 
     <item
         android:id="@+id/navigation_games"
-        android:title="@string/games"
         android:fontFamily="@font/montserrat"
-        />
+        android:icon="@drawable/ic_baseline_notifications_24"
+        android:title="@string/games" />
 
     <item
         android:id="@+id/navigation_standings"
-        android:title="@string/standings"
         android:fontFamily="@font/montserrat"
-        />
+        android:icon="@drawable/ic_baseline_add_comment_24"
+        android:title="@string/standings" />
 
 
 </menu>

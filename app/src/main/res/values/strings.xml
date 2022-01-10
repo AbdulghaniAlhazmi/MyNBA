@@ -20,7 +20,7 @@
     <string name="stl" translatable="false">STL</string>
     <string name="blk" translatable="false">BLK</string>
     <string name="profile">Profile</string>
-    <string name="signout">SignOut</string>
+    <string name="signout">Sign Out</string>
     <string name="textview" translatable="false">textView</string>
     <string name="comment">comment</string>
     <string name="password">Password</string>
@@ -82,4 +82,20 @@
     <string name="logged">Logged In</string>
     <string name="bench">Bench  </string>
     <string name="hide_score">Hide Score</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="gameAlert">Game Alert</string>
+    <string name="gameTime">Its Game Time</string>
+    <string name="alertMessage">This Game Will Start at</string>
+    <string name="cancel">Cancel</string>
+    <string name="reminder">Set Reminder</string>
+    <string name="signInToComment">Sign In To Add Comment</string>
+    <string name="signIn">Sign In</string>
+    <string name="deleteCommentMessage">Are You Sure You Want To Delete Comment</string>
+    <string name="yes">YES</string>
+    <string name="commentDeleted">Comment Deleted</string>
+    <string name="commentFailed">Failed To Add Comment</string>
+    <string name="addCommentFailed">Failed To Add Comment</string>
+    <string name="imageUploaded">Image Uploaded</string>
+    <string name="userUpdateFail">Failed to Update User info</string>
 </resources>

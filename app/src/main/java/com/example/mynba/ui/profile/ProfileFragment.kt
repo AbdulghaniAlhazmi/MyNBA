@@ -11,8 +11,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import coil.load
 import com.example.mynba.R
-import com.example.mynba.databinding.FragmentLoginBinding
 import com.example.mynba.databinding.FragmentProfileBinding
+import com.example.mynba.firebaseAuth
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
@@ -30,7 +30,6 @@ const val REQUEST_CODE_IMAGE_PICK = 0
 class ProfileFragment : Fragment() {
 
     private lateinit var binding: FragmentProfileBinding
-    private lateinit var firebaseAuth: FirebaseAuth
     private var curFile : Uri? = null
     private val imageRef = Firebase.storage.reference
     private val userCollectionRef = Firebase.firestore.collection("users")
@@ -74,8 +73,10 @@ class ProfileFragment : Fragment() {
                     if (it.result.exists()) {
                         val username = it.result.getString("username")
                         val email = it.result.getString("email")
+                        val team = it.result.getString("favTeam")
                         binding.signupUsername.text = username
                         binding.signupEmail.text = email
+                        binding.favoriteTeam.setText(team)
 
                     }
                 }
@@ -98,12 +99,12 @@ class ProfileFragment : Fragment() {
         try {
             curFile?.let {
                 imageRef.child("images/$filename").putFile(it).await()
-                Snackbar.make(requireView(), "Image Uploaded", Snackbar.LENGTH_LONG).show()
+                Snackbar.make(requireView(), getString(R.string.imageUploaded), Snackbar.LENGTH_LONG).show()
 
             }
 
         }catch (e:Exception){
-            Snackbar.make(requireView(), "Failed to Update User info", Snackbar.LENGTH_LONG).show()
+            Snackbar.make(requireView(), getString(R.string.userUpdateFail), Snackbar.LENGTH_LONG).show()
         }
     }
 

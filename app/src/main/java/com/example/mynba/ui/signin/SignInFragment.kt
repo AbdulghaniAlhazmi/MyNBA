@@ -1,13 +1,17 @@
-package com.example.mynba.ui.login
+package com.example.mynba.ui.signin
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.mynba.MainActivity
 import com.example.mynba.R
-import com.example.mynba.databinding.FragmentLoginBinding
+import com.example.mynba.databinding.FragmentSigninBinding
+import com.example.mynba.firebaseAuth
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.CoroutineScope
@@ -17,10 +21,11 @@ import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 
 
-class LoginFragment : Fragment() {
+private const val TAG = "LoginFragment"
 
-    private lateinit var binding: FragmentLoginBinding
-    private lateinit var firebaseAuth: FirebaseAuth
+class SignInFragment : Fragment() {
+
+    private lateinit var binding: FragmentSigninBinding
 
 
     override fun onCreateView(
@@ -28,16 +33,18 @@ class LoginFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentLoginBinding.inflate(layoutInflater)
+        binding = FragmentSigninBinding.inflate(layoutInflater)
         firebaseAuth = FirebaseAuth.getInstance()
 
-        binding.loginButton.setOnClickListener {
+        Log.d(TAG, firebaseAuth.currentUser?.uid.toString())
+
+        binding.signInButton.setOnClickListener {
             loginUser()
         }
 
 
         binding.signupRedirect.setOnClickListener {
-            findNavController().navigate(R.id.action_login_to_signup)
+            findNavController().navigate(R.id.action_signIn_to_signup)
         }
 
         return binding.root
@@ -60,6 +67,7 @@ class LoginFragment : Fragment() {
                     }
                 }catch (e: Exception){
                     withContext(Dispatchers.Main){
+                        Snackbar.make(requireView(), e.message.toString(), Snackbar.LENGTH_LONG).show()
 
                     }
                 }
@@ -71,7 +79,8 @@ class LoginFragment : Fragment() {
         if (firebaseAuth.currentUser == null){
 
         }else{
-            findNavController().navigate(R.id.navigation_news)
+            val intent = Intent(context, MainActivity::class.java)
+            startActivity(intent)
             Snackbar.make(requireView(), getString(R.string.logged), Snackbar.LENGTH_LONG).show()
 
         }

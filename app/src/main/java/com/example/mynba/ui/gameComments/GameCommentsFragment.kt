@@ -8,9 +8,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.example.mynba.R
 import com.example.mynba.database.Comment
 import com.example.mynba.databinding.CommentItemBinding
 import com.example.mynba.databinding.FragmentGameCommentsBinding
@@ -72,7 +74,10 @@ class GameCommentsFragment : Fragment() {
                 val comment = Comment(uid, commentText, gameId, commentId)
                 saveComment(comment)
             } else {
-                Snackbar.make(it, "Sign In To Add Comment", Snackbar.LENGTH_LONG).show()
+                Snackbar.make(it, getString(R.string.signInToComment), Snackbar.LENGTH_LONG)
+                    .setAction(getString(R.string.signIn),View.OnClickListener {
+                        findNavController().navigate(R.id.signInFragment)
+                    }).show()
             }
         }
 
@@ -120,12 +125,12 @@ class GameCommentsFragment : Fragment() {
 
     private fun deleteDialog(comment: Comment) {
         MaterialAlertDialogBuilder(requireContext())
-            .setMessage("Are You Sure You Want To Delete Comment")
-            .setPositiveButton("YES") { dialog, which ->
+            .setMessage(getString(R.string.deleteCommentMessage))
+            .setPositiveButton(getString(R.string.yes)) { dialog, which ->
                 deleteComment(comment)
-                Snackbar.make(requireView(), "Comment Deleted", Snackbar.LENGTH_LONG).show()
+                Snackbar.make(requireView(), getString(R.string.commentDeleted), Snackbar.LENGTH_LONG).show()
             }
-            .setNegativeButton("CANCEL") { dialog, which ->
+            .setNegativeButton(getString(R.string.cancel)) { dialog, which ->
                 dialog.dismiss()
             }.show()
 
@@ -145,7 +150,7 @@ class GameCommentsFragment : Fragment() {
                     withContext(Dispatchers.Main) {
                         Snackbar.make(
                             requireView(),
-                            "Failed To Add Comment",
+                            getString(R.string.commentFailed),
                             Snackbar.LENGTH_LONG
                         ).show()
                     }
@@ -192,20 +197,13 @@ class GameCommentsFragment : Fragment() {
     }
 
     private fun saveComment(comment: Comment) = CoroutineScope(Dispatchers.IO).launch {
-
         try {
             commentCollectionRef.document(commentId).set(comment).await()
-            withContext(Dispatchers.Main) {
-                Snackbar.make(requireView(), "Comment Added", Snackbar.LENGTH_LONG).show()
-            }
-        } catch (e: Exception) {
-            withContext(Dispatchers.Main) {
-                Snackbar.make(requireView(), "Failed To Add Comment", Snackbar.LENGTH_LONG).show()
 
+        } catch (e: Exception) {
+                Snackbar.make(requireView(), getString(R.string.addCommentFailed), Snackbar.LENGTH_LONG).show()
             }
         }
 
     }
 
-
-}

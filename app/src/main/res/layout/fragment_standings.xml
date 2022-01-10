@@ -105,17 +105,18 @@
         tools:listitem="@layout/standings_list_item" />
 
     <RadioGroup
-        android:layout_width="270dp"
+        android:layout_width="wrap_content"
         android:layout_height="35dp"
-        android:layout_marginStart="68dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="15dp"
-        android:background="@drawable/out_line"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="69dp"
+        android:background="@drawable/custom_radio_bg"
         android:checkedButton="@+id/east"
         android:gravity="center"
         android:orientation="horizontal"
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@id/linearlayout"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
@@ -123,32 +124,34 @@
 
         <RadioButton
             android:id="@+id/west"
-            android:layout_width="0dp"
+            android:layout_width="150dp"
             android:layout_height="match_parent"
             android:layout_marginTop="1dp"
             android:layout_marginEnd="1dp"
             android:layout_marginBottom="1dp"
             android:layout_weight="1"
-            android:background="@drawable/toggle_widget_background"
+            android:background="@drawable/custom_radio_bg_selector"
             android:button="@null"
+            android:fontFamily="@font/montserrat"
             android:gravity="center"
             android:text="@string/western_conference"
-            android:textColor="@color/white"
+            android:textColor="@color/custom_radio_text_color"
             tools:ignore="TouchTargetSizeCheck" />
 
         <RadioButton
             android:id="@+id/east"
-            android:layout_width="0dp"
+            android:layout_width="170dp"
             android:layout_height="match_parent"
             android:layout_marginTop="1dp"
             android:layout_marginEnd="1dp"
             android:layout_marginBottom="1dp"
             android:layout_weight="1"
-            android:background="@drawable/toggle_widget_background"
+            android:background="@drawable/custom_radio_bg_selector"
             android:button="@null"
+            android:fontFamily="@font/montserrat"
             android:gravity="center"
             android:text="@string/eastern_conference"
-            android:textColor="@color/white"
+            android:textColor="@color/custom_radio_text_color"
             tools:ignore="TouchTargetSizeCheck" />
     </RadioGroup>
 

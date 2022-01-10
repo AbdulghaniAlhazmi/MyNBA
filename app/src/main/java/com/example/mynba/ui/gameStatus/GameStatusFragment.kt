@@ -79,7 +79,21 @@ class GameStatusFragment : Fragment() {
             binding.homeStatus.text = status.home
             binding.awayStatus.text = status.away
 
-            binding.progressBar2.progress = 34
+            var home = 0F
+            var away = 0F
+            when {
+                status.home.contains("%") -> {
+                    home = status.home.substringAfter("(").substringBeforeLast(")").replace("%","").toFloat()
+                    away = status.away.substringAfter("(").substringBeforeLast(")").replace("%","").toFloat()
+                }
+                else -> {
+                    home = status.home.toFloat()
+                    away = status.away.toFloat()
+                }
+            }
+
+            binding.percentageProgressBar.setValues(away, home)
+
 
         }
     }

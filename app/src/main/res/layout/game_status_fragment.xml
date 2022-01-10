@@ -11,7 +11,7 @@
         android:layout_width="87dp"
         android:layout_height="97dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="28dp"
         android:contentDescription="@string/away_team_logo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -21,8 +21,8 @@
         android:id="@+id/homeLogo"
         android:layout_width="87dp"
         android:layout_height="97dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="28dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="24dp"
         android:contentDescription="@string/home_team_logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -31,12 +31,13 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/status_rc"
         android:layout_width="match_parent"
-        android:layout_height="343dp"
+        android:layout_height="450dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.607"
+        app:layout_constraintVertical_bias="0.895"
         tools:listitem="@layout/game_status_item">
 
     </androidx.recyclerview.widget.RecyclerView>

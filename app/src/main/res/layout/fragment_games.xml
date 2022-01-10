@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.games.GamesFragment">
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="47dp"
         android:layout_margin="10dp"
@@ -30,7 +30,7 @@
             tools:ignore="TouchTargetSizeCheck,UseSwitchCompatOrMaterialXml" />
 
 
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
 
     <androidx.compose.ui.platform.ComposeView
@@ -49,7 +49,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/games_rc"
         android:layout_width="match_parent"
-        android:layout_height="460dp"
+        android:layout_height="350dp"
         android:layout_marginTop="70dp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"

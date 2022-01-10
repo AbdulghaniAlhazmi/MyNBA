@@ -1,12 +1,11 @@
 package com.example.mynba
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.MenuItem
+import android.util.Log
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -15,18 +14,15 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.mynba.databinding.ActivityMainBinding
 import com.example.mynba.databinding.NavHeaderBinding
-import com.google.firebase.auth.FirebaseAuth
-import android.content.Intent
-import androidx.core.content.ContextCompat
 
+
+private const val TAG = "MainActivity"
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var navController: NavController
     lateinit var binding: ActivityMainBinding
-    private lateinit var firebaseAuth: FirebaseAuth
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
+        Log.d(TAG, firebaseAuth.currentUser?.uid.toString())
 
         navController = findNavController(R.id.main_nav_host)
 
@@ -49,21 +45,16 @@ class MainActivity : AppCompatActivity() {
 
         visibilityNavElements(navController)
 
-        firebaseAuth = FirebaseAuth.getInstance()
-
-
-
-    }
-
-
-    override fun onRestart() {
-        super.onRestart()
         checkLoggedIn()
+
     }
+
+
 
     override fun onResume() {
-        super.onResume()
+        Log.d(TAG, "Resume ${firebaseAuth.currentUser?.uid.toString()}")
         checkLoggedIn()
+        super.onResume()
     }
 
 
@@ -75,7 +66,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.boxScoreFragment -> hideBottomNavigation()
                 R.id.gameStatusFragment -> hideBottomNavigation()
                 R.id.newsPageFragment -> hideBottomNavigation()
-                R.id.loginFragment -> hideBottomNavigation()
+                R.id.signInFragment -> hideBottomNavigation()
                 R.id.signUpFragment -> hideBottomNavigation()
                 R.id.gameCommentsFragment -> hideBottomNavigation()
                 else -> showBothNavigation()
@@ -121,14 +112,14 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-        checkLoggedIn()
 
-    }
 
     private fun checkLoggedIn() {
         if (firebaseAuth.currentUser == null){
+
+            binding.mainNavigationView.menu.clear()
+            binding.mainNavigationView.inflateMenu(R.menu.drawer_nav)
+
 
         }else{
             val viewHeader = binding.mainNavigationView.getHeaderView(0)
@@ -141,6 +132,7 @@ class MainActivity : AppCompatActivity() {
                 when(it.itemId){
                     R.id.sign_out -> {
                         firebaseAuth.signOut()
+                        navController.navigate(R.id.navigation_news)
                         recreate()
                         true
                     }

@@ -3,70 +3,66 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="170dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="3dp"
-        android:progress="50"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/progressBar2"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <ProgressBar
-        android:id="@+id/progressBar2"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="170dp"
-        android:layout_height="20dp"
-        android:layout_marginEnd="8dp"
-        android:outlineAmbientShadowColor="#D31010"
-        android:progress="40"
-        android:progressTint="#C11111"
-        android:scaleX="-1"
-        android:secondaryProgressTintMode="add"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/progressBar"
-        app:layout_constraintTop_toBottomOf="@+id/status" />
+    android:layout_height="120dp">
 
     <TextView
         android:id="@+id/status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="97dp"
+        android:layout_marginStart="80dp"
         android:layout_marginTop="26dp"
         android:layout_marginEnd="78dp"
         android:fontFamily="@font/montserrat"
-        tools:text="Filed Goals"
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/homeStatus"
         app:layout_constraintStart_toEndOf="@+id/awayStatus"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Filed Goals" />
 
     <TextView
         android:id="@+id/awayStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="42dp"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="29dp"
         android:fontFamily="@font/montserrat"
-        tools:text="Away"
         android:textColor="#000000"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/progressBar"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Away" />
 
     <TextView
         android:id="@+id/homeStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="39dp"
+        android:layout_marginTop="29dp"
+        android:layout_marginEnd="45dp"
         android:fontFamily="@font/montserrat"
-        tools:text="home"
         android:textColor="#000000"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/progressBar2"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="home" />
+
+    <com.cliff.comparingperformancebar.ValueProgressBar
+        android:id="@+id/percentageProgressBar"
+        android:layout_width="match_parent"
+        android:layout_height="27dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="8dp"
+        android:contextClickable="false"
+        android:drawingCacheQuality="auto"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:ppb_percentage="100"
+        app:ppb_textSize="1sp"
+        app:vpb_progressLeftColor="@color/red"
+        app:vpb_progressRightColor="@color/blue2"
+        app:vpb_textSize="0sp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

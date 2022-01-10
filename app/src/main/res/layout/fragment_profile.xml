@@ -76,10 +76,12 @@
             </com.google.android.material.textfield.TextInputLayout>
 
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/update_button"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
+                app:cornerRadius="7dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:layout_margin="30dp"
                 android:fontFamily="@font/montserrat"
                 android:text="@string/update" />

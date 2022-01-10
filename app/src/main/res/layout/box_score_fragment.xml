@@ -255,7 +255,7 @@
         android:layout_height="35dp"
         android:layout_marginStart="68dp"
         android:layout_marginTop="8dp"
-        android:background="@drawable/out_line"
+        android:background="@drawable/custom_radio_bg"
         android:checkedButton="@+id/home_button"
         android:gravity="center"
         android:orientation="horizontal"
@@ -272,11 +272,11 @@
             android:layout_marginEnd="1dp"
             android:layout_marginBottom="1dp"
             android:layout_weight="1"
-            android:background="@drawable/toggle_widget_background"
+            android:background="@drawable/custom_radio_bg_selector"
             android:button="@null"
             android:fontFamily="@font/montserrat"
             android:gravity="center"
-            android:textColor="@color/blue"
+            android:textColor="@color/custom_radio_text_color"
             tools:ignore="TouchTargetSizeCheck"
             tools:text="BLK" />
 
@@ -288,11 +288,11 @@
             android:layout_marginEnd="1dp"
             android:layout_marginBottom="1dp"
             android:layout_weight="1"
-            android:background="@drawable/toggle_widget_background"
+            android:background="@drawable/custom_radio_bg_selector"
             android:button="@null"
             android:fontFamily="@font/montserrat"
             android:gravity="center"
-            android:textColor="@color/white"
+            android:textColor="@color/custom_radio_text_color"
             tools:ignore="TouchTargetSizeCheck"
             tools:text="GSW" />
     </RadioGroup>

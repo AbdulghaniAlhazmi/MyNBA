@@ -11,8 +11,8 @@ import androidx.navigation.fragment.findNavController
 import com.example.mynba.R
 import com.example.mynba.database.User
 import com.example.mynba.databinding.FragmentSignUpBinding
+import com.example.mynba.firebaseAuth
 import com.google.android.material.snackbar.Snackbar
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.CoroutineScope
@@ -25,7 +25,6 @@ import kotlinx.coroutines.withContext
 class SignUpFragment : Fragment(), AdapterView.OnItemClickListener {
 
     private lateinit var binding : FragmentSignUpBinding
-    private lateinit var firebaseAuth: FirebaseAuth
     private val userCollectionRef = Firebase.firestore.collection("users")
     private lateinit var username : String
     private lateinit var uid : String
@@ -41,19 +40,17 @@ class SignUpFragment : Fragment(), AdapterView.OnItemClickListener {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentSignUpBinding.inflate(layoutInflater)
-        firebaseAuth = FirebaseAuth.getInstance()
 
         binding.signupButton.setOnClickListener {
             username = binding.signupUsername.text.toString()
             email = binding.signupEmail.text.toString()
             password = binding.signupPassword.text.toString()
             registerUser()
-            findNavController().navigate(R.id.loginFragment)
 
         }
 
-        binding.loginRedirect.setOnClickListener {
-            findNavController().navigate(R.id.action_signup_to_login)
+        binding.signInRedirect.setOnClickListener {
+            findNavController().navigate(R.id.action_signup_to_signIn)
         }
 
 

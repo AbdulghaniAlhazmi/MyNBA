@@ -1,34 +1,36 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
-        android:paddingBottom="5dp"
-        android:baselineAligned="true" >
+        android:baselineAligned="false"
+        android:orientation="horizontal">
+
 
         <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="0dip"
-            android:layout_height="70dp"
-            android:layout_weight="1"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="30dp"
             android:hint="@string/comment">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <EditText
                 android:id="@+id/commentEt"
                 android:layout_width="match_parent"
-                android:layout_height="65dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:fontFamily="@font/montserrat"
-                android:inputType="textMultiLine|textCapSentences" />
+                tools:ignore="SpeakableTextPresentCheck" />
 
 
         </com.google.android.material.textfield.TextInputLayout>
+
 
         <ImageButton
             android:id="@+id/btnSend"
@@ -45,9 +47,8 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/comments_rc"
         android:layout_width="match_parent"
-        android:layout_height="545dp"
+        android:layout_height="match_parent"
         tools:listitem="@layout/comment_item" />
-
 
 
 </LinearLayout>

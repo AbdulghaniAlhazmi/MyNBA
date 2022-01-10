@@ -2,8 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
 
-    <item android:title="@string/login"
-        android:id="@+id/loginFragment"
+    <item android:title="@string/sign_in"
+        android:id="@+id/signInFragment"
         android:fontFamily="@font/montserrat" />
 
 
