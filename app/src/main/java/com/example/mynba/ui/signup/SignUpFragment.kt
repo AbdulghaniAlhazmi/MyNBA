@@ -19,7 +19,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
-import kotlinx.coroutines.withContext
 
 
 class SignUpFragment : Fragment(), AdapterView.OnItemClickListener {
@@ -68,9 +67,7 @@ class SignUpFragment : Fragment(), AdapterView.OnItemClickListener {
                     updateUser(user)
                     findNavController().navigate(R.id.action_signUpFragment_to_navigation_standings)
                 }catch (e : Exception){
-                    withContext(Dispatchers.Main){
-                        Snackbar.make(requireView(), getString(R.string.fileduser), Snackbar.LENGTH_LONG).show()
-                    }
+                    Snackbar.make(requireView(), getString(R.string.fileduser), Snackbar.LENGTH_LONG).show()
                 }
             }
 

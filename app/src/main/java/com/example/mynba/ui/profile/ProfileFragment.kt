@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import coil.load
 import com.example.mynba.R
 import com.example.mynba.databinding.FragmentProfileBinding
@@ -22,8 +21,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
-import kotlinx.coroutines.withContext
-import java.lang.Exception
 
 const val REQUEST_CODE_IMAGE_PICK = 0
 
@@ -86,9 +83,7 @@ class ProfileFragment : Fragment() {
    private fun getImage() = CoroutineScope(Dispatchers.IO).launch {
         try {
             val image = imageRef.child("images/myImage-${firebaseAuth.currentUser?.uid}").downloadUrl.await()
-            withContext(Dispatchers.Main){
-                binding.imageView.load(image)
-            }
+            binding.imageView.load(image)
         }catch (e:Exception){
             Snackbar.make(requireView(), e.message.toString(), Snackbar.LENGTH_LONG).show()
         }

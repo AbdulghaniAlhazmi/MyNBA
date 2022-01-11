@@ -98,4 +98,5 @@
     <string name="addCommentFailed">Failed To Add Comment</string>
     <string name="imageUploaded">Image Uploaded</string>
     <string name="userUpdateFail">Failed to Update User info</string>
+    <string name="add_new_comment">Add New Comment</string>
 </resources>

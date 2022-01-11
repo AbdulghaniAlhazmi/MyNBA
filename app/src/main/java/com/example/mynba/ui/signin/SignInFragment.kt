@@ -18,7 +18,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
-import kotlinx.coroutines.withContext
 
 
 private const val TAG = "LoginFragment"
@@ -62,14 +61,9 @@ class SignInFragment : Fragment() {
             CoroutineScope(Dispatchers.IO).launch {
                 try {
                     firebaseAuth.signInWithEmailAndPassword(email,password).await()
-                    withContext(Dispatchers.Main){
-                        checkLoggedIn()
-                    }
+                    checkLoggedIn()
                 }catch (e: Exception){
-                    withContext(Dispatchers.Main){
-                        Snackbar.make(requireView(), e.message.toString(), Snackbar.LENGTH_LONG).show()
-
-                    }
+                    Snackbar.make(requireView(), e.message.toString(), Snackbar.LENGTH_LONG).show()
                 }
             }
         }

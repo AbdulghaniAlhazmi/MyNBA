@@ -1,56 +1,56 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <LinearLayout
+<?xml version="1.0" encoding="utf-8"?>
+ <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:baselineAligned="false"
-        android:orientation="horizontal">
+        android:layout_height="match_parent" >
 
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="30dp"
-            android:hint="@string/comment">
-
-            <EditText
-                android:id="@+id/commentEt"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/commentsRc"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:fontFamily="@font/montserrat"
-                tools:ignore="SpeakableTextPresentCheck" />
+                android:overScrollMode="never"/>
 
 
-        </com.google.android.material.textfield.TextInputLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/addCommentLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_alignParentBottom="true">
+
+            <EditText
+                android:id="@+id/commentET"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:hint="@string/add_new_comment"
+                android:importantForAutofill="no"
+                android:inputType="text|textAutoComplete|textNoSuggestions|textAutoCorrect|textLongMessage|textMultiLine|textShortMessage"
+                android:minHeight="48dp"
+                android:padding="12dp"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/sendComment"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/sendComment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/send_comment"
+                android:minWidth="48dp"
+                android:minHeight="48dp"
+                android:padding="10dp"
+                android:src="@drawable/ic_baseline_send_24"
+                app:layout_constraintBottom_toBottomOf="@id/commentET"
+                app:layout_constraintEnd_toEndOf="parent" />
 
 
-        <ImageButton
-            android:id="@+id/btnSend"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:background="@android:color/transparent"
-            android:contentDescription="@string/send_comment"
-            android:minWidth="48dp"
-            android:src="@drawable/ic_baseline_add_comment_24"
-            tools:ignore="SpeakableTextPresentCheck" />
 
-    </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/comments_rc"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:listitem="@layout/comment_item" />
-
-
-</LinearLayout>
-
-
+    </RelativeLayout>

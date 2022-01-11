@@ -1,59 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardBackgroundColor="@color/white"
-    android:layout_margin="1dp"
-    app:cardCornerRadius="5dp"
-    android:elevation="0dp"
-    app:contentPadding="8dp">
 
     <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:id="@+id/commentRoot">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profileIv"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:scaleType="centerCrop" />
-
-        <TextView
-            android:id="@+id/nameTV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toStartOf="@+id/dateTv"
-            android:layout_toEndOf="@+id/profileIv"
-            android:fontFamily="@font/montserrat"
-            android:text=""
-            android:textColor="@color/black"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/dateTv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
+            android:id="@+id/commentIcon"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_marginTop="5dp"
-            android:fontFamily="@font/montserrat"
-            android:textColor="#817D7D"
-            android:textSize="12sp" />
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_baseline_person_24"
+            android:layout_alignParentStart="true" />
 
-        <TextView
-            android:id="@+id/comment"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/nameTV"
-            android:layout_marginTop="5dp"
-            android:layout_toEndOf="@id/profileIv"
-            android:fontFamily="@font/montserrat"
-            android:textColor="@color/black"
-            android:textSize="12sp" />
+            android:orientation="vertical"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@id/commentIcon">
 
+            <TextView
+                android:id="@+id/commentUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:fontFamily="@font/montserrat"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
 
+            <TextView
+                android:id="@+id/commentText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:fontFamily="@font/montserrat"
+                android:textSize="15sp"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
 
     </RelativeLayout>
-
-</androidx.cardview.widget.CardView>

@@ -27,7 +27,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
-import kotlinx.coroutines.withContext
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -66,10 +65,10 @@ class GameCommentsFragment : Fragment() {
         binding = FragmentGameCommentsBinding.inflate(layoutInflater)
         binding.commentsRc.layoutManager = LinearLayoutManager(context)
 
-        binding.btnSend.setOnClickListener {
+        binding.sendComment.setOnClickListener {
             if (firebaseAuth.currentUser != null) {
                 uid = firebaseAuth.currentUser!!.uid
-                commentText = binding.commentEt.text.toString()
+                commentText = binding.commentET.text.toString()
                 commentId = UUID.randomUUID().toString()
                 val comment = Comment(uid, commentText, gameId, commentId)
                 saveComment(comment)
@@ -91,7 +90,7 @@ class GameCommentsFragment : Fragment() {
         RecyclerView.ViewHolder(binding.root) {
         fun bind(comment: Comment) {
 
-            binding.comment.text = comment.comment
+            binding.commentText.text = comment.comment
         }
     }
 
@@ -147,13 +146,11 @@ class GameCommentsFragment : Fragment() {
                 try {
                     commentCollectionRef.document(document.id).delete().await()
                 } catch (e: Exception) {
-                    withContext(Dispatchers.Main) {
-                        Snackbar.make(
-                            requireView(),
-                            getString(R.string.commentFailed),
-                            Snackbar.LENGTH_LONG
-                        ).show()
-                    }
+                    Snackbar.make(
+                        requireView(),
+                        getString(R.string.commentFailed),
+                        Snackbar.LENGTH_LONG
+                    ).show()
                 }
             }
         }
@@ -166,7 +163,7 @@ class GameCommentsFragment : Fragment() {
             .addOnCompleteListener {
                 if (it.result.exists()) {
                     val username = it.result.getString("username")
-                    holder.binding.nameTV.text = username
+                    holder.binding.commentUser.text = username
                 }
             }
     }
@@ -189,9 +186,7 @@ class GameCommentsFragment : Fragment() {
     private fun getImage(userId : String,holder: GameCommentsFragment.CommentHolder) = CoroutineScope(Dispatchers.IO).launch {
         try {
             image = imageRef.child("images/myImage-${userId}").downloadUrl.await()
-            withContext(Dispatchers.Main){
-                holder.binding.profileIv.load(image)
-            }
+            holder.binding.commentIcon.load(image)
         }catch (e: java.lang.Exception){
                 Log.d(TAG,e.message.toString())        }
     }
@@ -199,7 +194,6 @@ class GameCommentsFragment : Fragment() {
     private fun saveComment(comment: Comment) = CoroutineScope(Dispatchers.IO).launch {
         try {
             commentCollectionRef.document(commentId).set(comment).await()
-
         } catch (e: Exception) {
                 Snackbar.make(requireView(), getString(R.string.addCommentFailed), Snackbar.LENGTH_LONG).show()
             }
