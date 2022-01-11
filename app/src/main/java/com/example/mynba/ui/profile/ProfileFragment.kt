@@ -4,14 +4,14 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import androidx.core.app.ActivityCompat.recreate
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import coil.load
+import com.example.mynba.MainActivity
 import com.example.mynba.R
 import com.example.mynba.databinding.FragmentProfileBinding
-import com.example.mynba.firebaseAuth
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
@@ -30,7 +30,30 @@ class ProfileFragment : Fragment() {
     private var curFile : Uri? = null
     private val imageRef = Firebase.storage.reference
     private val userCollectionRef = Firebase.firestore.collection("users")
+    private lateinit var firebaseAuth : FirebaseAuth
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.profile_menu,menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId){
+            R.id.signOut ->{
+                firebaseAuth.signOut()
+                val intent = Intent(context, MainActivity::class.java)
+                startActivity(intent)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+
+    }
 
 
     override fun onCreateView(

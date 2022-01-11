@@ -14,6 +14,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.mynba.databinding.ActivityMainBinding
 import com.example.mynba.databinding.NavHeaderBinding
+import com.google.firebase.auth.FirebaseAuth
 
 
 private const val TAG = "MainActivity"
@@ -23,12 +24,15 @@ class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var navController: NavController
     lateinit var binding: ActivityMainBinding
+    private lateinit var firebaseAuth : FirebaseAuth
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        firebaseAuth = FirebaseAuth.getInstance()
 
         Log.d(TAG, firebaseAuth.currentUser?.uid.toString())
 
@@ -128,21 +132,6 @@ class MainActivity : AppCompatActivity() {
             navViewHeaderBinding.userEmail.text = firebaseAuth.currentUser!!.email
             binding.mainNavigationView.menu.clear()
             binding.mainNavigationView.inflateMenu(R.menu.drawer_user)
-            binding.mainNavigationView.setNavigationItemSelectedListener {
-                when(it.itemId){
-                    R.id.sign_out -> {
-                        firebaseAuth.signOut()
-                        navController.navigate(R.id.navigation_news)
-                        recreate()
-                        true
-                    }
-                    R.id.profileFragment ->{
-                        navController.navigate(R.id.profileFragment)
-                        true
-                    }
-                    else -> true
-                }
-            }
         }
     }
 }

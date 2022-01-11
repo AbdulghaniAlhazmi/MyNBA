@@ -1,12 +1,14 @@
 package com.example.mynba.ui.gameComments
 
 
+import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -78,6 +80,7 @@ class GameCommentsFragment : Fragment() {
                         findNavController().navigate(R.id.signInFragment)
                     }).show()
             }
+            hideKeyboard()
         }
 
         commentsRealTime()
@@ -199,5 +202,10 @@ class GameCommentsFragment : Fragment() {
             }
         }
 
+    fun GameCommentsFragment.hideKeyboard(){
+        val inputManager = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputManager.hideSoftInputFromWindow(view?.windowToken,0)
     }
+
+}
 

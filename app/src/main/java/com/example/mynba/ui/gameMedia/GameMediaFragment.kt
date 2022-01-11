@@ -18,6 +18,7 @@ import com.example.mynba.api.models.gameMedia.Data
 import com.example.mynba.databinding.GameMediaFragmentBinding
 import com.example.mynba.databinding.MediaListItemBinding
 import com.example.mynba.ui.games.KEY_GAME_ID
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 
@@ -65,12 +66,21 @@ class GameMediaFragment : Fragment() {
             binding.videoImage.load(media.thumbnail_url)
             var videoId = media.source_url
             videoId = videoId.substringAfter("watch?v=").substringBefore("&")
-            Log.d(TAG,videoId)
+            Log.d(TAG, videoId)
+
+
             binding.youtubePlayer.getPlayerUiController().showFullscreenButton(true)
-            binding.youtubePlayer.addYouTubePlayerListener(object : AbstractYouTubePlayerListener(){
+            binding.youtubePlayer.addYouTubePlayerListener(object :
+                AbstractYouTubePlayerListener() {
                 override fun onReady(youTubePlayer: YouTubePlayer) {
-                    youTubePlayer.cueVideo(videoId,0f)
+                    youTubePlayer.cueVideo(videoId, 0f)
+                    if (viewClicked == 0){
+
+                    }else{
+                        youTubePlayer.pause()
+                    }
                 }
+
             })
 
             binding.youtubePlayer.getPlayerUiController().setFullScreenButtonClickListener {
@@ -85,9 +95,11 @@ class GameMediaFragment : Fragment() {
                     (activity as AppCompatActivity).supportActionBar?.hide()
 
                 }
-            }
+
         }
     }
+        }
+
 
     private inner class MediaAdapter(val media: List<Data>) : RecyclerView.Adapter<MediaHolder>() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MediaHolder {
@@ -102,23 +114,19 @@ class GameMediaFragment : Fragment() {
         override fun onBindViewHolder(holder: MediaHolder, position: Int) {
             val media = media[position]
             holder.bind(media)
+
             holder.itemView.setOnClickListener {
-                    if (viewClicked == 0){
-                        viewClicked = 1
-                        holder.binding.youtubePlayer.visibility = View.VISIBLE
-                        holder.binding.videoImage.visibility = View.GONE
-                        holder.binding.titleTv.visibility = View.GONE
-                    }else{
-                        holder.binding.youtubePlayer.visibility = View.GONE
-                        holder.binding.videoImage.visibility = View.VISIBLE
-                        holder.binding.titleTv.visibility = View.VISIBLE
-                        viewClicked = 0
-                    }
+                if (viewClicked == 0) {
+                    viewClicked = 1
+                    holder.binding.layout.visibility = View.VISIBLE
+                } else {
+                    holder.binding.layout.visibility = View.GONE
+                    viewClicked = 0
+                }
             }
         }
 
-        override fun getItemCount(): Int = media.size
+            override fun getItemCount(): Int = media.size
 
     }
-
 }
