@@ -83,15 +83,15 @@ class GameMediaFragment : Fragment() {
 
             holder.itemView.setOnClickListener {
 
-                val intent = Intent(context,YouTubePlayerActivity::class.java).apply {
-                    putExtra("KEY",media.url.substringAfter("watch?v=").substringBefore("&"))
+                val intent = Intent(context, YouTubePlayerActivity::class.java).apply {
+                    putExtra("KEY", media.url.substringAfter("watch?v=").substringBefore("&"))
                 }
                 startActivity(intent)
 
             }
         }
 
-            override fun getItemCount(): Int = media.size
+        override fun getItemCount(): Int = media.size
 
     }
 }

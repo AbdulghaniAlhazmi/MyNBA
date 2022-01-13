@@ -96,7 +96,6 @@ class BoxScoreFragment : Fragment() {
             binding.stlTV.text = boxScore.player_statistics.steals
             binding.blkTV.text = boxScore.player_statistics.blocks
 
-
         }
     }
 

@@ -25,11 +25,5 @@
 
     <style name="Theme.MyNBA.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="tabLayoutText" parent="Widget.MaterialComponents.TabLayout">
-
-        <item name="android:textAllCaps">true</item>
-        <item name="android:textSize">16sp</item>
-
-    </style>
 
 </resources>

@@ -6,32 +6,10 @@
     android:background="#EAEAEA"
     tools:context=".MainActivity" android:layout_height="match_parent" android:layout_width="match_parent">
 
-
-    <LinearLayout
-        android:id="@+id/splashLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/black"
-        android:orientation="vertical"
-        android:visibility="gone">
-
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/animationView"
-            android:layout_width="650dp"
-            android:layout_height="700dp"
-            android:layout_gravity="center"
-            android:visibility="visible"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            app:lottie_rawRes="@raw/logo_animation" />
-
-    </LinearLayout>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/mainLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="visible">
+        android:layout_height="match_parent">
 
         <androidx.drawerlayout.widget.DrawerLayout
             android:id="@+id/main_drawer_layout"
@@ -70,12 +48,10 @@
 
                 <com.google.android.material.bottomnavigation.BottomNavigationView
                     android:id="@+id/main_bottom_navigation_view"
-                    style="@style/Widget.Design.BottomNavigationView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#EAEAEA"
-                    android:overScrollMode="ifContentScrolls"
-                    app:labelVisibilityMode="auto"
+                    app:labelVisibilityMode="labeled"
                     app:menu="@menu/bottom_nav_menu" />
 
             </LinearLayout>

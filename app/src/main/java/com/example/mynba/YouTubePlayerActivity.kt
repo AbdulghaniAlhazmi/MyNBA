@@ -1,10 +1,9 @@
 package com.example.mynba
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.annotation.NonNull
-import com.example.mynba.databinding.ActivityMainBinding
+import androidx.appcompat.app.AppCompatActivity
 import com.example.mynba.databinding.ActivityYouTubePlayerBinding
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
@@ -21,10 +20,10 @@ class YouTubePlayerActivity : AppCompatActivity() {
         val videoId = intent.getStringExtra("KEY")
 
         binding.youTubePlayer.getPlayerUiController().showFullscreenButton(true)
-        binding.youTubePlayer.addYouTubePlayerListener(object : AbstractYouTubePlayerListener(){
+        binding.youTubePlayer.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
             override fun onReady(@NonNull youTubePlayer: YouTubePlayer) {
                 if (videoId != null) {
-                    youTubePlayer.cueVideo(videoId,0f)
+                    youTubePlayer.cueVideo(videoId, 0f)
                 }
             }
         })

@@ -19,7 +19,6 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/teamRankTv"
             android:layout_width="20dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
@@ -45,7 +44,6 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/totalTv"
             android:layout_width="50dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
@@ -56,7 +54,6 @@
             tools:textSize="16sp" />
 
         <TextView
-            android:id="@+id/pctTv"
             android:layout_width="50dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
@@ -67,7 +64,6 @@
             tools:textSize="16sp" />
 
         <TextView
-            android:id="@+id/strkTv"
             android:layout_width="50dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
@@ -79,7 +75,6 @@
             tools:textSize="16sp" />
 
         <TextView
-            android:id="@+id/gbTv"
             android:layout_width="45dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"

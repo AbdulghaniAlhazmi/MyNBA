@@ -25,7 +25,15 @@
         android:id="@+id/navigation_standings"
         android:name="com.example.mynba.ui.standings.StandingsFragment"
         android:label="@string/standings"
-        tools:layout="@layout/fragment_standings" />
+        tools:layout="@layout/fragment_standings" >
+        <action
+            android:id="@+id/action_navigation_standings_to_webViewActivity2"
+            app:destination="@id/webViewActivity2"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
     <fragment
         android:id="@+id/gameStatusFragment"
         android:name="com.example.mynba.ui.gameStatus.GameStatusFragment"
@@ -86,6 +94,11 @@
         android:id="@+id/profileFragment"
         android:name="com.example.mynba.ui.profile.ProfileFragment"
         android:label="@string/profile" />
+    <activity
+        android:id="@+id/webViewActivity2"
+        android:name="com.example.mynba.WebViewActivity"
+        android:label="activity_web_view"
+        tools:layout="@layout/activity_web_view" />
 
 
 </navigation>

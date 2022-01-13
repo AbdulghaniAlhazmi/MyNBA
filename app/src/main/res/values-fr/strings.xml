@@ -9,9 +9,7 @@
     <string name="starters">Titulaires</string>
     <string name="ast">PD</string>
     <string name="profile">Profil</string>
-    <string name="comment">Commenter</string>
     <string name="password">Mot de passe</string>
-    <string name="login">SE CONNECTER</string>
     <string name="don_t_have_an_account">Vous n\'avez pas de compte ?</string>
     <string name="signup">S\'inscrire</string>
     <string name="username">"Nom d'utilisateur "</string>
@@ -30,10 +28,7 @@
     <string name="status">Statut</string>
     <string name="boxScore">Statistiques</string>
     <string name="discuss">Discuter</string>
-    <string name="fileduser">"Échec de la création de l'utilisateur "</string>
-    <string name="registerSucess">"Utilisateur enregistré avec succès "</string>
     <string name="filedRegister">"Échec de l'enregistrement des informations sur l'utilisateur "</string>
-    <string name="logged">Connecté</string>
     <string name="bench">Remplaçants</string>
     <string name="hide_score">Masquer le score</string>
     <string name="sign_in">S\'identifier</string>
@@ -49,10 +44,8 @@
     <string name="yes">OUI</string>
     <string name="commentDeleted">Commentaire supprimé</string>
     <string name="commentFailed">Échec de la suppression du commentaire</string>
-    <string name="addCommentFailed">Échec de l\'ajout d\'un commentaire</string>
     <string name="imageUploaded">Image téléchargée</string>
     <string name="userUpdateFail">Échec de la mise à jour des informations utilisateur</string>
     <string name="add_new_comment">"Ajouter un nouveau commentaire "</string>
-    <string name="explore_nba">Découvrir la NBA</string>
-    <string name="nba_tickets">Billets NBA</string>
+    <string name="change_photo">"Changer la photo "</string>
 </resources>

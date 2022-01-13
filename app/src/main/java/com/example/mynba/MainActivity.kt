@@ -1,10 +1,7 @@
 package com.example.mynba
 
-import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -47,14 +44,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-        Handler(Looper.getMainLooper()).postDelayed({
-            binding.mainLayout.visibility = View.VISIBLE
-            binding.splashLayout.visibility = View.GONE
-            binding.animationView.visibility = View.GONE
-        }, 3000)
-
-
         firebaseAuth = FirebaseAuth.getInstance()
 
         Log.d(TAG, firebaseAuth.currentUser?.uid.toString())
@@ -91,19 +80,6 @@ class MainActivity : AppCompatActivity() {
         checkLoggedIn()
         super.onStart()
     }
-
-    override fun onRestart() {
-        Log.d(TAG, "Restart ${firebaseAuth.currentUser?.uid.toString()}")
-        checkLoggedIn()
-        super.onRestart()
-    }
-
-    override fun onPause() {
-        Log.d(TAG, "Pause ${firebaseAuth.currentUser?.uid.toString()}")
-        checkLoggedIn()
-        super.onPause()
-    }
-
 
 
     private fun visibilityNavElements(navController: NavController) {
@@ -192,7 +168,7 @@ class MainActivity : AppCompatActivity() {
 
         }else{
             navHeaderBinding.userEmail.visibility = View.INVISIBLE
-            navHeaderBinding.imageView2.visibility = View.INVISIBLE
+            navHeaderBinding.userImage.visibility = View.INVISIBLE
             navHeaderBinding.userName.visibility = View.INVISIBLE
         }
     }
@@ -215,7 +191,7 @@ class MainActivity : AppCompatActivity() {
         Dispatchers.IO).launch {
         try {
             image = imageRef.child("images/myImage-${userId}").downloadUrl.await()
-            navHeaderBinding.imageView2.load(image)
+            navHeaderBinding.userImage.load(image)
         }catch (e: java.lang.Exception){
             Log.d(TAG,e.message.toString())        }
     }

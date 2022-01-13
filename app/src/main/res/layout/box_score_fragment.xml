@@ -83,7 +83,6 @@
             android:gravity="center">
 
             <TextView
-                android:id="@+id/starter"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -94,7 +93,6 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/minTVb"
             android:layout_width="45dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
@@ -105,7 +103,6 @@
             tools:textSize="16sp" />
 
         <TextView
-            android:id="@+id/ptsTVb"
             android:layout_width="45dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
@@ -116,7 +113,6 @@
             tools:textSize="16sp" />
 
         <TextView
-            android:id="@+id/rebTVb"
             android:layout_width="45dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
@@ -128,7 +124,6 @@
             tools:textSize="16sp" />
 
         <TextView
-            android:id="@+id/astTVb"
             android:layout_width="45dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
@@ -140,7 +135,6 @@
             tools:textSize="16sp" />
 
         <TextView
-            android:id="@+id/stlTVb"
             android:layout_width="45dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
@@ -152,7 +146,6 @@
             tools:textSize="16sp" />
 
         <TextView
-            android:id="@+id/blkTVb"
             android:layout_width="40dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"

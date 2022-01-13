@@ -16,6 +16,7 @@ import com.example.mynba.api.models.news.Value
 import com.example.mynba.databinding.FragmentNewsBinding
 import com.example.mynba.databinding.NewsListItemBinding
 
+const val NEWS_KEY = "NewsKey"
 
 class NewsFragment : Fragment() {
 
@@ -72,7 +73,7 @@ class NewsFragment : Fragment() {
             holder.itemView.setOnClickListener {
 
                 val intent = Intent(context, WebViewActivity::class.java).apply {
-                    putExtra("KEY", news.url)
+                    putExtra(NEWS_KEY, news.url)
                 }
                 startActivity(intent)
             }

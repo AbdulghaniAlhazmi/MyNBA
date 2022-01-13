@@ -14,20 +14,4 @@
 
         </group>
 
-        <item android:title="@string/explore_nba"
-            android:fontFamily="@font/montserrat"
-            >
-            <menu>
-                <item
-                    android:id="@+id/webViewActivity"
-                    android:title="@string/nba_tickets"
-                    android:fontFamily="@font/montserrat"
-                    />
-                <item
-                    android:id="@+id/nav_send"
-                    android:title="@string/nba_store"
-                    android:fontFamily="@font/montserrat"
-                    />
-            </menu>
-        </item>
     </menu>

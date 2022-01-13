@@ -16,13 +16,23 @@
         android:theme="@style/Theme.MyNBA"
         tools:replace="android:supportsRtl">
         <activity
+            android:name=".IntroActivity"
+            android:theme="@style/Theme.MyNBA.NoActionBar"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".WebViewActivity"
             android:exported="false" />
         <activity
             android:name=".YouTubePlayerActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            android:theme="@style/Theme.MyNBA.NoActionBar"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.MyNBA.NoActionBar" />
 
         <receiver
             android:name=".Notification"
@@ -31,16 +41,9 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.MyNBA.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
+            android:theme="@style/Theme.MyNBA.NoActionBar"
+            android:screenOrientation="portrait">
         </activity>
-
     </application>
 
 </manifest>

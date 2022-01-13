@@ -38,7 +38,7 @@ class SignInFragment : Fragment() {
             Intent(context,MainActivity::class.java)
         }
 
-        binding.signInButton.setOnClickListener {
+        binding.signinButton.setOnClickListener {
             loginUser()
             hideKeyboard(requireContext(),requireView())
         }

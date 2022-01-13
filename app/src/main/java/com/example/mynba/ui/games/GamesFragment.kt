@@ -77,6 +77,7 @@ class GamesFragment : Fragment() {
         super.onCreate(savedInstanceState)
         Log.d(TAG, date)
 
+
         Log.d(TAG, hideScore.toString())
 
         gamesViewModel.getGames(date).observe(
@@ -314,6 +315,5 @@ class GamesFragment : Fragment() {
             }
         )
     }
-
 
 }

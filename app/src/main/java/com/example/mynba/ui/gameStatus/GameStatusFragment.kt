@@ -90,7 +90,7 @@ class GameStatusFragment : Fragment() {
                 }
             }
 
-            binding.percentageProgressBar.setValues(away, home)
+            binding.progressBar.setValues(away, home)
 
 
         }

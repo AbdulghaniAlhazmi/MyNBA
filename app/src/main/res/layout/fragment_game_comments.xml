@@ -5,15 +5,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/commentsRc"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:overScrollMode="never"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/commentsRc"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never" />
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/addCommentLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"

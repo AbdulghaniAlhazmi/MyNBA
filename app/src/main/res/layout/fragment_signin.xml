@@ -34,9 +34,9 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:fontFamily="@font/montserrat"
+                    android:importantForAutofill="no"
                     android:inputType="textEmailAddress"
-                    tools:ignore="SpeakableTextPresentCheck"
-                    android:importantForAutofill="no" />
+                    tools:ignore="LabelFor,SpeakableTextPresentCheck" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -57,18 +57,16 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:fontFamily="@font/montserrat"
+                    android:importantForAutofill="no"
                     android:inputType="textPassword"
-                    tools:ignore="LabelFor,SpeakableTextPresentCheck"
-                    android:importantForAutofill="no" />
+                    tools:ignore="LabelFor,SpeakableTextPresentCheck" />
 
 
             </com.google.android.material.textfield.TextInputLayout>
 
 
-
-
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/signIn_button"
+                android:id="@+id/signin_button"
                 android:layout_width="105dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"

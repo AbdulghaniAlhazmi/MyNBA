@@ -47,7 +47,7 @@ class GameCommentsFragment : Fragment() {
     private val commentCollectionRef = Firebase.firestore.collection("comments")
     private val userCollectionRef = Firebase.firestore.collection("users")
     private val imageRef = Firebase.storage.reference
-    private lateinit var image : Uri
+    private lateinit var image: Uri
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -81,7 +81,7 @@ class GameCommentsFragment : Fragment() {
                         findNavController().navigate(R.id.signInFragment)
                     }.show()
             }
-            hideKeyboard(requireContext(),requireView())
+            hideKeyboard(requireContext(), requireView())
         }
 
         commentsRealTime()
@@ -114,7 +114,7 @@ class GameCommentsFragment : Fragment() {
             val comment = commentArray[position]
             holder.bind(comment)
             userName(comment.uid, holder)
-            getImage(comment.uid,holder)
+            getImage(comment.uid, holder)
             holder.itemView.setOnClickListener {
                 if (firebaseAuth.currentUser?.uid == comment.uid) {
                     deleteDialog(comment)
@@ -131,7 +131,7 @@ class GameCommentsFragment : Fragment() {
             .setMessage(getString(R.string.deleteCommentMessage))
             .setPositiveButton(getString(R.string.yes)) { _, _ ->
                 deleteComment(comment)
-                snackBarMaker(requireView(),R.string.commentDeleted)
+                snackBarMaker(requireView(), R.string.commentDeleted)
             }
             .setNegativeButton(getString(R.string.cancel)) { dialog, _ ->
                 dialog.dismiss()
@@ -150,7 +150,7 @@ class GameCommentsFragment : Fragment() {
                 try {
                     commentCollectionRef.document(document.id).delete().await()
                 } catch (e: Exception) {
-                    snackBarMaker(requireView(),R.string.commentFailed)
+                    snackBarMaker(requireView(), R.string.commentFailed)
                 }
             }
         }
@@ -182,22 +182,23 @@ class GameCommentsFragment : Fragment() {
 
     }
 
-    private fun getImage(userId : String,holder: GameCommentsFragment.CommentHolder) = CoroutineScope(Dispatchers.IO).launch {
-        try {
-            image = imageRef.child("images/myImage-${userId}").downloadUrl.await()
-            holder.binding.commentIcon.load(image)
-        }catch (e: java.lang.Exception){
-                Log.d(TAG,e.message.toString())        }
-    }
+    private fun getImage(userId: String, holder: GameCommentsFragment.CommentHolder) =
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                image = imageRef.child("images/myImage-${userId}").downloadUrl.await()
+                holder.binding.commentIcon.load(image)
+            } catch (e: java.lang.Exception) {
+                Log.d(TAG, e.message.toString())
+            }
+        }
 
     private fun saveComment(comment: Comment) = CoroutineScope(Dispatchers.IO).launch {
         try {
             commentCollectionRef.document(commentId).set(comment).await()
         } catch (e: Exception) {
-                snackBarMaker(requireView(),R.string.commentFailed)
-            }
+            snackBarMaker(requireView(), R.string.commentFailed)
         }
-
+    }
 
 
 }

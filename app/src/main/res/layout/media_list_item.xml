@@ -9,7 +9,6 @@
 
 
     <LinearLayout
-        android:id="@+id/linearLayout4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -19,7 +18,7 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:contentDescription="@string/video_image"
-            android:scaleType="fitXY"/>
+            android:scaleType="fitXY" />
 
         <TextView
             android:id="@+id/titleTv"

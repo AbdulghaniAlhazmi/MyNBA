@@ -11,7 +11,6 @@
     <string name="confWest" translatable="false">Western</string>
     <string name="confEast" translatable="false">Eastern</string>
     <string name="send_comment">Send Comment</string>
-    <string name="image" translatable="false">Image</string>
     <string name="starters">Starters</string>
     <string name="min" translatable="false">MIN</string>
     <string name="pts" translatable="false">PTS</string>
@@ -22,9 +21,7 @@
     <string name="profile">Profile</string>
     <string name="signout">Sign Out</string>
     <string name="textview" translatable="false">textView</string>
-    <string name="comment">comment</string>
     <string name="password">Password</string>
-    <string name="login">Login</string>
     <string name="don_t_have_an_account">Don\'t have an account?</string>
     <string name="signup">Signup</string>
     <string name="username">Username</string>
@@ -76,10 +73,7 @@
     <string name="boxScore">Box Score</string>
     <string name="discuss">Discuss</string>
     <string name="highlights" translatable="false">Highlights</string>
-    <string name="fileduser">Failed To Create User</string>
-    <string name="registerSucess">User Registered Success</string>
     <string name="filedRegister">Failed to Register User info</string>
-    <string name="logged">Logged In</string>
     <string name="bench">Bench  </string>
     <string name="hide_score">Hide Scores</string>
     <string name="sign_in">Sign In</string>
@@ -95,11 +89,8 @@
     <string name="yes">YES</string>
     <string name="commentDeleted">Comment Deleted</string>
     <string name="commentFailed">Failed To Delete Comment</string>
-    <string name="addCommentFailed">Failed To Add Comment</string>
     <string name="imageUploaded">Image Uploaded</string>
     <string name="userUpdateFail">Failed to Update User info</string>
     <string name="add_new_comment">Add New Comment</string>
-    <string name="explore_nba">Explore NBA</string>
-    <string name="nba_tickets">NBA Tickets</string>
-    <string name="nba_store" translatable="false">NBA Store</string>
+    <string name="change_photo">Change Photo</string>
 </resources>

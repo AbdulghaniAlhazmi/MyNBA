@@ -4,16 +4,14 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.*
-import androidx.core.app.ActivityCompat.recreate
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import coil.load
-import com.example.mynba.MainActivity
 import com.example.mynba.R
 import com.example.mynba.databinding.FragmentProfileBinding
+import com.example.mynba.snackBarMaker
 import com.example.mynba.toHome
-import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -24,6 +22,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 
 const val REQUEST_CODE_IMAGE_PICK = 0
+private const val TAG = "ProfileFragment"
 
 class ProfileFragment : Fragment() {
 
@@ -67,7 +66,7 @@ class ProfileFragment : Fragment() {
         getImage()
         getUserInfo()
 
-        binding.imageView.setOnClickListener {
+        binding.changePhotoBtn.setOnClickListener {
             Intent(Intent.ACTION_GET_CONTENT).also {
                 it.type = "image/*"
                 startActivityForResult(it,REQUEST_CODE_IMAGE_PICK)
@@ -108,7 +107,7 @@ class ProfileFragment : Fragment() {
             val image = imageRef.child("images/myImage-${firebaseAuth.currentUser?.uid}").downloadUrl.await()
             binding.imageView.load(image)
         }catch (e:Exception){
-            Snackbar.make(requireView(), e.message.toString(), Snackbar.LENGTH_LONG).show()
+            Log.d(TAG,e.localizedMessage)
         }
     }
 
@@ -117,13 +116,11 @@ class ProfileFragment : Fragment() {
         try {
             curFile?.let {
                 imageRef.child("images/$filename").putFile(it).await()
-                Snackbar.make(requireView(), getString(R.string.imageUploaded), Snackbar.LENGTH_LONG).show()
-
+                snackBarMaker(requireView(),R.string.imageUploaded)
             }
 
         }catch (e:Exception){
-            Snackbar.make(requireView(), getString(R.string.userUpdateFail), Snackbar.LENGTH_LONG).show()
-        }
+            snackBarMaker(requireView(),R.string.userUpdateFail)        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
