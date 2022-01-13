@@ -37,7 +37,8 @@
                     android:layout_weight="1"
                     android:fontFamily="@font/montserrat"
                     android:inputType="textPersonName"
-                    android:autofillHints="" />
+                    android:autofillHints=""
+                    tools:ignore="LabelFor" />
 
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -85,7 +86,8 @@
                     android:layout_weight="1"
                     android:fontFamily="@font/montserrat"
                     android:inputType="textPassword"
-                    android:autofillHints="" />
+                    android:autofillHints=""
+                    tools:ignore="LabelFor" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -109,7 +111,8 @@
                     android:layout_weight="1"
                     android:fontFamily="@font/montserrat"
                     android:inputType="none"
-                    android:text="" />
+                    android:text=""
+                    tools:ignore="LabelFor" />
 
             </com.google.android.material.textfield.TextInputLayout>
 

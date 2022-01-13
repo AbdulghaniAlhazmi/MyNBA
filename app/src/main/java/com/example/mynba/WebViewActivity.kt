@@ -6,6 +6,7 @@ import android.webkit.WebChromeClient
 import android.webkit.WebView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mynba.databinding.ActivityWebViewBinding
+import com.example.mynba.ui.news.NEWS_KEY
 
 class WebViewActivity : AppCompatActivity() {
 
@@ -17,7 +18,7 @@ class WebViewActivity : AppCompatActivity() {
         binding = ActivityWebViewBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val link = intent.getStringExtra("KEY") ?: "https://www.nba.com"
+        val link = intent.getStringExtra(NEWS_KEY) ?: "https://www.nba.com"
 
         binding.webView.webChromeClient = object : WebChromeClient() {
 

@@ -21,7 +21,7 @@ class NewsViewModel : ViewModel() {
             tempList = repo.getNews()
         }.invokeOnCompletion {
             viewModelScope.launch {
-                newsLiveData.value = tempList
+                newsLiveData.value = tempList.filter { it.url.isNotEmpty() }
             }
         }
         return newsLiveData

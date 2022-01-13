@@ -12,12 +12,14 @@ import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Path
 
+private const val API_KEY = "9d71b15abfmsh023706e8cf3e55cp17600ajsn862e0a5d003f"
+
 interface NbaApi {
 
 
     @Headers(
         "x-rapidapi-host:sportscore1.p.rapidapi.com",
-        "x-rapidapi-key:9d71b15abfmsh023706e8cf3e55cp17600ajsn862e0a5d003f"
+        "x-rapidapi-key:$API_KEY"
     )
     @GET("/seasons/10345/standings-tables")
     fun getStandings(): Call<StandingsResponse>
@@ -25,7 +27,7 @@ interface NbaApi {
 
     @Headers(
         "x-rapidapi-host:sportscore1.p.rapidapi.com",
-        "x-rapidapi-key:9d71b15abfmsh023706e8cf3e55cp17600ajsn862e0a5d003f"
+        "x-rapidapi-key:$API_KEY"
     )
     @GET("/sports/3/events/date/{date}")
     fun getGames(@Path("date") date: String): Call<GamesResponse>
@@ -33,7 +35,7 @@ interface NbaApi {
 
     @Headers(
         "x-rapidapi-host:sportscore1.p.rapidapi.com",
-        "x-rapidapi-key:9d71b15abfmsh023706e8cf3e55cp17600ajsn862e0a5d003f"
+        "x-rapidapi-key:$API_KEY"
     )
     @GET("events/{gameId}/statistics")
     fun getGameStatus(@Path("gameId") gameId: String): Call<StatusResponse>
@@ -41,14 +43,14 @@ interface NbaApi {
 
     @Headers(
         "x-rapidapi-host:sportscore1.p.rapidapi.com",
-        "x-rapidapi-key:9d71b15abfmsh023706e8cf3e55cp17600ajsn862e0a5d003f"
+        "x-rapidapi-key:$API_KEY"
     )
     @GET("events/{gameId}/lineups")
     fun getGameBoxScore(@Path("gameId") gameId: String): Call<ScoreResponse>
 
     @Headers(
         "x-rapidapi-host:sportscore1.p.rapidapi.com",
-        "x-rapidapi-key:9d71b15abfmsh023706e8cf3e55cp17600ajsn862e0a5d003f"
+        "x-rapidapi-key:$API_KEY"
     )
     @GET("/events/{gameId}/medias")
     fun getGameMedia(@Path("gameId") gameId: String): Call<MediaResponse>
@@ -56,7 +58,7 @@ interface NbaApi {
 
     @Headers(
         "x-rapidapi-host:contextualwebsearch-websearch-v1.p.rapidapi.com",
-        "x-rapidapi-key:9d71b15abfmsh023706e8cf3e55cp17600ajsn862e0a5d003f"
+        "x-rapidapi-key:$API_KEY"
     )
     @GET("/api/search/NewsSearchAPI?q=NBA&pageNumber=1&pageSize=20&autoCorrect=true&safeSearch=true&withThumbnails=true")
     fun getNews(): Call<NewsResponse>
