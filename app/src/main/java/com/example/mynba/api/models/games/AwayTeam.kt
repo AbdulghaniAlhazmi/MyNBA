@@ -2,11 +2,6 @@ package com.example.mynba.api.models.games
 
 data class AwayTeam(
     val category_id: Int,
-    val country: String,
-    val country_code: String,
-    val flag: String,
-    val foundation: Any,
-    val gender: String,
     val has_logo: Boolean,
     val has_sub: Boolean,
     val id: Int,

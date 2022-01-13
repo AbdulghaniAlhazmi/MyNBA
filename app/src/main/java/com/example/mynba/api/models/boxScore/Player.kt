@@ -10,8 +10,6 @@ data class Player(
     val has_photo: Boolean,
     val height: Double,
     val id: Int,
-    val market_currency: String,
-    val market_value: Any,
     val name: String,
     val name_short: String,
     val nationality_code: String,
@@ -21,8 +19,4 @@ data class Player(
     val positions: Any,
     val preferred_foot: Any,
     val rating: Any,
-    val shirt_number: Int,
-    val slug: String,
-    val sport_id: Int,
-    val weight: Int
 )

@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.example.mynba.YOUTUBE_KEY
 import com.example.mynba.YouTubePlayerActivity
 import com.example.mynba.api.models.gameMedia.Data
 import com.example.mynba.databinding.GameMediaFragmentBinding
@@ -84,7 +85,7 @@ class GameMediaFragment : Fragment() {
             holder.itemView.setOnClickListener {
 
                 val intent = Intent(context, YouTubePlayerActivity::class.java).apply {
-                    putExtra("KEY", media.url.substringAfter("watch?v=").substringBefore("&"))
+                    putExtra(YOUTUBE_KEY, media.url.substringAfter("watch?v=").substringBefore("&"))
                 }
                 startActivity(intent)
 
