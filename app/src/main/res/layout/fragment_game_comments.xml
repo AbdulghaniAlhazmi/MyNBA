@@ -29,6 +29,7 @@
                 android:inputType="text|textAutoComplete|textNoSuggestions|textAutoCorrect|textLongMessage|textMultiLine|textShortMessage"
                 android:minHeight="48dp"
                 android:padding="12dp"
+                android:maxLength="140"
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"

@@ -1,6 +1,5 @@
 package com.example.mynba.ui.gameStatus
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,7 +11,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.example.mynba.R
 import com.example.mynba.api.models.gameStatus.Data
 import com.example.mynba.databinding.GameStatusFragmentBinding
 import com.example.mynba.databinding.GameStatusItemBinding
@@ -79,8 +77,8 @@ class GameStatusFragment : Fragment() {
             binding.homeStatus.text = status.home
             binding.awayStatus.text = status.away
 
-            var home = 0F
-            var away = 0F
+            val home: Float
+            val away: Float
             when {
                 status.home.contains("%") -> {
                     home = status.home.substringAfter("(").substringBeforeLast(")").replace("%","").toFloat()

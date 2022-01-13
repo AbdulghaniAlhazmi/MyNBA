@@ -12,6 +12,7 @@ import coil.load
 import com.example.mynba.MainActivity
 import com.example.mynba.R
 import com.example.mynba.databinding.FragmentProfileBinding
+import com.example.mynba.toHome
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
@@ -46,8 +47,7 @@ class ProfileFragment : Fragment() {
         return when(item.itemId){
             R.id.signOut ->{
                 firebaseAuth.signOut()
-                val intent = Intent(context, MainActivity::class.java)
-                startActivity(intent)
+                toHome(requireContext())
                 true
             }
             else -> super.onOptionsItemSelected(item)

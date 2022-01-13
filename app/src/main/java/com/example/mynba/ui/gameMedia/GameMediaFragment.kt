@@ -1,30 +1,25 @@
 package com.example.mynba.ui.gameMedia
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
-import androidx.annotation.NonNull
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.example.mynba.YouTubePlayerActivity
 import com.example.mynba.api.models.gameMedia.Data
 import com.example.mynba.databinding.GameMediaFragmentBinding
 import com.example.mynba.databinding.MediaListItemBinding
 import com.example.mynba.ui.games.KEY_GAME_ID
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 
 
 private const val TAG = "GameMediaFragment"
-var viewClicked = 0
 
 class GameMediaFragment : Fragment() {
 
@@ -68,37 +63,8 @@ class GameMediaFragment : Fragment() {
             videoId = videoId.substringAfter("watch?v=").substringBefore("&")
             Log.d(TAG, videoId)
 
-
-            binding.youtubePlayer.getPlayerUiController().showFullscreenButton(true)
-            binding.youtubePlayer.addYouTubePlayerListener(object :
-                AbstractYouTubePlayerListener() {
-                override fun onReady(youTubePlayer: YouTubePlayer) {
-                    youTubePlayer.cueVideo(videoId, 0f)
-                    if (viewClicked == 0){
-
-                    }else{
-                        youTubePlayer.pause()
-                    }
-                }
-
-            })
-
-            binding.youtubePlayer.getPlayerUiController().setFullScreenButtonClickListener {
-                if (binding.youtubePlayer.isFullScreen()) {
-                    binding.youtubePlayer.exitFullScreen()
-                    activity?.window?.decorView?.systemUiVisibility = View.SYSTEM_UI_FLAG_VISIBLE
-                    (activity as AppCompatActivity).supportActionBar?.show()
-
-                } else {
-                    binding.youtubePlayer.enterFullScreen()
-                    activity?.window?.decorView?.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
-                    (activity as AppCompatActivity).supportActionBar?.hide()
-
-                }
-
         }
     }
-        }
 
 
     private inner class MediaAdapter(val media: List<Data>) : RecyclerView.Adapter<MediaHolder>() {
@@ -116,13 +82,12 @@ class GameMediaFragment : Fragment() {
             holder.bind(media)
 
             holder.itemView.setOnClickListener {
-                if (viewClicked == 0) {
-                    viewClicked = 1
-                    holder.binding.layout.visibility = View.VISIBLE
-                } else {
-                    holder.binding.layout.visibility = View.GONE
-                    viewClicked = 0
+
+                val intent = Intent(context,YouTubePlayerActivity::class.java).apply {
+                    putExtra("KEY",media.url.substringAfter("watch?v=").substringBefore("&"))
                 }
+                startActivity(intent)
+
             }
         }
 

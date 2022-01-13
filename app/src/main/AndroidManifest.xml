@@ -4,33 +4,43 @@
     package="com.example.mynba">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"/>
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
 
     <application
         android:allowBackup="true"
-        android:label="@string/app_name"
-        android:supportsRtl="false"
+        android:fullBackupContent="@xml/backup_descriptor"
         android:icon="@mipmap/ic_launcher"
-        tools:replace="android:supportsRtl"
+        android:label="@string/app_name"
+        android:screenOrientation="portrait"
+        android:supportsRtl="false"
         android:theme="@style/Theme.MyNBA"
-        android:fullBackupContent="@xml/backup_descriptor">
-        <receiver android:name=".Notification"
-            android:enabled="true"/>
+        tools:replace="android:supportsRtl">
         <activity
-            android:name=".IntroActivity"
+            android:name=".WebViewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".YouTubePlayerActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:theme="@style/Theme.MyNBA.NoActionBar"
+            android:exported="false" />
+
+        <receiver
+            android:name=".Notification"
+            android:enabled="true" />
+
+        <activity
+            android:name=".MainActivity"
             android:exported="true"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.MyNBA.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
-        <activity
-            android:name=".MainActivity"
-            android:exported="true"
-            android:screenOrientation="fullSensor"
-            android:theme="@style/Theme.MyNBA.NoActionBar" />
+
     </application>
 
 </manifest>

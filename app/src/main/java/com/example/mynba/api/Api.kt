@@ -61,4 +61,6 @@ interface NbaApi {
     @GET("/api/search/NewsSearchAPI?q=NBA&pageNumber=1&pageSize=20&autoCorrect=true&safeSearch=true&withThumbnails=true")
     fun getNews(): Call<NewsResponse>
 
+
+
 }

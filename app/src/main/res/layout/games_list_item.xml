@@ -19,56 +19,57 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
+            android:contentDescription="@string/away_team_logo"
             android:scaleType="fitCenter"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent"
-            card_view:layout_constraintVertical_bias="0.0"
-            android:contentDescription="@string/away_team_logo" />
+            card_view:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/gameStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="19dp"
-            android:layout_marginEnd="28dp"
             android:fontFamily="@font/montserrat"
-            tools:text="TextView"
             android:textColor="#000000"
             android:textSize="20sp"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toStartOf="@+id/hScore"
             card_view:layout_constraintStart_toEndOf="@+id/vScore"
-            card_view:layout_constraintTop_toTopOf="parent" />
+            card_view:layout_constraintTop_toTopOf="parent"
+            tools:text="1st Quarter" />
 
         <TextView
             android:id="@+id/hScore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="18dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="70dp"
             android:fontFamily="@font/montserrat"
-            tools:text="TextView"
             android:textColor="#000000"
-            android:textSize="18sp"
+            android:textSize="20sp"
+            android:textStyle="bold"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toStartOf="@+id/homeLogo"
             card_view:layout_constraintStart_toEndOf="@+id/gameStatus"
-            card_view:layout_constraintTop_toTopOf="parent" />
+            card_view:layout_constraintTop_toTopOf="parent"
+            tools:text="120" />
 
         <TextView
             android:id="@+id/vScore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="11dp"
-            android:layout_marginEnd="19dp"
+            android:layout_marginStart="70dp"
+            android:layout_marginEnd="24dp"
             android:fontFamily="@font/montserrat"
-            tools:text="TextView"
             android:textColor="#000000"
-            android:textSize="18sp"
+            android:textSize="20sp"
+            android:textStyle="bold"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toStartOf="@+id/gameStatus"
             card_view:layout_constraintStart_toEndOf="@+id/awayLogo"
-            card_view:layout_constraintTop_toTopOf="parent" />
+            card_view:layout_constraintTop_toTopOf="parent"
+            tools:text="120" />
 
         <ImageView
             android:id="@+id/homeLogo"
@@ -77,14 +78,14 @@
             android:layout_gravity="center_vertical"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
+            android:contentDescription="@string/home_team_logo"
             android:scaleType="fitCenter"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintHorizontal_bias="0.951"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent"
-            card_view:layout_constraintVertical_bias="0.0"
-            android:contentDescription="@string/home_team_logo" />
+            card_view:layout_constraintVertical_bias="0.0" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

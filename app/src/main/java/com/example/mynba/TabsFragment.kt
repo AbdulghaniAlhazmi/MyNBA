@@ -5,9 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import coil.load
 import com.example.mynba.databinding.FragmentTabsBinding
 import com.example.mynba.ui.boxScore.BoxScoreFragment
 import com.example.mynba.ui.gameComments.GameCommentsFragment
@@ -33,7 +35,10 @@ class TabsFragment : Fragment() {
     private var homeId by Delegates.notNull<Int>()
     private var awayId by Delegates.notNull<Int>()
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
+        (activity as AppCompatActivity).supportActionBar?.hide()}
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,7 +52,6 @@ class TabsFragment : Fragment() {
         awayLogo = requireArguments().getString(KEY_AWAY_LOGO).toString()
         homeCode = requireArguments().getString(KEY_HOME_SHORT).toString()
         awayCode = requireArguments().getString(KEY_AWAY_SHORT).toString()
-
 
 
         gameStatusArgs()

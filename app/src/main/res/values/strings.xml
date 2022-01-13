@@ -81,7 +81,7 @@
     <string name="filedRegister">Failed to Register User info</string>
     <string name="logged">Logged In</string>
     <string name="bench">Bench  </string>
-    <string name="hide_score">Hide Score</string>
+    <string name="hide_score">Hide Scores</string>
     <string name="sign_in">Sign In</string>
     <string name="sign_up">Sign Up</string>
     <string name="gameAlert">Game Alert</string>
@@ -99,4 +99,7 @@
     <string name="imageUploaded">Image Uploaded</string>
     <string name="userUpdateFail">Failed to Update User info</string>
     <string name="add_new_comment">Add New Comment</string>
+    <string name="explore_nba">Explore NBA</string>
+    <string name="nba_tickets">NBA Tickets</string>
+    <string name="nba_store" translatable="false">NBA Store</string>
 </resources>

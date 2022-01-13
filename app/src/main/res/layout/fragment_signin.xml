@@ -58,7 +58,7 @@
                     android:layout_weight="1"
                     android:fontFamily="@font/montserrat"
                     android:inputType="textPassword"
-                    tools:ignore="SpeakableTextPresentCheck"
+                    tools:ignore="LabelFor,SpeakableTextPresentCheck"
                     android:importantForAutofill="no" />
 
 

@@ -4,6 +4,7 @@
 
     <item android:title="@string/sign_in"
         android:id="@+id/signInFragment"
+        android:icon="@drawable/ic_round_login_24"
         android:fontFamily="@font/montserrat" />
 
 

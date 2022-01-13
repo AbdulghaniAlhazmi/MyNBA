@@ -8,23 +8,24 @@
 
     <item android:title="@string/profile"
         android:id="@+id/profileFragment"
+        android:icon="@drawable/ic_round_login_24"
         android:fontFamily="@font/montserrat"
         />
 
         </group>
 
-        <item android:title="Explore NBA"
+        <item android:title="@string/explore_nba"
             android:fontFamily="@font/montserrat"
             >
             <menu>
                 <item
-                    android:id="@+id/nav_share"
-                    android:title="WB2"
+                    android:id="@+id/webViewActivity"
+                    android:title="@string/nba_tickets"
                     android:fontFamily="@font/montserrat"
                     />
                 <item
                     android:id="@+id/nav_send"
-                    android:title="Wb1"
+                    android:title="@string/nba_store"
                     android:fontFamily="@font/montserrat"
                     />
             </menu>

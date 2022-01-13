@@ -1,14 +1,12 @@
 package com.example.mynba.ui.gameComments
 
 
-import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,6 +16,8 @@ import com.example.mynba.R
 import com.example.mynba.database.Comment
 import com.example.mynba.databinding.CommentItemBinding
 import com.example.mynba.databinding.FragmentGameCommentsBinding
+import com.example.mynba.hideKeyboard
+import com.example.mynba.snackBarMaker
 import com.example.mynba.ui.games.KEY_GAME_ID
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
@@ -74,13 +74,14 @@ class GameCommentsFragment : Fragment() {
                 commentId = UUID.randomUUID().toString()
                 val comment = Comment(uid, commentText, gameId, commentId)
                 saveComment(comment)
+                binding.commentET.text.clear()
             } else {
                 Snackbar.make(it, getString(R.string.signInToComment), Snackbar.LENGTH_LONG)
-                    .setAction(getString(R.string.signIn),View.OnClickListener {
+                    .setAction(getString(R.string.signIn)) {
                         findNavController().navigate(R.id.signInFragment)
-                    }).show()
+                    }.show()
             }
-            hideKeyboard()
+            hideKeyboard(requireContext(),requireView())
         }
 
         commentsRealTime()
@@ -128,11 +129,11 @@ class GameCommentsFragment : Fragment() {
     private fun deleteDialog(comment: Comment) {
         MaterialAlertDialogBuilder(requireContext())
             .setMessage(getString(R.string.deleteCommentMessage))
-            .setPositiveButton(getString(R.string.yes)) { dialog, which ->
+            .setPositiveButton(getString(R.string.yes)) { _, _ ->
                 deleteComment(comment)
-                Snackbar.make(requireView(), getString(R.string.commentDeleted), Snackbar.LENGTH_LONG).show()
+                snackBarMaker(requireView(),R.string.commentDeleted)
             }
-            .setNegativeButton(getString(R.string.cancel)) { dialog, which ->
+            .setNegativeButton(getString(R.string.cancel)) { dialog, _ ->
                 dialog.dismiss()
             }.show()
 
@@ -149,18 +150,13 @@ class GameCommentsFragment : Fragment() {
                 try {
                     commentCollectionRef.document(document.id).delete().await()
                 } catch (e: Exception) {
-                    Snackbar.make(
-                        requireView(),
-                        getString(R.string.commentFailed),
-                        Snackbar.LENGTH_LONG
-                    ).show()
+                    snackBarMaker(requireView(),R.string.commentFailed)
                 }
             }
         }
     }
 
     private fun userName(uid: String, holder: GameCommentsFragment.CommentHolder) {
-
         userCollectionRef.document(uid)
             .get()
             .addOnCompleteListener {
@@ -173,7 +169,7 @@ class GameCommentsFragment : Fragment() {
 
     private fun commentsRealTime() {
 
-        commentCollectionRef.whereEqualTo("gameId", gameId).addSnapshotListener { value, error ->
+        commentCollectionRef.whereEqualTo("gameId", gameId).addSnapshotListener { value, _ ->
             value?.let {
                 commentArray.clear()
                 for (document in it) {
@@ -198,14 +194,11 @@ class GameCommentsFragment : Fragment() {
         try {
             commentCollectionRef.document(commentId).set(comment).await()
         } catch (e: Exception) {
-                Snackbar.make(requireView(), getString(R.string.addCommentFailed), Snackbar.LENGTH_LONG).show()
+                snackBarMaker(requireView(),R.string.commentFailed)
             }
         }
 
-    fun GameCommentsFragment.hideKeyboard(){
-        val inputManager = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        inputManager.hideSoftInputFromWindow(view?.windowToken,0)
-    }
+
 
 }
 

@@ -109,7 +109,7 @@ class GamesFragment : Fragment() {
         }
 
         binding.composeView.setContent {
-            datePick()
+            DatePick()
         }
 
         return binding.root
@@ -117,7 +117,7 @@ class GamesFragment : Fragment() {
 
     @OptIn(ExperimentalComposeUiApi::class)
     @Composable
-    fun datePick() {
+    fun DatePick() {
         DatePickerTimeLineTheme {
             Surface(
                 modifier = Modifier.wrapContentSize(),
@@ -149,7 +149,7 @@ class GamesFragment : Fragment() {
                         dateTextColor = dateTextColor,
                         selectedTextColor = Blue,
                         todayLabel = {
-                            Log.d(TAG, date.toString())
+                            Log.d(TAG, date)
                             Text(
                                 modifier = Modifier.padding(10.dp),
                                 text = "Today",
@@ -256,9 +256,9 @@ class GamesFragment : Fragment() {
         context?.let {
             MaterialAlertDialogBuilder(it)
                 .setTitle(getString(R.string.gameAlert))
-                .setMessage(getString(R.string.alertMessage) + "${convertDate(gameTime)}")
+                .setMessage(getString(R.string.alertMessage) + convertDate(gameTime))
                 .setNeutralButton(getString(R.string.cancel)) { _, _ -> }
-                .setPositiveButton(getString(R.string.reminder)) { dialog, which ->
+                .setPositiveButton(getString(R.string.reminder)) { _, _ ->
                     scheduleNotification(gameTime, homeTeam, awayTeam)
                 }.show()
         }

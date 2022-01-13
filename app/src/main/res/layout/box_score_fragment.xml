@@ -3,21 +3,69 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:layout_height="match_parent">
+
+
+    <RadioGroup
+        android:id="@+id/radiogroup"
+        android:layout_width="270dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/custom_radio_bg"
+        android:checkedButton="@+id/home_button"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
+
+        <RadioButton
+            android:id="@+id/away_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginBottom="1dp"
+            android:layout_weight="1"
+            android:background="@drawable/custom_radio_bg_selector"
+            android:button="@null"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center"
+            android:textColor="@color/custom_radio_text_color"
+            tools:ignore="TouchTargetSizeCheck"
+            tools:text="BLK" />
+
+        <RadioButton
+            android:id="@+id/home_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginBottom="1dp"
+            android:layout_weight="1"
+            android:background="@drawable/custom_radio_bg_selector"
+            android:button="@null"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center"
+            android:textColor="@color/custom_radio_text_color"
+            tools:ignore="TouchTargetSizeCheck"
+            tools:text="GSW" />
+    </RadioGroup>
+
 
     <LinearLayout
         android:id="@+id/linearlayout"
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="20dp"
         android:background="@color/blue2"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/starter_RC"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radiogroup"
         app:layout_constraintVertical_bias="0.0">
 
         <TextView
@@ -105,128 +153,7 @@
 
         <TextView
             android:id="@+id/blkTVb"
-            android:layout_width="45dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:fontFamily="@font/montserrat"
-            android:gravity="center"
-            android:text="@string/blk"
-            android:textColor="#FBFBFB"
-            tools:textAlignment="center"
-            tools:textSize="16sp" />
-
-    </LinearLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/bench_RC"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearlayout2"
-        tools:listitem="@layout/boxscore_item" />
-
-    <LinearLayout
-        android:id="@+id/linearlayout2"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_marginTop="345dp"
-        android:background="@color/blue2"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/starter_RC"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
-
-        <TextView
-            android:layout_width="20dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:fontFamily="@font/montserrat"
-            android:gravity="center"
-            tools:textSize="18sp" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginEnd="50dp"
-            android:gravity="center">
-
-            <TextView
-                android:id="@+id/bench"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/montserrat"
-                android:text="@string/bench"
-                android:textColor="#FBFBFB"
-                android:textSize="16sp" />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/minTV"
-            android:layout_width="45dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:fontFamily="@font/montserrat"
-            android:gravity="center"
-            android:text="@string/min"
-            android:textColor="#FBFBFB"
-            tools:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/ptsTV"
-            android:layout_width="45dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:fontFamily="@font/montserrat"
-            android:gravity="center"
-            android:text="@string/pts"
-            android:textColor="#FBFBFB"
-            tools:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/rebTV"
-            android:layout_width="45dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:fontFamily="@font/montserrat"
-            android:gravity="center"
-            android:text="@string/reb"
-            android:textColor="#FBFBFB"
-            tools:textAlignment="center"
-            tools:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/astTV"
-            android:layout_width="45dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:fontFamily="@font/montserrat"
-            android:gravity="center"
-            android:text="@string/ast"
-            android:textColor="#FBFBFB"
-            tools:textAlignment="center"
-            tools:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/stlTV"
-            android:layout_width="45dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:fontFamily="@font/montserrat"
-            android:gravity="center"
-            android:text="@string/stl"
-            android:textColor="#FBFBFB"
-            tools:textAlignment="center"
-            tools:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/blkTV"
-            android:layout_width="45dp"
+            android:layout_width="40dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:fontFamily="@font/montserrat"
@@ -241,62 +168,300 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/starter_RC"
         android:layout_width="match_parent"
-        android:layout_height="255dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        app:layout_constraintBottom_toTopOf="@+id/linearlayout2"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearlayout"
         tools:ignore="MissingConstraints"
         tools:listitem="@layout/boxscore_item" />
 
-    <RadioGroup
-        android:layout_width="270dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="68dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/custom_radio_bg"
-        android:checkedButton="@+id/home_button"
-        android:gravity="center"
+
+    <LinearLayout
+        android:id="@+id/linearlayoutBench"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/blue2"
         android:orientation="horizontal"
-        android:visibility="visible"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/starter_RC"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center"
+            tools:textSize="18sp" />
+
+        <LinearLayout
+            android:layout_width="58dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="50dp"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/montserrat"
+                android:text="@string/bench"
+                android:textColor="#FBFBFB"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="45dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center"
+            android:text="@string/min"
+            android:textColor="#FBFBFB"
+            tools:textSize="16sp" />
+
+        <TextView
+            android:layout_width="45dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center"
+            android:text="@string/pts"
+            android:textColor="#FBFBFB"
+            tools:textSize="16sp" />
+
+        <TextView
+            android:layout_width="45dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center"
+            android:text="@string/reb"
+            android:textColor="#FBFBFB"
+            tools:textAlignment="center"
+            tools:textSize="16sp" />
+
+        <TextView
+            android:layout_width="45dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center"
+            android:text="@string/ast"
+            android:textColor="#FBFBFB"
+            tools:textAlignment="center"
+            tools:textSize="16sp" />
+
+        <TextView
+            android:layout_width="45dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center"
+            android:text="@string/stl"
+            android:textColor="#FBFBFB"
+            tools:textAlignment="center"
+            tools:textSize="16sp" />
+
+        <TextView
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center"
+            android:text="@string/blk"
+            android:textColor="#FBFBFB"
+            tools:textAlignment="center"
+            tools:textSize="16sp" />
+
+    </LinearLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/bench_RC"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints">
+        app:layout_constraintTop_toBottomOf="@+id/linearlayoutBench"
+        tools:listitem="@layout/boxscore_item" />
 
-        <RadioButton
-            android:id="@+id/away_button"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginTop="1dp"
-            android:layout_marginEnd="1dp"
-            android:layout_marginBottom="1dp"
-            android:layout_weight="1"
-            android:background="@drawable/custom_radio_bg_selector"
-            android:button="@null"
-            android:fontFamily="@font/montserrat"
-            android:gravity="center"
-            android:textColor="@color/custom_radio_text_color"
-            tools:ignore="TouchTargetSizeCheck"
-            tools:text="BLK" />
+<!--    <LinearLayout-->
+<!--        android:id="@+id/linearlayout2"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="30dp"-->
+<!--        android:layout_marginTop="345dp"-->
+<!--        android:background="@color/blue2"-->
+<!--        android:orientation="horizontal"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/starter_RC"-->
+<!--        app:layout_constraintHorizontal_bias="1.0"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.0">-->
 
-        <RadioButton
-            android:id="@+id/home_button"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginTop="1dp"
-            android:layout_marginEnd="1dp"
-            android:layout_marginBottom="1dp"
-            android:layout_weight="1"
-            android:background="@drawable/custom_radio_bg_selector"
-            android:button="@null"
-            android:fontFamily="@font/montserrat"
-            android:gravity="center"
-            android:textColor="@color/custom_radio_text_color"
-            tools:ignore="TouchTargetSizeCheck"
-            tools:text="GSW" />
-    </RadioGroup>
+<!--        <TextView-->
+<!--            android:layout_width="20dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:fontFamily="@font/montserrat"-->
+<!--            android:gravity="center"-->
+<!--            tools:textSize="18sp" />-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_marginEnd="50dp"-->
+<!--            android:gravity="center">-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/bench"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1"-->
+<!--                android:fontFamily="@font/montserrat"-->
+<!--                android:text="@string/bench"-->
+<!--                android:textColor="#FBFBFB"-->
+<!--                android:textSize="16sp" />-->
+<!--        </LinearLayout>-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/minTV"-->
+<!--            android:layout_width="45dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:fontFamily="@font/montserrat"-->
+<!--            android:gravity="center"-->
+<!--            android:text="@string/min"-->
+<!--            android:textColor="#FBFBFB"-->
+<!--            tools:textSize="16sp" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/ptsTV"-->
+<!--            android:layout_width="45dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:fontFamily="@font/montserrat"-->
+<!--            android:gravity="center"-->
+<!--            android:text="@string/pts"-->
+<!--            android:textColor="#FBFBFB"-->
+<!--            tools:textSize="16sp" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/rebTV"-->
+<!--            android:layout_width="45dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:fontFamily="@font/montserrat"-->
+<!--            android:gravity="center"-->
+<!--            android:text="@string/reb"-->
+<!--            android:textColor="#FBFBFB"-->
+<!--            tools:textAlignment="center"-->
+<!--            tools:textSize="16sp" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/astTV"-->
+<!--            android:layout_width="45dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:fontFamily="@font/montserrat"-->
+<!--            android:gravity="center"-->
+<!--            android:text="@string/ast"-->
+<!--            android:textColor="#FBFBFB"-->
+<!--            tools:textAlignment="center"-->
+<!--            tools:textSize="16sp" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/stlTV"-->
+<!--            android:layout_width="45dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:fontFamily="@font/montserrat"-->
+<!--            android:gravity="center"-->
+<!--            android:text="@string/stl"-->
+<!--            android:textColor="#FBFBFB"-->
+<!--            tools:textAlignment="center"-->
+<!--            tools:textSize="16sp" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/blkTV"-->
+<!--            android:layout_width="45dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:fontFamily="@font/montserrat"-->
+<!--            android:gravity="center"-->
+<!--            android:text="@string/blk"-->
+<!--            android:textColor="#FBFBFB"-->
+<!--            tools:textAlignment="center"-->
+<!--            tools:textSize="16sp" />-->
+
+<!--    </LinearLayout>-->
+
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/starter_RC"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="4dp"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/linearlayout2"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/linearlayout"-->
+<!--        tools:ignore="MissingConstraints"-->
+<!--        tools:listitem="@layout/boxscore_item" />-->
+
+<!--    <RadioGroup-->
+<!--        android:id="@+id/radiogroup"-->
+<!--        android:layout_width="270dp"-->
+<!--        android:layout_height="35dp"-->
+<!--        android:layout_marginStart="68dp"-->
+<!--        android:layout_marginTop="15dp"-->
+<!--        android:background="@drawable/custom_radio_bg"-->
+<!--        android:checkedButton="@+id/home_button"-->
+<!--        android:gravity="center"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:visibility="visible"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        tools:ignore="MissingConstraints">-->
+
+<!--        <RadioButton-->
+<!--            android:id="@+id/away_button"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_marginTop="1dp"-->
+<!--            android:layout_marginEnd="1dp"-->
+<!--            android:layout_marginBottom="1dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:background="@drawable/custom_radio_bg_selector"-->
+<!--            android:button="@null"-->
+<!--            android:fontFamily="@font/montserrat"-->
+<!--            android:gravity="center"-->
+<!--            android:textColor="@color/custom_radio_text_color"-->
+<!--            tools:ignore="TouchTargetSizeCheck"-->
+<!--            tools:text="BLK" />-->
+
+<!--        <RadioButton-->
+<!--            android:id="@+id/home_button"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_marginTop="1dp"-->
+<!--            android:layout_marginEnd="1dp"-->
+<!--            android:layout_marginBottom="1dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:background="@drawable/custom_radio_bg_selector"-->
+<!--            android:button="@null"-->
+<!--            android:fontFamily="@font/montserrat"-->
+<!--            android:gravity="center"-->
+<!--            android:textColor="@color/custom_radio_text_color"-->
+<!--            tools:ignore="TouchTargetSizeCheck"-->
+<!--            tools:text="GSW" />-->
+<!--    </RadioGroup>-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-

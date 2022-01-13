@@ -52,4 +52,7 @@
     <string name="addCommentFailed">Échec de l\'ajout d\'un commentaire</string>
     <string name="imageUploaded">Image téléchargée</string>
     <string name="userUpdateFail">Échec de la mise à jour des informations utilisateur</string>
+    <string name="add_new_comment">"Ajouter un nouveau commentaire "</string>
+    <string name="explore_nba">Découvrir la NBA</string>
+    <string name="nba_tickets">Billets NBA</string>
 </resources>

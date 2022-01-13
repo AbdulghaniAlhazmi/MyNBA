@@ -1,26 +1,20 @@
 package com.example.mynba.ui.news
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.example.mynba.R
+import com.example.mynba.WebViewActivity
 import com.example.mynba.api.models.news.Value
 import com.example.mynba.databinding.FragmentNewsBinding
 import com.example.mynba.databinding.NewsListItemBinding
-
-const val NEWS_ID_TITLE = "title"
-const val NEWS_ID_IMAGE = "IMAGE"
-const val NEWS_ID_CONTENT = "CONTENT"
-const val NEWS_ID = "id"
-
 
 
 class NewsFragment : Fragment() {
@@ -76,15 +70,11 @@ class NewsFragment : Fragment() {
             val news = news[position]
             holder.bind(news)
             holder.itemView.setOnClickListener {
-                findNavController().navigate(
-                    R.id.action_navigation_news_to_newsPageFragment,
-                    Bundle().apply {
-                        putString(NEWS_ID_TITLE, news.title)
-                        putString(NEWS_ID_IMAGE, news.image.url)
-                        putString(NEWS_ID_CONTENT, news.body)
-                        putString(NEWS_ID, news.id)
 
-                    })
+                val intent = Intent(context, WebViewActivity::class.java).apply {
+                    putExtra("KEY", news.url)
+                }
+                startActivity(intent)
             }
         }
 

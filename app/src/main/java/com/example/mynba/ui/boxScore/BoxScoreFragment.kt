@@ -2,7 +2,6 @@ package com.example.mynba.ui.boxScore
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,8 +15,6 @@ import com.example.mynba.databinding.BoxScoreFragmentBinding
 import com.example.mynba.databinding.BoxscoreItemBinding
 import com.example.mynba.ui.games.*
 import kotlin.properties.Delegates
-
-private const val TAG = "BoxScoreFragment"
 
 class BoxScoreFragment : Fragment() {
 
@@ -90,10 +87,9 @@ class BoxScoreFragment : Fragment() {
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(boxScore: LineupPlayer) {
-            binding.playerNameTV.text = boxScore.player.name_short
+            binding.playerNameTV.text = boxScore.player.name_short.trim()
             val minPlayed: Int = (boxScore.player_statistics.seconds_played % 3600) / 60
             binding.minTV.text = minPlayed.toString()
-            Log.d(TAG, boxScore.player.name)
             binding.ptsTV.text = boxScore.player_statistics.points.toString()
             binding.rebTV.text = boxScore.player_statistics.rebounds
             binding.astTV.text = boxScore.player_statistics.assists
