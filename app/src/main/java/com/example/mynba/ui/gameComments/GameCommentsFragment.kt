@@ -72,7 +72,7 @@ class GameCommentsFragment : Fragment() {
                 uid = firebaseAuth.currentUser!!.uid
                 commentText = binding.commentET.text.toString()
                 commentId = UUID.randomUUID().toString()
-                val comment = Comment(uid, commentText, gameId, commentId)
+                val comment = Comment(uid, commentText, gameId, commentId,System.currentTimeMillis().toString())
                 saveComment(comment)
                 binding.commentET.text.clear()
             } else {
@@ -98,7 +98,7 @@ class GameCommentsFragment : Fragment() {
         }
     }
 
-    private inner class CommentAdapter(commentArray: ArrayList<Comment>) :
+    private inner class CommentAdapter(commentArray: Unit) :
         RecyclerView.Adapter<CommentHolder>() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommentHolder {
             val binding: CommentItemBinding = CommentItemBinding.inflate(
@@ -176,7 +176,7 @@ class GameCommentsFragment : Fragment() {
                     val comment = document.toObject(Comment::class.java)
                     commentArray.add(comment)
                 }
-                binding.commentsRc.adapter = CommentAdapter(commentArray)
+                binding.commentsRc.adapter = CommentAdapter(commentArray.sortBy { it.time })
             }
         }
     }
