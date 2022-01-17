@@ -179,7 +179,6 @@ class GameCommentsFragment : Fragment() {
                 binding.commentsRc.adapter = CommentAdapter(commentArray)
             }
         }
-
     }
 
     private fun getImage(userId: String, holder: GameCommentsFragment.CommentHolder) =

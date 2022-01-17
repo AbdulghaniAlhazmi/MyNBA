@@ -102,8 +102,10 @@ class GamesFragment : Fragment() {
         binding.hideScore.setOnClickListener {
             if (binding.hideScore.isChecked) {
                 ShearedPreference.setHideScore(requireContext(), true)
+                findNavController().navigate(R.id.navigation_games)
             } else {
                 ShearedPreference.setHideScore(requireContext(), false)
+                findNavController().navigate(R.id.navigation_games)
             }
         }
 
@@ -171,7 +173,7 @@ class GamesFragment : Fragment() {
         fun bind(game: Data) {
             binding.awayLogo.load(game.away_team.logo)
             binding.homeLogo.load(game.home_team.logo)
-            Log.d(TAG,game.start_at)
+            Log.d(TAG, game.start_at)
             if (game.status_more == "-") {
                 binding.gameStatus.text = convertDate(game.start_at)
             } else {
@@ -282,7 +284,7 @@ class GamesFragment : Fragment() {
 
         val alarmManager = activity?.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val date = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(gameTime)
-        date.time = date.time + 3 * 60 * 60 * 1000
+        date?.time = date?.time?.plus(3 * 60 * 60 * 1000)!!
         Log.d(TAG, "notification time ${date.time}")
         alarmManager.setExactAndAllowWhileIdle(
             AlarmManager.RTC_WAKEUP,
@@ -308,7 +310,7 @@ class GamesFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         gamesViewModel.getGames(date).observe(
-            this,{
+            this, {
                 binding.gamesRc.adapter = GamesAdapter(it)
             }
         )

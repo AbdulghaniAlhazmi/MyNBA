@@ -60,6 +60,8 @@ class NbaRepo {
 
         if (response.isSuccessful) {
             gamesList = response.body()?.data ?: emptyList()
+        }else {
+            Log.d(TAG, "the error is {${response.errorBody()}")
         }
         return gamesList
     }
@@ -70,6 +72,8 @@ class NbaRepo {
 
         if (response.isSuccessful) {
             gameStatusList = response.body()?.data ?: emptyList()
+        }else {
+            Log.d(TAG, "the error is {${response.errorBody()}")
         }
 
         return gameStatusList
@@ -81,6 +85,8 @@ class NbaRepo {
 
         if (response.isSuccessful){
             gameBoxScoreList = response.body()?.data ?: emptyList()
+        }else {
+            Log.d(TAG, "the error is {${response.errorBody()}")
         }
         return gameBoxScoreList
     }
@@ -91,6 +97,8 @@ class NbaRepo {
 
         if (response.isSuccessful){
             gameMediaList = response.body()?.data ?: emptyList()
+        }else {
+            Log.d(TAG, "the error is {${response.errorBody()}")
         }
         return gameMediaList
     }
