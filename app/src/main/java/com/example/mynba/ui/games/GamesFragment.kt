@@ -78,11 +78,7 @@ class GamesFragment : Fragment() {
         Log.d(TAG, date)
         Log.d(TAG, hideScore.toString())
 
-        gamesViewModel.getGames(date).observe(
-            this, {
-                binding.gamesRc.adapter = GamesAdapter(it)
-            }
-        )
+        gamesObserver(date)
 
     }
 
@@ -102,10 +98,10 @@ class GamesFragment : Fragment() {
         binding.hideScore.setOnClickListener {
             if (binding.hideScore.isChecked) {
                 ShearedPreference.setHideScore(requireContext(), true)
-                findNavController().navigate(R.id.navigation_games)
+                gamesObserver(date)
             } else {
                 ShearedPreference.setHideScore(requireContext(), false)
-                findNavController().navigate(R.id.navigation_games)
+                gamesObserver(date)
             }
         }
 
@@ -137,11 +133,9 @@ class GamesFragment : Fragment() {
                     DatePickerTimeline(
                         modifier = Modifier.wrapContentSize(),
                         onDateSelected = { selectedDate ->
+                            date = selectedDate.toString()
                             Log.d(TAG, selectedDate.toString())
-                            gamesViewModel.getGames(selectedDate.toString()).observe(
-                                viewLifecycleOwner, {
-                                    binding.gamesRc.adapter = GamesAdapter(it)
-                                })
+                            gamesObserver(date)
                         },
                         backgroundColor = mainBackgroundColor,
                         orientation = Orientation.Horizontal,
@@ -252,6 +246,14 @@ class GamesFragment : Fragment() {
 
     }
 
+    @SuppressLint("FragmentLiveDataObserve")
+    private fun gamesObserver(date: String) {
+        gamesViewModel.getGames(date).observe(
+            this, {
+                binding.gamesRc.adapter = GamesAdapter(it)
+            })
+    }
+
     private fun showAlert(gameTime: String, homeTeam: String, awayTeam: String) {
 
         context?.let {
@@ -309,11 +311,7 @@ class GamesFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        gamesViewModel.getGames(date).observe(
-            this, {
-                binding.gamesRc.adapter = GamesAdapter(it)
-            }
-        )
+        gamesObserver(date)
     }
 
 }
