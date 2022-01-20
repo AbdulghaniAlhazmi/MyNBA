@@ -60,7 +60,7 @@ interface NbaApi {
         "x-rapidapi-host:contextualwebsearch-websearch-v1.p.rapidapi.com",
         "x-rapidapi-key:$API_KEY"
     )
-    @GET("/api/search/NewsSearchAPI?q=NBA&pageNumber=1&pageSize=20&autoCorrect=true&safeSearch=true&withThumbnails=true")
+    @GET("/api/search/NewsSearchAPI?q=NBA-basketball&pageNumber=1&pageSize=20&autoCorrect=true&safeSearch=true&withThumbnails=true")
     fun getNews(): Call<NewsResponse>
 
 

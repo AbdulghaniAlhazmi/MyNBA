@@ -12,5 +12,4 @@ class GamesFragmentTest{
         assertEquals(result," 3:30 AM")
     }
 
-
 }

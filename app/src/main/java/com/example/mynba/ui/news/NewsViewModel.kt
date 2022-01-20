@@ -21,10 +21,9 @@ class NewsViewModel : ViewModel() {
             tempList = repo.getNews()
         }.invokeOnCompletion {
             viewModelScope.launch {
-                newsLiveData.value = tempList.filter { it.url.isNotEmpty() }
+                newsLiveData.value = tempList.filter { it.url.isNotEmpty() }.sortedBy { it.datePublished }
             }
         }
         return newsLiveData
     }
 }
-
