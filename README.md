@@ -8,9 +8,9 @@ Live NBA scores and Latest News, Highlights, Engage with community and be a voic
 - Games times and scores
 - Game Status
 - Game Box Score
-- Games Highlights
+- Game Highlights
 - User comments on games
-- Leauge Standings
+- League Standings
 
 ## Interface
 
