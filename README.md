@@ -2,6 +2,18 @@
 Live NBA scores and Latest News, Highlights, Engage with community and be a voice for your team.
 
 
+
+## Technologies Used 
+
+- MVC Architecture
+- API
+- Firebase
+- LiveData
+- Lottie Animation
+
+
+
+
 ## Features
 
 - League news
